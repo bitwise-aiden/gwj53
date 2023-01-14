@@ -1,12 +1,12 @@
 extends Spatial
 
-# Private enums 
+# Private enums
 
 enum __Face { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }
 enum __Direction { CW = 90, CCW = -90, Max = 2}
 
 
-# Private variables 
+# Private variables
 
 onready var __faces: Dictionary = {
 	__Face.Front:        $faces_container/face_front,
@@ -26,7 +26,7 @@ onready var __parts: Array = $parts_container.get_children()
 var __rotating: bool = false
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
 func _ready() -> void:
 	assert(__parts.size() == 26)
@@ -34,55 +34,57 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if !__rotating:
-		__rotate_face(randi() % __Face.Max, [__Direction.CW, __Direction.CCW][randi() % __Direction.Max])
+		__rotate_face(randi() % __Face.Max, __Direction.CCW)
 
-# Private methods 
+
+# Private methods
 
 func __rotate_face(face_type: int, degree: int) -> void:
 	__rotating = true
-	
+
 	var face: Face = __faces[face_type]
-	
+
 	var origin = face.translation
 	var axis: Vector3 = face.translation.abs().normalized()
 	if axis == Vector3.ZERO:
-		match face_type: 
-			__Face.Standing: 
+		match face_type:
+			__Face.Standing:
 				axis = Vector3.BACK
 			__Face.Equator:
 				axis = Vector3.UP
 			__Face.Middle:
 				axis = Vector3.LEFT
-	
+
 	var parts: Array = face.get_overlapping_bodies()
 	if parts.empty():
 		__rotating = false
 		return
-	
+
 	var tween: SceneTreeTween = create_tween().set_parallel()
-	
-	for part in parts: 
+
+	for part in parts:
 		var offset: Vector3 = part.translation - origin
-		
+
 		tween.tween_method(
 			self,
 			"__rotate_part",
-			0.0, 
+			0.0,
 			deg2rad(degree),
 			0.2,
 			[part, offset, origin, axis]
 		)
-	
+
+	tween.chain().tween_interval(0.1)
+
 	yield(tween, "finished")
-	
 	__rotating = false
 
 
 func __rotate_part(
-	angle: float, 
-	part: Part, 
-	offset: Vector3, 
-	origin: Vector3, 
+	angle: float,
+	part: Part,
+	offset: Vector3,
+	origin: Vector3,
 	axis: Vector3
-) -> void: 
+) -> void:
 	part.translation = origin + offset.rotated(axis, angle)

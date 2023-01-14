@@ -1,7 +1,7 @@
 extends Spatial
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
 func _ready() -> void:
 	randomize()
