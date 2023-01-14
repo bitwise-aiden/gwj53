@@ -3,6 +3,7 @@ extends Spatial
 # Private enums 
 
 enum __Face { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }
+enum __Direction { CW = 90, CCW = -90, Max = 2}
 
 
 # Private variables 
@@ -31,9 +32,9 @@ func _ready() -> void:
 	assert(__parts.size() == 26)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if !__rotating:
-		__rotate_face(__Face.Front, 90)
+		__rotate_face(randi() % __Face.Max, [__Direction.CW, __Direction.CCW][randi() % __Direction.Max])
 
 # Private methods 
 
@@ -43,14 +44,19 @@ func __rotate_face(face_type: int, degree: int) -> void:
 	var face: Face = __faces[face_type]
 	
 	var origin = face.translation
-	var axis: Vector3 = face.translation.normalized()
+	var axis: Vector3 = face.translation.abs().normalized()
 	if axis == Vector3.ZERO:
-		axis = face.rotation.normalized()
-		if axis == Vector3.ZERO:
-			axis = Vector3.BACK
+		match face_type: 
+			__Face.Standing: 
+				axis = Vector3.BACK
+			__Face.Equator:
+				axis = Vector3.UP
+			__Face.Middle:
+				axis = Vector3.LEFT
 	
 	var parts: Array = face.get_overlapping_bodies()
 	if parts.empty():
+		__rotating = false
 		return
 	
 	var tween: SceneTreeTween = create_tween().set_parallel()
@@ -63,7 +69,7 @@ func __rotate_face(face_type: int, degree: int) -> void:
 			"__rotate_part",
 			0.0, 
 			deg2rad(degree),
-			0.5,
+			0.2,
 			[part, offset, origin, axis]
 		)
 	
