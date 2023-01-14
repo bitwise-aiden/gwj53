@@ -1,0 +1,82 @@
+extends Spatial
+
+# Private enums 
+
+enum __Face { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }
+
+
+# Private variables 
+
+onready var __faces: Dictionary = {
+	__Face.Front:        $faces_container/face_front,
+	__Face.Standing:     $faces_container/face_standing,
+	__Face.Back:         $faces_container/face_back,
+	__Face.Top:          $faces_container/face_top,
+	__Face.Equator:      $faces_container/face_equator,
+	__Face.Bottom:       $faces_container/face_bottom,
+	__Face.Left:         $faces_container/face_left,
+	__Face.Middle:       $faces_container/face_middle,
+	__Face.Right:        $faces_container/face_right,
+}
+
+onready var __parts_container: Spatial = $parts_container
+onready var __parts: Array = $parts_container.get_children()
+
+var __rotating: bool = false
+
+
+# Lifecycle methods 
+
+func _ready() -> void:
+	assert(__parts.size() == 26)
+
+
+func _process(delta: float) -> void:
+	if !__rotating:
+		__rotate_face(__Face.Front, 90)
+
+# Private methods 
+
+func __rotate_face(face_type: int, degree: int) -> void:
+	__rotating = true
+	
+	var face: Face = __faces[face_type]
+	
+	var origin = face.translation
+	var axis: Vector3 = face.translation.normalized()
+	if axis == Vector3.ZERO:
+		axis = face.rotation.normalized()
+		if axis == Vector3.ZERO:
+			axis = Vector3.BACK
+	
+	var parts: Array = face.get_overlapping_bodies()
+	if parts.empty():
+		return
+	
+	var tween: SceneTreeTween = create_tween().set_parallel()
+	
+	for part in parts: 
+		var offset: Vector3 = part.translation - origin
+		
+		tween.tween_method(
+			self,
+			"__rotate_part",
+			0.0, 
+			deg2rad(degree),
+			0.5,
+			[part, offset, origin, axis]
+		)
+	
+	yield(tween, "finished")
+	
+	__rotating = false
+
+
+func __rotate_part(
+	angle: float, 
+	part: Part, 
+	offset: Vector3, 
+	origin: Vector3, 
+	axis: Vector3
+) -> void: 
+	part.translation = origin + offset.rotated(axis, angle)
