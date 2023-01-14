@@ -1,7 +1,7 @@
 extends Camera
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
 func _ready():
-	look_at(Vector3.ZERO, Vector3.UP)
+	look_at(Vector3(0.0, -3.0, 0.0), Vector3.UP)
