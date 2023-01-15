@@ -30,6 +30,11 @@ config/name="gwj53"
 run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1280
+window/size/height=720
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

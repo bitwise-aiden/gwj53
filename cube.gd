@@ -33,8 +33,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !__rotating && Input.is_key_pressed(KEY_ENTER):
-		__rotate_face(randi() % __Face.Max, __Direction.CCW)
+	if Input.is_key_pressed(KEY_A): 
+		rotate_y(-delta * 2)
+	
+	if Input.is_key_pressed(KEY_D): 
+		rotate_y(+delta * 2)
+		
+	if Input.is_key_pressed(KEY_W):
+		rotate_x(-delta * 2)
+	
+	if Input.is_key_pressed(KEY_S):
+		rotate_x(delta * 2)
 
 
 # Private methods
@@ -85,7 +94,7 @@ func __rotate_part(
 	part: Part,
 	transform_orig: Transform,
 	offset: Vector3,
-	origin: Vector3,
+	origin: Vector3,	
 	axis: Vector3
 ) -> void:
 	part.translation = origin + offset.rotated(axis, angle)
