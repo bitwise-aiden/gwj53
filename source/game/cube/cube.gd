@@ -6,7 +6,7 @@ enum FaceType { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, R
 enum Direction { CW = 90, CCW = -90, Max = 2}
 
 
-# Public variables 
+# Public variables
 
 onready var parts: Array = $parts_container.get_children()
 
@@ -34,7 +34,7 @@ var __rotating: bool = false
 func rotate_face(face_type: int, degree: int) -> void:
 	if __rotating:
 		return
-	
+
 	__rotating = true
 
 	var face: Face = __faces[face_type]
@@ -82,11 +82,11 @@ func __rotate_part(
 	part: Part,
 	transform_orig: Transform,
 	offset: Vector3,
-	origin: Vector3,	
+	origin: Vector3,
 	axis: Vector3
 ) -> void:
 	part.translation = origin + offset.rotated(axis, angle)
-	
+
 	var transform_rot: Transform = transform_orig.rotated(axis, angle)
 	var quat_rot: Quat = Quat(part.transform.basis).slerp(transform_rot.basis, 1.0)
 	part.transform = Transform(quat_rot, part.transform.origin)

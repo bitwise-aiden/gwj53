@@ -8,7 +8,7 @@ var _completed: bool = false
 var _tree: SceneTree
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
 func _init(tree: SceneTree, cube: Cube) -> void:
 	_cube = cube
@@ -17,21 +17,21 @@ func _init(tree: SceneTree, cube: Cube) -> void:
 
 # Public methods
 
-func is_complete() -> bool: 
+func is_complete() -> bool:
 	return _completed
 
 
-func process(delta: float) -> void: 
+func process(delta: float) -> void:
 	_handle_input(delta)
 
 
 # Protected methods
 
 func _handle_input(delta: float) -> void:
-	if Input.is_key_pressed(KEY_A): 
+	if Input.is_key_pressed(KEY_A):
 		_cube.rotate_y(-delta * 2)
 
-	if Input.is_key_pressed(KEY_D): 
+	if Input.is_key_pressed(KEY_D):
 		_cube.rotate_y(+delta * 2)
 
 	if Input.is_key_pressed(KEY_W):

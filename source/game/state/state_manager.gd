@@ -1,39 +1,42 @@
 class_name StateManager extends Resource
 
 
-# Private variables 
+# Private variables
 
 var __cube: Cube
 var __state: State
 var __tree: SceneTree
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
 func _init(tree: SceneTree, cube: Cube) -> void:
 	__cube = cube
-	__state = StateInspect.new(tree, cube)
+	__state = StateExplode.new(tree, cube)
 	__tree = tree
 
 
-# Lifecycle methods 
+# Lifecycle methods
 
-func process(delta: float) -> void: 
+func process(delta: float) -> void:
 	__state.process(delta)
-	
+
 	if __state.is_complete():
 		__transition()
 
 
-# Private methods 
+# Private methods
 
-func __transition() -> void: 
+func __transition() -> void:
 	# Has to be above StateIdle, otherwise it will be consumed by StateIdle
 	if __state is StateInspect:
 		__state = StateExplode.new(__tree, __cube)
-		
+
 	elif __state is StateIdle:
 		__state = StateScramble.new(__tree, __cube)
-		
-	elif __state is StateScramble: 
+
+	elif __state is StateScramble:
 		__state = StateInspect.new(__tree, __cube)
+
+	elif __state is StateExplode:
+		__state = StateAssemble.new(__tree, __cube)
