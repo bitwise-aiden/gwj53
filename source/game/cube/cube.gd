@@ -1,23 +1,23 @@
-extends Spatial
+class_name Cube extends Spatial
 
-# Private enums
+# Public enums
 
-enum __Face { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }
-enum __Direction { CW = 90, CCW = -90, Max = 2}
+enum FaceType { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }
+enum Direction { CW = 90, CCW = -90, Max = 2}
 
 
 # Private variables
 
 onready var __faces: Dictionary = {
-	__Face.Front:        $faces_container/face_front,
-	__Face.Standing:     $faces_container/face_standing,
-	__Face.Back:         $faces_container/face_back,
-	__Face.Top:          $faces_container/face_top,
-	__Face.Equator:      $faces_container/face_equator,
-	__Face.Bottom:       $faces_container/face_bottom,
-	__Face.Left:         $faces_container/face_left,
-	__Face.Middle:       $faces_container/face_middle,
-	__Face.Right:        $faces_container/face_right,
+	FaceType.Front:       $faces_container/face_front,
+	FaceType.Standing:    $faces_container/face_standing,
+	FaceType.Back:        $faces_container/face_back,
+	FaceType.Top:         $faces_container/face_top,
+	FaceType.Equator:     $faces_container/face_equator,
+	FaceType.Bottom:      $faces_container/face_bottom,
+	FaceType.Left:        $faces_container/face_left,
+	FaceType.Middle:      $faces_container/face_middle,
+	FaceType.Right:       $faces_container/face_right,
 }
 
 onready var __parts_container: Spatial = $parts_container
@@ -26,29 +26,12 @@ onready var __parts: Array = $parts_container.get_children()
 var __rotating: bool = false
 
 
-# Lifecycle methods
+# Public methods
 
-func _ready() -> void:
-	assert(__parts.size() == 26)
-
-
-func _physics_process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_A): 
-		rotate_y(-delta * 2)
+func rotate_face(face_type: int, degree: int) -> void:
+	if __rotating:
+		return
 	
-	if Input.is_key_pressed(KEY_D): 
-		rotate_y(+delta * 2)
-		
-	if Input.is_key_pressed(KEY_W):
-		rotate_x(-delta * 2)
-	
-	if Input.is_key_pressed(KEY_S):
-		rotate_x(delta * 2)
-
-
-# Private methods
-
-func __rotate_face(face_type: int, degree: int) -> void:
 	__rotating = true
 
 	var face: Face = __faces[face_type]
@@ -57,11 +40,11 @@ func __rotate_face(face_type: int, degree: int) -> void:
 	var axis: Vector3 = face.translation.abs().normalized()
 	if axis == Vector3.ZERO:
 		match face_type:
-			__Face.Standing:
+			FaceType.Standing:
 				axis = Vector3.BACK
-			__Face.Equator:
+			FaceType.Equator:
 				axis = Vector3.UP
-			__Face.Middle:
+			FaceType.Middle:
 				axis = Vector3.LEFT
 
 	var parts: Array = face.get_overlapping_bodies()
@@ -88,6 +71,8 @@ func __rotate_face(face_type: int, degree: int) -> void:
 	yield(tween, "finished")
 	__rotating = false
 
+
+# Private methods
 
 func __rotate_part(
 	angle: float,

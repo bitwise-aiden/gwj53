@@ -9,17 +9,23 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "Cube",
+"language": "GDScript",
+"path": "res://source/game/cube/cube.gd"
+}, {
 "base": "Area",
 "class": "Face",
 "language": "GDScript",
-"path": "res://face.gd"
+"path": "res://source/game/cube/face.gd"
 }, {
-"base": "KinematicBody",
+"base": "Reference",
 "class": "Part",
 "language": "GDScript",
-"path": "res://part.gd"
+"path": "res://source/game/cube/part.gd"
 } ]
 _global_script_class_icons={
+"Cube": "",
 "Face": "",
 "Part": ""
 }
@@ -27,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="gwj53"
-run/main_scene="res://game.tscn"
+run/main_scene="res://source/game/game.tscn"
 config/icon="res://icon.png"
 
 [display]
