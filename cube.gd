@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !__rotating:
+	if !__rotating && Input.is_key_pressed(KEY_ENTER):
 		__rotate_face(randi() % __Face.Max, __Direction.CCW)
 
 
@@ -70,11 +70,11 @@ func __rotate_face(face_type: int, degree: int) -> void:
 			"__rotate_part",
 			0.0,
 			deg2rad(degree),
-			0.2,
-			[part, offset, origin, axis]
+			0.15,
+			[part, part.transform, offset, origin, axis]
 		)
 
-	tween.chain().tween_interval(0.1)
+	tween.chain().tween_interval(0.01)
 
 	yield(tween, "finished")
 	__rotating = false
@@ -83,8 +83,13 @@ func __rotate_face(face_type: int, degree: int) -> void:
 func __rotate_part(
 	angle: float,
 	part: Part,
+	transform_orig: Transform,
 	offset: Vector3,
 	origin: Vector3,
 	axis: Vector3
 ) -> void:
 	part.translation = origin + offset.rotated(axis, angle)
+	
+	var transform_rot: Transform = transform_orig.rotated(axis, angle)
+	var quat_rot: Quat = Quat(part.transform.basis).slerp(transform_rot.basis, 1.0)
+	part.transform = Transform(quat_rot, part.transform.origin)
