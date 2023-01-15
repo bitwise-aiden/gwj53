@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://source/game/state/state.gd"
 }, {
 "base": "State",
+"class": "StateAssemble",
+"language": "GDScript",
+"path": "res://source/game/state/state_assemble.gd"
+}, {
+"base": "State",
 "class": "StateExplode",
 "language": "GDScript",
 "path": "res://source/game/state/state_explode.gd"
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "Face": "",
 "Part": "",
 "State": "",
+"StateAssemble": "",
 "StateExplode": "",
 "StateIdle": "",
 "StateInspect": "",
