@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
-[ext_resource path="res://source/game/camera.gd" type="Script" id=2]
+[ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
 [ext_resource path="res://source/game/cube/part.gd" type="Script" id=3]
 [ext_resource path="res://source/game/cube/cube.gd" type="Script" id=4]
 [ext_resource path="res://source/game/game.gd" type="Script" id=5]
+[ext_resource path="res://source/game/world/wall.gd" type="Script" id=6]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
@@ -71,6 +72,10 @@ size = Vector3( 1.3, 1.25, 1.25 )
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 2, 2, 0.5 )
 
+[sub_resource type="CylinderShape" id=25]
+height = 1.0
+radius = 13.0
+
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.74902, 0.552941, 0.345098, 1 )
 
@@ -80,6 +85,9 @@ top_radius = 13.0
 bottom_radius = 13.5
 height = 1.0
 
+[sub_resource type="CylinderShape" id=26]
+radius = 6.0
+
 [sub_resource type="SpatialMaterial" id=17]
 albedo_color = Color( 0.85098, 0.635294, 0.411765, 1 )
 
@@ -87,6 +95,9 @@ albedo_color = Color( 0.85098, 0.635294, 0.411765, 1 )
 material = SubResource( 17 )
 top_radius = 6.0
 bottom_radius = 7.0
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 1, 10, 3 )
 
 [node name="game" type="Spatial"]
 script = ExtResource( 5 )
@@ -754,10 +765,38 @@ shape = SubResource( 4 )
 
 [node name="world" type="Spatial" parent="_/_"]
 
-[node name="floor" type="MeshInstance" parent="_/_/world"]
+[node name="ceiling" type="StaticBody" parent="_/_/world"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+
+[node name="collider" type="CollisionShape" parent="_/_/world/ceiling"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+shape = SubResource( 25 )
+
+[node name="floor" type="StaticBody" parent="_/_/world"]
+
+[node name="collider" type="CollisionShape" parent="_/_/world/floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+shape = SubResource( 25 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/world/floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 mesh = SubResource( 9 )
+skeleton = NodePath("../..")
 
-[node name="plinth" type="MeshInstance" parent="_/_/world"]
+[node name="plinth" type="StaticBody" parent="_/_/world"]
+
+[node name="collider" type="CollisionShape" parent="_/_/world/plinth"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+shape = SubResource( 26 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/world/plinth"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 mesh = SubResource( 7 )
+skeleton = NodePath("../..")
+
+[node name="wall" type="StaticBody" parent="_/_/world"]
+script = ExtResource( 6 )
+
+[node name="segment" type="CollisionShape" parent="_/_/world/wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2632, 4.2165, 0 )
+shape = SubResource( 27 )
