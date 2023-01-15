@@ -158,17 +158,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
 [node name="part_1" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 0 )
@@ -180,13 +183,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
 [node name="part_2" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 1.5 )
@@ -198,17 +203,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_3" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
@@ -220,13 +228,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
 [node name="part_4" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
@@ -238,9 +248,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_4/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
 [node name="part_5" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5 )
@@ -252,13 +263,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_6" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -1.5 )
@@ -270,17 +283,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
 [node name="part_7" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0 )
@@ -292,13 +308,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
 [node name="part_8" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 1.5 )
@@ -310,17 +328,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_9" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1.5 )
@@ -332,13 +353,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
 [node name="part_10" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
@@ -350,9 +373,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_10/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
 [node name="part_11" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 1.5 )
@@ -364,13 +388,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_12" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
@@ -382,9 +408,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_12/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
 [node name="part_13" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
@@ -396,9 +423,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
 mesh = SubResource( 3 )
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_13/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_14" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5 )
@@ -410,13 +438,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
 [node name="part_15" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
@@ -428,9 +458,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_15/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
 [node name="part_16" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00414944, 1.5, 1.49934 )
@@ -442,13 +473,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
 [node name="part_17" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, -1.5 )
@@ -460,17 +493,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_18" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 0 )
@@ -482,13 +518,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_19" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 1.5 )
@@ -500,17 +538,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_20" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5 )
@@ -522,13 +563,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_21" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
@@ -540,9 +583,10 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
 mesh = SubResource( 3 )
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_21/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_22" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
@@ -554,13 +598,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
 mesh = SubResource( 3 )
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_23" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -1.5 )
@@ -572,17 +618,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_24" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0 )
@@ -594,13 +643,15 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="part_25" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 1.5 )
@@ -612,17 +663,20 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
+skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
+skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
+skeleton = NodePath("../..")
 
 [node name="faces_container" type="Spatial" parent="_/_/cube"]
 

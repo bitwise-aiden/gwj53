@@ -5,25 +5,20 @@ extends Spatial
 
 onready var __cube = $"%cube"
 
+var __state_manager: StateManager
+
 
 # Lifecycle methods
 
 func _ready() -> void:
 	randomize()
+	
+	__state_manager = StateManager.new(get_tree(), __cube)
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_A): 
-		__cube.rotate_y(-delta * 2)
-
-	if Input.is_key_pressed(KEY_D): 
-		__cube.rotate_y(+delta * 2)
-
-	if Input.is_key_pressed(KEY_W):
-		__cube.rotate_x(-delta * 2)
-
-	if Input.is_key_pressed(KEY_S):
-		__cube.rotate_x(+delta * 2)
+	__state_manager.process(delta)
 	
-	if Input.is_key_pressed(KEY_ENTER): 
-		__cube.rotate_face(randi() % Cube.FaceType.Max, Cube.Direction.CW)
+	if Input.is_key_pressed(KEY_ENTER):
+		Event.emit_signal("game_start")
+		Event.emit_signal("game_ready")

@@ -6,6 +6,10 @@ enum FaceType { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, R
 enum Direction { CW = 90, CCW = -90, Max = 2}
 
 
+# Public variables 
+
+onready var parts: Array = $parts_container.get_children()
+
 # Private variables
 
 onready var __faces: Dictionary = {
@@ -21,7 +25,6 @@ onready var __faces: Dictionary = {
 }
 
 onready var __parts_container: Spatial = $parts_container
-onready var __parts: Array = $parts_container.get_children()
 
 var __rotating: bool = false
 
@@ -66,7 +69,7 @@ func rotate_face(face_type: int, degree: int) -> void:
 			[part, part.transform, offset, origin, axis]
 		)
 
-	tween.chain().tween_interval(0.01)
+	tween.chain().tween_interval(0.02)
 
 	yield(tween, "finished")
 	__rotating = false
