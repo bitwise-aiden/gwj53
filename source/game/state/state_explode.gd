@@ -19,7 +19,7 @@ func __explode() -> void:
 	yield(__pulse(1.0, 0.1), "completed")
 	yield(_tree.create_timer(0.5), "timeout")
 
-	yield(__move(0.3, 0.1), "completed")
+#	yield(__move(0.3, 0.1), "completed")
 
 	var origin: Vector3 = _cube.translation
 
@@ -28,6 +28,10 @@ func __explode() -> void:
 
 		var rigid_body: RigidBody = RigidBody.new()
 		rigid_body.transform = part_copy.transform
+		rigid_body.rotation += _cube.rotation
+		rigid_body.mass = 10.0
+		rigid_body.weight *= 5.0
+		rigid_body.add_to_group("broken_part")
 
 		_tree.current_scene.add_child(rigid_body)
 
@@ -40,10 +44,11 @@ func __explode() -> void:
 		rigid_body.add_child(part_collider)
 		rigid_body.add_child(part_mesh)
 
-		rigid_body.collision_layer = 1 << 1 | 1 << 3
+		rigid_body.collision_mask |= 1 << 3
+		rigid_body.collision_layer |= 1 << 3
 
 		var direction: Vector3 = rigid_body.translation - origin
-		rigid_body.apply_impulse(rigid_body.translation, direction * 50.0)
+		rigid_body.apply_impulse(rigid_body.translation, direction * 500.0)
 
 		part.visible = false
 
