@@ -12,7 +12,7 @@ var __tree: SceneTree
 
 func _init(tree: SceneTree, cube: Cube) -> void:
 	__cube = cube
-	__state = StateExplode.new(tree, cube)
+	__state = StateIdle.new(tree, cube)
 	__tree = tree
 
 

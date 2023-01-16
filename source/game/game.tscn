@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
 [ext_resource path="res://source/game/cube/part.gd" type="Script" id=3]
 [ext_resource path="res://source/game/cube/cube.gd" type="Script" id=4]
 [ext_resource path="res://source/game/game.gd" type="Script" id=5]
+[ext_resource path="res://source/game/hud/button_event.gd" type="Script" id=6]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
@@ -932,3 +933,26 @@ shape = SubResource( 33 )
 [node name="collider_back" type="CollisionShape" parent="world/placement_sphere"]
 transform = Transform( 1, 0, 0, 0, 0.962984, 0.269559, 0, -0.269559, 0.962984, 0, -0.5, 0.18855 )
 shape = SubResource( 33 )
+
+[node name="hud" type="Control" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="_" type="VBoxContainer" parent="hud"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="button_start" type="Button" parent="hud/_"]
+margin_right = 71.0
+margin_bottom = 20.0
+text = "scramble"
+script = ExtResource( 6 )
+event = "game_start"
+
+[node name="button_ready" type="Button" parent="hud/_"]
+margin_top = 24.0
+margin_right = 71.0
+margin_bottom = 44.0
+text = "ready"
+script = ExtResource( 6 )
+event = "game_ready"

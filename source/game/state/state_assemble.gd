@@ -45,8 +45,6 @@ func _handle_input(delta: float) -> void:
 		__over.sleeping = false
 
 		var direction: Vector3 = (__over.global_translation - _cube.global_translation)
-#		direction.y = -0.5
-#		__over.apply_impulse(Vector3.ZERO, direction.normalized() * 250.0)
 
 		__action = Action.Select
 		__pan(__camera_origin)
