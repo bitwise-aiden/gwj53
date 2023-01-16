@@ -510,7 +510,7 @@ mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
 [node name="part_16" type="KinematicBody" parent="cube/parts_container"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00414944, 1.5, 1.49934 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
