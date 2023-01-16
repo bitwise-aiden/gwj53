@@ -9,7 +9,7 @@ on:
 
 env:
   EXPORT_NAME: assembiks-required
-  GODOT_VERSION: latest
+  GODOT_VERSION: 3.5.1
 
 jobs:
   export-windows:
