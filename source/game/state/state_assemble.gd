@@ -28,7 +28,7 @@ func process(delta: float) -> void:
 		Action.Select:
 			__select()
 		Action.Place:
-			__place(delta)
+			__place()
 
 
 # Protected methods
@@ -43,9 +43,6 @@ func _handle_input(delta: float) -> void:
 			__pan(__camera_zoom)
 	elif __action == Action.Place:
 		__over.sleeping = false
-
-		var direction: Vector3 = (__over.global_translation - _cube.global_translation)
-
 		__action = Action.Select
 		__pan(__camera_origin)
 
@@ -72,7 +69,7 @@ func __pan(position: Vector3) -> void:
 		0.5
 	)
 
-func __place(delta: float) -> void:
+func __place() -> void:
 	var result: Dictionary = __intersect(1 << 3)
 
 	if result.empty():

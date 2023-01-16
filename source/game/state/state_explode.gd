@@ -71,7 +71,7 @@ func __move(scalar: float, duration: float) -> void:
 	for part in _cube.parts:
 		var direction: Vector3 = (part.translation - origin).normalized()
 
-		tween.tween_property(
+		var _result = tween.tween_property(
 			part,
 			"translation",
 			part.translation + direction * scalar,

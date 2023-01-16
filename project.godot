@@ -74,7 +74,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="gwj53"
+config/name="Assembik's Ruquired"
 run/main_scene="res://source/game/game.tscn"
 config/icon="res://icon.png"
 

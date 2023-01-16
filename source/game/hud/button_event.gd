@@ -3,10 +3,11 @@ extends Button
 
 # Public variables
 
-export var event: String
+export var event_name: String
 
 
 # Lifecycle methods
 
-func _init() -> void:
-	connect("pressed", Event, "emit_signal", [event])
+func _ready() -> void:
+	assert(Event.has_signal(event_name))
+	var _result = connect("pressed", Event, "emit_signal", [event_name])
