@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  EXPORT_NAME: assembiks-required
+  EXPORT_NAME: assembiks-ruquired
   GODOT_VERSION: 3.5.1
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: windows
-          ITCH_GAME: assembiks-required
+          ITCH_GAME: assembiks-ruquired
           ITCH_USER: velopman
           PACKAGE: build/windows
 
@@ -81,7 +81,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: linux
-          ITCH_GAME: assembiks-required
+          ITCH_GAME: assembiks-ruquired
           ITCH_USER: velopman
           PACKAGE: build/linux
 
@@ -117,7 +117,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: web
-          ITCH_GAME: assembiks-required
+          ITCH_GAME: assembiks-ruquired
           ITCH_USER: velopman
           PACKAGE: build/web
 
@@ -154,6 +154,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: mac
-          ITCH_GAME: assembiks-required
+          ITCH_GAME: assembiks-ruquired
           ITCH_USER: velopman
           PACKAGE: build/mac
