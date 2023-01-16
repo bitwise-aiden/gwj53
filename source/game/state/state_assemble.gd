@@ -18,7 +18,7 @@ var __camera_zoom: Vector3
 func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
 	__camera = _cube.get_viewport().get_camera()
 	__camera_origin = __camera.translation
-	__camera_zoom = (Vector3(0.0, -3.0, 0.0) - __camera_origin).normalized() * 5.0 + __camera_origin
+	__camera_zoom = (Vector3(0.0, -3.0, 0.0) - __camera_origin).normalized() * 3.0 + __camera_origin
 
 
 func process(delta: float) -> void:
@@ -38,9 +38,16 @@ func _handle_input(delta: float) -> void:
 
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if __action == Action.Select && __over:
+			__over.sleeping = true
 			__action = Action.Place
 			__pan(__camera_zoom)
 	elif __action == Action.Place:
+		__over.sleeping = false
+
+		var direction: Vector3 = (__over.global_translation - _cube.global_translation)
+#		direction.y = -0.5
+#		__over.apply_impulse(Vector3.ZERO, direction.normalized() * 250.0)
+
 		__action = Action.Select
 		__pan(__camera_origin)
 
