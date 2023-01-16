@@ -21,7 +21,7 @@ func __explode() -> void:
 
 #	yield(__move(0.3, 0.1), "completed")
 
-	var origin: Vector3 = _cube.translation
+	var origin: Vector3 = _cube.global_translation
 
 	for part in _cube.parts:
 		var part_copy: Part = part.duplicate()
@@ -49,8 +49,8 @@ func __explode() -> void:
 		rigid_body.collision_mask |= 1 << 2
 		rigid_body.collision_layer |= 1 << 2
 
-		var direction: Vector3 = rigid_body.translation - origin
-		rigid_body.apply_impulse(rigid_body.translation, direction * 500.0)
+		var direction: Vector3 = rigid_body.global_translation - origin
+		rigid_body.apply_impulse(rigid_body.global_translation, direction * 1000.0)
 
 		part.visible = false
 
