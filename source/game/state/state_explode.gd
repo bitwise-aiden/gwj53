@@ -27,31 +27,27 @@ func __explode() -> void:
 		var part_copy: Part = part.duplicate()
 
 		var rigid_body: RigidBody = RigidBody.new()
-		rigid_body.transform = part_copy.transform
-		rigid_body.rotation += _cube.rotation
+		rigid_body.global_transform = part.global_transform
 		rigid_body.mass = 10.0
 		rigid_body.weight *= 5.0
-		rigid_body.add_to_group("broken_part")
 
 		_tree.current_scene.add_child(rigid_body)
+		rigid_body.global_transform = part.global_transform
+		rigid_body.look_at(_cube.translation, Vector3.UP)
 
 		var part_collider: CollisionShape = part_copy.get_child(0)
 		var part_mesh: MeshInstance = part_copy.get_child(1)
 
 		part_copy.remove_child(part_collider)
-		part_copy.remove_child(part_mesh)
-
 		rigid_body.add_child(part_collider)
-		rigid_body.add_child(part_mesh)
+		part_collider.global_rotation = part.get_child(0).global_rotation
 
-		print(rigid_body.collision_mask)
-		print(rigid_body.collision_layer)
+		part_copy.remove_child(part_mesh)
+		rigid_body.add_child(part_mesh)
+		part_mesh.global_rotation = part.get_child(1).global_rotation
 
 		rigid_body.collision_mask |= 1 << 2
 		rigid_body.collision_layer |= 1 << 2
-
-		print(rigid_body.collision_mask)
-		print(rigid_body.collision_layer)
 
 		var direction: Vector3 = rigid_body.translation - origin
 		rigid_body.apply_impulse(rigid_body.translation, direction * 500.0)

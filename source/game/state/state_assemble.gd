@@ -5,7 +5,7 @@ enum Action { Select = 0, Place, Max }
 
 # Private variables
 
-var __action: int = Action.Place
+var __action: int = Action.Select
 var __over: RigidBody
 
 var __camera: Camera
@@ -44,9 +44,6 @@ func _handle_input(delta: float) -> void:
 		__action = Action.Select
 		__pan(__camera_origin)
 
-	if __over:
-		print(__over)
-
 
 # Private methods
 
@@ -72,9 +69,12 @@ func __pan(position: Vector3) -> void:
 
 func __place(delta: float) -> void:
 	var result: Dictionary = __intersect(1 << 3)
-#	print(result.get("position", []))
+
+	if result.empty():
+		return
 
 	__over.translation = lerp(__over.translation, result["position"], 0.5)
+	__over.look_at(_cube.translation, Vector3.UP)
 
 
 func __select() -> void:
