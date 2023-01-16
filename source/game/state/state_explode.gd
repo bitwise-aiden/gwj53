@@ -44,8 +44,14 @@ func __explode() -> void:
 		rigid_body.add_child(part_collider)
 		rigid_body.add_child(part_mesh)
 
-		rigid_body.collision_mask |= 1 << 3
-		rigid_body.collision_layer |= 1 << 3
+		print(rigid_body.collision_mask)
+		print(rigid_body.collision_layer)
+
+		rigid_body.collision_mask |= 1 << 2
+		rigid_body.collision_layer |= 1 << 2
+
+		print(rigid_body.collision_mask)
+		print(rigid_body.collision_layer)
 
 		var direction: Vector3 = rigid_body.translation - origin
 		rigid_body.apply_impulse(rigid_body.translation, direction * 500.0)
