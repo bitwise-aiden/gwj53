@@ -9,12 +9,6 @@
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
-
-
-# Lifecycle methods
-
-func _process(delta: float) -> void:
-	pass
 "
 
 [sub_resource type="BoxShape" id=2]
@@ -947,7 +941,7 @@ margin_right = 71.0
 margin_bottom = 20.0
 text = "scramble"
 script = ExtResource( 6 )
-event = "game_start"
+event_name = "game_start"
 
 [node name="button_ready" type="Button" parent="hud/_"]
 margin_top = 24.0
@@ -955,4 +949,4 @@ margin_right = 71.0
 margin_bottom = 44.0
 text = "ready"
 script = ExtResource( 6 )
-event = "game_ready"
+event_name = "game_ready"

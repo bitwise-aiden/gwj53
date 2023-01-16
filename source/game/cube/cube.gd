@@ -50,17 +50,17 @@ func rotate_face(face_type: int, degree: int) -> void:
 			FaceType.Middle:
 				axis = Vector3.LEFT
 
-	var parts: Array = face.get_overlapping_bodies()
-	if parts.empty():
+	var overlapping_parts: Array = face.get_overlapping_bodies()
+	if overlapping_parts.empty():
 		__rotating = false
 		return
 
 	var tween: SceneTreeTween = create_tween().set_parallel()
 
-	for part in parts:
+	for part in overlapping_parts:
 		var offset: Vector3 = part.translation - origin
 
-		tween.tween_method(
+		var _result = tween.tween_method(
 			self,
 			"__rotate_part",
 			0.0,
@@ -69,7 +69,7 @@ func rotate_face(face_type: int, degree: int) -> void:
 			[part, part.transform, offset, origin, axis]
 		)
 
-	tween.chain().tween_interval(0.02)
+	var _result = tween.chain().tween_interval(0.02)
 
 	yield(tween, "finished")
 	__rotating = false
