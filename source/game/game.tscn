@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.5, 0.5, 0.5 )
+extents = Vector3( 0.7, 0.7, 0.7 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.85098, 0.635294, 0.411765, 1 )
@@ -840,7 +840,7 @@ shape = SubResource( 25 )
 [node name="floor" type="StaticBody" parent="world"]
 
 [node name="collider" type="CollisionShape" parent="world/floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 shape = SubResource( 25 )
 
 [node name="mesh" type="MeshInstance" parent="world/floor"]
@@ -851,7 +851,7 @@ skeleton = NodePath("../..")
 [node name="plinth" type="StaticBody" parent="world"]
 
 [node name="collider" type="CollisionShape" parent="world/plinth"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 shape = SubResource( 26 )
 
 [node name="mesh" type="MeshInstance" parent="world/plinth"]
