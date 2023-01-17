@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -55,7 +55,7 @@ shader = SubResource( 39 )
 
 [sub_resource type="CubeMesh" id=38]
 material = SubResource( 40 )
-size = Vector3( 0.5, 0.5, 0.5 )
+size = Vector3( 0.75, 0.75, 0.75 )
 
 [sub_resource type="SpatialMaterial" id=18]
 albedo_color = Color( 0.941176, 0.921569, 0.533333, 1 )
@@ -186,6 +186,9 @@ radius = 5.0
 
 [sub_resource type="BoxShape" id=33]
 extents = Vector3( 20, 20, 1 )
+
+[sub_resource type="BoxShape" id=41]
+extents = Vector3( 10, 10, 15 )
 
 [node name="game" type="Spatial"]
 script = ExtResource( 5 )
@@ -1088,6 +1091,12 @@ shape = SubResource( 33 )
 [node name="collider_back" type="CollisionShape" parent="world/placement_sphere"]
 transform = Transform( 1, 0, 0, 0, 0.962984, 0.269559, 0, -0.269559, 0.962984, 0, -0.5, 0.18855 )
 shape = SubResource( 33 )
+
+[node name="cube prevention" type="StaticBody" parent="world"]
+
+[node name="collider" type="CollisionShape" parent="world/cube prevention"]
+transform = Transform( 0.707107, -0.707107, 0, 0.412776, 0.412776, -0.811931, 0.574122, 0.574122, 0.583754, 0, -8, -15.7977 )
+shape = SubResource( 41 )
 
 [node name="hud" type="Control" parent="."]
 margin_right = 1280.0
