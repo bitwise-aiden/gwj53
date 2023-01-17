@@ -24,8 +24,6 @@ func __explode() -> void:
 	var origin: Vector3 = _cube.global_translation
 
 	for part in _cube.parts:
-		var part_copy: Part = part.duplicate()
-
 		var rigid_body: RigidBody = RigidBody.new()
 		rigid_body.global_transform = part.global_transform
 		rigid_body.mass = 10.0
@@ -35,16 +33,18 @@ func __explode() -> void:
 		rigid_body.global_transform = part.global_transform
 		rigid_body.look_at(_cube.translation, Vector3.UP)
 
-		var part_collider: CollisionShape = part_copy.get_child(0)
-		var part_mesh: MeshInstance = part_copy.get_child(1)
+		var part_collider: CollisionShape = part.get_child(0)
+		var collider_rotation = part_collider.global_rotation
+		var part_mesh: MeshInstance = part.get_child(1)
+		var mesh_rotation = part_mesh.global_rotation
 
-		part_copy.remove_child(part_collider)
+		part.remove_child(part_collider)
 		rigid_body.add_child(part_collider)
-		part_collider.global_rotation = part.get_child(0).global_rotation
+		part_collider.global_rotation = collider_rotation
 
-		part_copy.remove_child(part_mesh)
+		part.remove_child(part_mesh)
 		rigid_body.add_child(part_mesh)
-		part_mesh.global_rotation = part.get_child(1).global_rotation
+		part_mesh.global_rotation = mesh_rotation
 
 		rigid_body.collision_mask |= 1 << 2
 		rigid_body.collision_layer |= 1 << 2
@@ -52,7 +52,7 @@ func __explode() -> void:
 		var direction: Vector3 = rigid_body.global_translation - origin
 		rigid_body.apply_impulse(rigid_body.global_translation, direction * 1000.0)
 
-		part.visible = false
+	_cube.show_guide(true, 0.5, 1.0)
 
 	Event.emit_signal("cube_exploded")
 	_completed = true

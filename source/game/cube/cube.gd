@@ -26,7 +26,17 @@ onready var __faces: Dictionary = {
 
 onready var __parts_container: Spatial = $parts_container
 
+var __centres: Array = []
 var __rotating: bool = false
+
+
+# Lifecycle methods
+
+func _ready() -> void:
+	for part in parts:
+		var centre = part.get_child(2)
+		centre.scale = Vector3.ZERO
+		__centres.append(centre)
 
 
 # Public methods
@@ -73,6 +83,23 @@ func rotate_face(face_type: int, degree: int) -> void:
 
 	yield(tween, "finished")
 	__rotating = false
+
+
+func show_guide(show: bool, duration: float = 0.5, delay: float = 0.0) -> void:
+	if delay:
+		yield(get_tree().create_timer(delay), "timeout")
+
+	var tween: SceneTreeTween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_parallel()
+
+	var scale: Vector3 = Vector3.ONE if show else Vector3.ZERO
+
+	for centre in __centres:
+		tween.tween_property(
+			centre,
+			"scale",
+			scale,
+			0.5
+		)
 
 
 # Private methods
