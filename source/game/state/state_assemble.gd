@@ -61,7 +61,6 @@ func _handle_input(delta: float) -> void:
 		__action = Action.Select
 		__pan(__camera_origin)
 
-
 	if __action == Action.Place && Input.is_action_just_pressed("rotate_part"):
 		__rotate_part()
 
@@ -80,6 +79,25 @@ func __attach() -> void:
 
 	part_collider.rotation = Vector3.ZERO
 	part_mesh.rotation = Vector3.ZERO
+
+	var direction_closest: Vector3 = __closest.face_direction.normalized()
+	var direction_part: Vector3 = Vector3.ZERO
+
+	for face in part_mesh.get_children():
+		direction_part += face.translation - part_mesh.translation
+
+	direction_part = direction_part.normalized()
+
+	var axis: Vector3 = direction_closest.cross(direction_part).normalized()
+	if axis == Vector3.ZERO:
+		return
+
+	var proj_closest: Vector3 = direction_closest - (direction_closest.dot(axis)) * axis
+	var proj_part: Vector3 = direction_part - (direction_part.dot(axis)) * axis
+
+	var angle: float = proj_closest.normalized().angle_to(proj_part)
+
+	part_mesh.rotate(axis, angle)
 
 
 func __intersect(collision_mask: int) -> Dictionary:
