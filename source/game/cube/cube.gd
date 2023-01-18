@@ -27,6 +27,7 @@ onready var __faces: Dictionary = {
 onready var __parts_container: Spatial = $parts_container
 
 var __centres: Array = []
+var __initial_transforms: Array = []
 var __rotating: bool = false
 
 
@@ -37,6 +38,8 @@ func _ready() -> void:
 		var centre = part.get_child(0)
 		centre.scale = Vector3.ZERO
 		__centres.append(centre)
+
+		__initial_transforms.append(part.transform)
 
 
 # Public methods
@@ -83,6 +86,11 @@ func rotate_face(face_type: int, degree: int) -> void:
 
 	yield(tween, "finished")
 	__rotating = false
+
+
+func reset_parts() -> void:
+	for i in parts.size():
+		parts[i].transform = __initial_transforms[i]
 
 
 func show_guide(show: bool, duration: float = 0.5, delay: float = 0.0) -> void:

@@ -52,6 +52,7 @@ func __explode() -> void:
 		var direction: Vector3 = rigid_body.global_translation - origin
 		rigid_body.apply_impulse(rigid_body.global_translation, direction * 1000.0)
 
+	_cube.reset_parts()
 	_cube.show_guide(true, 0.5, 1.0)
 
 	Event.emit_signal("cube_exploded")
