@@ -1,0 +1,41 @@
+- [ ] Add a settings manager
+    - [ ] Have settings as value on manager
+    - [ ] Serialize to `;` separated values
+    - [ ] Save settings on variable set
+    - [ ] Hook settings up to events
+- [ ] Add audio manager
+    - [ ] Hook into settings events for audio
+    - [ ] Have music track
+    - [ ] Have effect track
+    - [ ] Control audio for both as one
+    - [ ] Plays noises based off of events
+- [ ] Create game logo
+- [ ] Create controls manager
+    - [ ] Logo for cube rotation
+        - [ ] Have clicking a control set listen mode
+        - [ ] Have pressing a key update the control
+    - [ ] Logo for volume
+        - [ ] Have emit audio change event
+        - [ ] Have 4 modes: off, 1, 2, 3
+- [ ] Other UI
+    - [ ] Text for starting (include dash)
+    - [ ] Text for ready
+    - [ ] Text for countdown (include colon)
+    - [ ] Logo for restart
+    - [ ] Text for are you sure (include question mark)
+    - [ ] CRT effect to zoom in
+- [ ] Gameplay
+    - [ ] Fix cube rotation when on the cube
+    - [ ] Add removing placed cubes
+    - [ ] Fix all of the bugs
+    - [ ] Update the guides to hide/show based on what is present
+- [ ] Audio
+    - [ ] Music (ty Yag <3)
+    - [ ] Sound effects
+        - [ ] Dice noise/part dropping
+        - [ ] Cube rotating noise
+        - [ ] Part attaching noise
+        - [ ] Part failed noise (?)
+        - [ ] Menu select noise
+        - [ ] ... Others that I can't think of right now
+- [ ] Itch.io page
