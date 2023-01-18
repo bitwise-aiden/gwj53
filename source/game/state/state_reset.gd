@@ -35,6 +35,8 @@ func process(delta: float) -> void:
 # Private methods
 
 func __reset() -> void:
+	_cube.show_guide(false)
+
 	var tween: SceneTreeTween = _tree.create_tween().set_parallel()
 
 	var parts: Array	= _cube.parts.duplicate()
@@ -49,11 +51,16 @@ func __reset() -> void:
 
 		var part_translation: Vector3 = part_mesh.global_translation
 		var parent = part_mesh.get_parent()
-		part_mesh.get_parent().remove_child(part_mesh)
+		parent.remove_child(part_mesh)
 		body.add_child(part_mesh)
 		part_mesh.global_translation = part_translation
 
 		if parent is RigidBody:
+			var part_collider: CollisionShape = parent.get_child(0)
+			parent.remove_child(part_collider)
+			parts[i].add_child(part_collider)
+			part_collider.transform = Transform.IDENTITY
+
 			parent.queue_free()
 
 		var dest_translation = Vector3(
@@ -113,6 +120,7 @@ func __reset() -> void:
 		)
 
 	yield(tween, "finished")
+	yield(_tree.create_timer(1.0), "timeout")
 
 	for part in parts:
 		part.get_child(1).transform = Transform.IDENTITY
