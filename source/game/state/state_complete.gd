@@ -3,12 +3,16 @@ class_name StateComplete extends State
 
 # Private variables
 
-var __celebrating: bool = false
+var __can_celebrate: bool = false
 
 # Lifecycle methods
 
 func _init(tree: SceneTree, cube: Cube).(tree, cube):
-	pass
+	yield(_tree.create_timer(1.0), "timeout")
+
+	_cube.show_guide(false)
+
+	__can_celebrate = true
 
 
 # Public methods
@@ -22,14 +26,8 @@ func process(delta: float) -> void:
 # Private methods
 
 func __celebrate() -> void:
-	if __celebrating:
+	if !__can_celebrate:
 		return
-
-	__celebrating = true
-
-	yield(_tree.create_timer(1.0), "timeout")
-
-	_cube.show_guide(false)
 
 	var tween: SceneTreeTween = _tree.create_tween().set_parallel()
 
@@ -58,5 +56,3 @@ func __celebrate() -> void:
 		)
 
 	yield(tween, "finished")
-
-	__celebrating = false
