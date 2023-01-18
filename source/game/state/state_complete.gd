@@ -27,6 +27,10 @@ func __celebrate() -> void:
 
 	__celebrating = true
 
+	yield(_tree.create_timer(1.0), "timeout")
+
+	_cube.show_guide(false)
+
 	var tween: SceneTreeTween = _tree.create_tween().set_parallel()
 
 	for part in _cube.parts:
