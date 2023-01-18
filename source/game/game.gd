@@ -3,7 +3,7 @@ extends Spatial
 
 # Private variables
 
-onready var __cube = $"%cube"
+onready var __cube = $cube
 
 var __state_manager: StateManager
 

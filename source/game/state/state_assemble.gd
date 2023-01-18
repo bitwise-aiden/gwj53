@@ -80,24 +80,51 @@ func __attach() -> void:
 	part_collider.rotation = Vector3.ZERO
 	part_mesh.rotation = Vector3.ZERO
 
-	var direction_closest: Vector3 = __closest.face_direction.normalized()
-	var direction_part: Vector3 = Vector3.ZERO
+#	var direction_closest: Vector3 = (part_mesh.global_translation - _cube.global_translation).normalized()
+#	var direction_part: Vector3 = Vector3.ZERO
+#
+#	for face in part_mesh.get_children():
+#		direction_part += (part_mesh.global_translation - face.global_translation).normalized()
+#
+#	direction_part = direction_part.normalized()
+#
+#	var axis: Vector3 = direction_closest.cross(direction_part).normalized()
+#	if axis == Vector3.ZERO:
+#		return
+#
+#	var proj_closest: Vector3 = direction_closest - (direction_closest.dot(axis)) * axis
+#	var proj_part: Vector3 = direction_part - (direction_part.dot(axis)) * axis
+#
+#	var angle: float = proj_closest.normalized().angle_to(proj_part)
+#
+#	part_mesh.rotate(axis, angle)
 
-	for face in part_mesh.get_children():
-		direction_part += face.translation - part_mesh.translation
+#	var to: Vector3 = (part_mesh.global_translation - _cube.global_translation).normalized()
+#	var from: Vector3 = Vector3.ZERO
+#
+#	for face in part_mesh.get_children():
+#		from += (part_mesh.translation - face.translation).normalized()
+#
+#	from = from.normalized()
+#
+#	var to_quat: Quat = Quat(to)
+#	var from_quat: Quat = Quat(from)
+#
+#	var transform_orig: Transform = part_mesh.transform
+#
+#	var axis: Vector3 = Vector3.BACK.cross(from).normalized()
+#	if axis == Vector3.ZERO:
+#		return
+#
+#	var proj_closest: Vector3 = Vector3.BACK - (Vector3.BACK.dot(axis)) * axis
+#	var proj_part: Vector3 = from - (from.dot(axis)) * axis
+#
+#	var angle: float = proj_closest.normalized().angle_to(proj_part)
+#
+#	var transform_rot: Transform = transform_orig.rotated(axis, angle)
+#	var quat_rot: Quat = Quat(part_mesh.transform.basis).slerp(transform_rot.basis, 1.0)
+#	part_mesh.transform = Transform(quat_rot, part_mesh.transform.origin)
 
-	direction_part = direction_part.normalized()
-
-	var axis: Vector3 = direction_closest.cross(direction_part).normalized()
-	if axis == Vector3.ZERO:
-		return
-
-	var proj_closest: Vector3 = direction_closest - (direction_closest.dot(axis)) * axis
-	var proj_part: Vector3 = direction_part - (direction_part.dot(axis)) * axis
-
-	var angle: float = proj_closest.normalized().angle_to(proj_part)
-
-	part_mesh.rotate(axis, angle)
 
 
 func __intersect(collision_mask: int) -> Dictionary:

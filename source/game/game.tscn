@@ -23,6 +23,7 @@ size = Vector3( 1.4, 1.4, 1.4 )
 
 [sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0.25098, 0.533333, 0.596078, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=12]
 material = SubResource( 11 )
@@ -30,13 +31,15 @@ size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 0.741176, 0.341176, 0.341176, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=14]
 material = SubResource( 13 )
 size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=15]
-albedo_color = Color( 0.643137, 0.85098, 0.411765, 1 )
+albedo_color = Color( 0.36, 0.5, 0.2, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=16]
 material = SubResource( 15 )
@@ -58,7 +61,8 @@ material = SubResource( 40 )
 size = Vector3( 0.75, 0.75, 0.75 )
 
 [sub_resource type="SpatialMaterial" id=18]
-albedo_color = Color( 0.941176, 0.921569, 0.533333, 1 )
+albedo_color = Color( 0.678431, 0.65098, 0.137255, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=19]
 material = SubResource( 18 )
@@ -66,13 +70,15 @@ size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=20]
 albedo_color = Color( 0.352941, 0.207843, 0.505882, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=21]
 material = SubResource( 20 )
 size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=22]
-albedo_color = Color( 0.85098, 0.513726, 0.152941, 1 )
+albedo_color = Color( 0.68, 0.410493, 0.1224, 1 )
+metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=23]
 material = SubResource( 22 )
@@ -198,11 +204,13 @@ script = SubResource( 24 )
 
 [node name="light_shadow" type="SpotLight" parent="camera_rig"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00390816, 26.4856, 0.0351486 )
-light_energy = 3.867
+light_color = Color( 0.968627, 0.94902, 0.94902, 1 )
+light_energy = 2.903
+light_indirect_energy = 11.217
 shadow_enabled = true
 shadow_color = Color( 0.403922, 0.380392, 0.733333, 1 )
 shadow_bias = 0.1
-spot_range = 36.1509
+spot_range = 53.482
 spot_angle = 23.2896
 
 [node name="light_fill" type="SpotLight" parent="camera_rig"]
@@ -233,8 +241,14 @@ spot_angle = 22.6009
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15 )
 script = ExtResource( 2 )
 
+[node name="OmniLight" type="OmniLight" parent="camera_rig"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51368, 14.8907 )
+light_energy = 0.3
+light_indirect_energy = 0.871
+omni_range = 72.204
+omni_attenuation = 0.000911165
+
 [node name="cube" type="Spatial" parent="."]
-unique_name_in_owner = true
 script = ExtResource( 4 )
 
 [node name="parts_container" type="Spatial" parent="cube"]
