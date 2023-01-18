@@ -33,9 +33,9 @@ func __explode() -> void:
 		rigid_body.global_transform = part.global_transform
 		rigid_body.look_at(_cube.translation, Vector3.UP)
 
-		var part_collider: CollisionShape = part.get_child(0)
+		var part_collider: CollisionShape = part.get_child(1)
 		var collider_rotation = part_collider.global_rotation
-		var part_mesh: MeshInstance = part.get_child(1)
+		var part_mesh: MeshInstance = part.get_child(2)
 		var mesh_rotation = part_mesh.global_rotation
 
 		part.remove_child(part_collider)

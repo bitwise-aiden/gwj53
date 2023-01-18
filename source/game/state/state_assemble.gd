@@ -37,6 +37,11 @@ func process(delta: float) -> void:
 		Action.Place:
 			__place()
 
+	_completed = true
+
+	for part in _cube.parts:
+		_completed = _completed && part.get_child_count() > 1
+
 
 # Protected methods
 
@@ -52,12 +57,16 @@ func _handle_input(delta: float) -> void:
 			__attach()
 			__closest.translation = __part_origins[__closest.name]
 
-		var direction: Vector3 = (__over.translation - _cube.translation).normalized()
-		__over.linear_velocity = Vector3.ZERO
-		__over.apply_impulse(__over.translation, direction * 1000.0)
+			__over.queue_free()
+			__over = null
+		else:
+			var direction: Vector3 = (__over.translation - _cube.translation).normalized()
+			__over.linear_velocity = Vector3.ZERO
+			__over.apply_impulse(__over.translation, direction * 1000.0)
 
-		__over_offset = Vector3.ZERO
-		__over_rotation = 0.0
+			__over_offset = Vector3.ZERO
+			__over_rotation = 0.0
+
 		__action = Action.Select
 		__pan(__camera_origin)
 
@@ -139,7 +148,7 @@ func __intersect(collision_mask: int) -> Dictionary:
 
 
 func __pan(position: Vector3) -> void:
-	var tween = _cube.create_tween()
+	var tween = _tree.create_tween()
 	tween.tween_property(
 		__camera,
 		"translation",
@@ -212,7 +221,7 @@ func __rotate_part() -> void:
 
 	__rotating_part = true
 
-	var tween: SceneTreeTween = _cube.create_tween()
+	var tween: SceneTreeTween = _tree.create_tween()
 
 	tween.set_ease(Tween.EASE_OUT).tween_method(
 		self,

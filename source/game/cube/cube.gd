@@ -34,7 +34,7 @@ var __rotating: bool = false
 
 func _ready() -> void:
 	for part in parts:
-		var centre = part.get_child(2)
+		var centre = part.get_child(0)
 		centre.scale = Vector3.ZERO
 		__centres.append(centre)
 

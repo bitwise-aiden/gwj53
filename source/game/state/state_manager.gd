@@ -15,6 +15,8 @@ func _init(tree: SceneTree, cube: Cube) -> void:
 	__state = StateIdle.new(tree, cube)
 	__tree = tree
 
+	Event.connect("game_restart", self, "__transition", [true])
+
 
 # Lifecycle methods
 
@@ -27,7 +29,7 @@ func process(delta: float) -> void:
 
 # Private methods
 
-func __transition() -> void:
+func __transition(restart: bool = false) -> void:
 	# Has to be above StateIdle, otherwise it will be consumed by StateIdle
 	if __state is StateInspect:
 		__state = StateExplode.new(__tree, __cube)
@@ -40,3 +42,18 @@ func __transition() -> void:
 
 	elif __state is StateExplode:
 		__state = StateAssemble.new(__tree, __cube)
+
+	elif __state is StateAssemble:
+		if restart:
+			__state = StateReset.new(__tree, __cube)
+		else:
+			__state = StateComplete.new(__tree, __cube)
+
+	elif __state is StateComplete:
+		if true: # TODO: Completed
+			__state = StateReset.new(__tree, __cube)
+		else:
+			__state = StateScramble.new(__tree, __cube)
+
+	elif __state is StateReset:
+		__state = StateScramble.new(__tree, __cube)

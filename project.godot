@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://source/game/state/state_assemble.gd"
 }, {
 "base": "State",
+"class": "StateComplete",
+"language": "GDScript",
+"path": "res://source/game/state/state_complete.gd"
+}, {
+"base": "State",
 "class": "StateExplode",
 "language": "GDScript",
 "path": "res://source/game/state/state_explode.gd"
@@ -55,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://source/game/state/state_manager.gd"
 }, {
 "base": "State",
+"class": "StateReset",
+"language": "GDScript",
+"path": "res://source/game/state/state_reset.gd"
+}, {
+"base": "State",
 "class": "StateScramble",
 "language": "GDScript",
 "path": "res://source/game/state/state_scramble.gd"
@@ -65,10 +75,12 @@ _global_script_class_icons={
 "Part": "",
 "State": "",
 "StateAssemble": "",
+"StateComplete": "",
 "StateExplode": "",
 "StateIdle": "",
 "StateInspect": "",
 "StateManager": "",
+"StateReset": "",
 "StateScramble": ""
 }
 
