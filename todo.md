@@ -10,7 +10,7 @@
     - [x] Control audio for both as one
     - [ ] Plays noises based off of events
 - [x] Add control manager
-- [ ] Create game logo
+- [x] Create game logo
 - [ ] Update loading screen to be velop logo
 - [ ] Create controls UI
     - [ ] Logo for cube rotation
@@ -31,12 +31,12 @@
     - [ ] Fix cube rotation when on the cube
     - [ ] Add removing placed cubes
     - [ ] Fix all of the bugs
-    - [ ] Update the guides to hide/show based on what is present
+    - [x] Update the guides to hide/show based on what is present
     - [ ] Add timer
     - [ ] Add highscores
         - [ ] Finished
         - [ ] Unfinished
-    - [ ] Add hover effect for parts
+    - [x] Add hover effect for parts
 - [ ] Audio
     - [ ] Music (ty Yag <3)
     - [ ] Sound effects
@@ -47,3 +47,5 @@
         - [ ] Menu select noise
         - [ ] ... Others that I can't think of right now
 - [ ] Itch.io page
+- [ ] Bugs
+    - [ ] Trackpad press not working for ready

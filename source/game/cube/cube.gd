@@ -32,6 +32,7 @@ onready var __effect: AudioStreamPlayer3D = $effect
 var __centres: Array = []
 var __initial_transforms: Array = []
 var __rotating: bool = false
+var __tween: Tween
 
 
 # Lifecycle methods
@@ -43,6 +44,9 @@ func _ready() -> void:
 		__centres.append(centre)
 
 		__initial_transforms.append(part.transform)
+
+	__tween = Tween.new()
+	add_child(__tween)
 
 
 # Public methods
@@ -106,17 +110,36 @@ func show_guide(show: bool, duration: float = 0.5, delay: float = 0.0) -> void:
 	if delay:
 		yield(get_tree().create_timer(delay), "timeout")
 
-	var tween: SceneTreeTween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_parallel()
-
-	var scale: Vector3 = Vector3.ONE if show else Vector3.ZERO
+	var scale_dest: Vector3 = Vector3.ONE if show else Vector3.ZERO
 
 	for centre in __centres:
-		tween.tween_property(
+		__tween.remove(centre, "scale")
+
+		__tween.interpolate_property(
 			centre,
 			"scale",
-			scale,
-			0.5
+			centre.scale,
+			scale_dest,
+			duration
 		)
+
+	__tween.start()
+
+
+func show_partial_guide(face_count: int, duration: float = 0.2) -> void:
+	for part in parts:
+		var scale_dest: Vector3 = Vector3.ONE if part.face_count == face_count else Vector3.ZERO
+
+		__tween.remove(part.centre, "scale")
+		__tween.interpolate_property(
+			part.centre,
+			"scale",
+			part.centre.scale,
+			scale_dest,
+			duration
+		)
+
+	__tween.start()
 
 
 # Private methods

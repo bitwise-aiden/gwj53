@@ -21,6 +21,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event) -> void:
-	if event is InputEventKey && __state_manager.is_state(StateIdle):
+	print(event)
+	if (
+		event is InputEventKey ||
+		event is InputEventMouseButton
+	) && __state_manager.is_state(StateIdle):
 		if event.pressed:
 			Event.emit_signal("game_start")
+
