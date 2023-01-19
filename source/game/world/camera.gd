@@ -27,12 +27,12 @@ func __start():
 		self,
 		"translation",
 		__origin,
-		0.2
+		Globals.TIME_START_TRANSITION
 	)
 
 	tween.tween_property(
 		self,
 		"rotation",
 		dest_rotation,
-		0.2
+		Globals.TIME_START_TRANSITION
 	)

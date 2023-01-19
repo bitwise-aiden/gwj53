@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/game/state/state_idle.gd"
 }, {
-"base": "StateIdle",
+"base": "State",
 "class": "StateInspect",
 "language": "GDScript",
 "path": "res://source/game/state/state_inspect.gd"
@@ -92,6 +92,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Globals="*res://source/autoloads/globals.gd"
 Event="*res://source/autoloads/event.gd"
 Audio="*res://source/autoloads/audio.gd"
 Controls="*res://source/autoloads/controls.gd"

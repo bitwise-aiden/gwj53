@@ -1,4 +1,4 @@
-class_name StateInspect extends StateIdle
+class_name StateInspect extends State
 
 
 # Lifecycle methods
