@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/art/press_any_key.png" type="Texture" id=19]
 [ext_resource path="res://source/game/hud/any_key.gd" type="Script" id=20]
 [ext_resource path="res://assets/materials/crt.material" type="Material" id=21]
+[ext_resource path="res://assets/art/cube_rotate.png" type="Texture" id=22]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
@@ -1249,3 +1250,10 @@ margin_right = 803.0
 margin_bottom = 669.0
 texture = ExtResource( 19 )
 script = ExtResource( 20 )
+
+[node name="cube_rotate" type="TextureRect" parent="_/_/hud"]
+margin_left = 50.0
+margin_top = 506.0
+margin_right = 214.0
+margin_bottom = 670.0
+texture = ExtResource( 22 )
