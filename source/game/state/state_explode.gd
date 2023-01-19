@@ -50,7 +50,7 @@ func __explode() -> void:
 		rigid_body.collision_layer |= 1 << 2
 
 		var direction: Vector3 = rigid_body.global_translation - origin
-		rigid_body.apply_impulse(rigid_body.global_translation, direction * 1000.0)
+		rigid_body.apply_impulse(rigid_body.global_translation, direction * (randf() * 200.0 + 800.0))
 
 	_cube.reset_parts()
 	_cube.show_guide(true, 0.5, 1.0)

@@ -49,3 +49,4 @@
 - [ ] Itch.io page
 - [ ] Bugs
     - [ ] Trackpad press not working for ready
+    - [ ] Audio not playing

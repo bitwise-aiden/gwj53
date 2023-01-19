@@ -58,7 +58,9 @@ func _handle_input(delta: float) -> void:
 
 		if __closest:
 			__attach()
-			__closest.translation = __part_origins[__closest.name]
+
+			__closest.get_child(0).translation = Vector3.ZERO
+			__closest = null
 
 			__over.queue_free()
 			__over = null
@@ -81,7 +83,6 @@ func _handle_input(delta: float) -> void:
 			__rotate_part()
 
 
-
 # Private methods
 
 func __attach() -> void:
@@ -94,54 +95,24 @@ func __attach() -> void:
 	__over.remove_child(part_mesh)
 	__closest.add_child(part_mesh)
 
-	part_collider.rotation = Vector3.ZERO
-	part_mesh.rotation = Vector3.ZERO
+	part_collider.transform = Transform.IDENTITY
+	part_mesh.transform = Transform.IDENTITY
 
-#	var direction_closest: Vector3 = (part_mesh.global_translation - _cube.global_translation).normalized()
-#	var direction_part: Vector3 = Vector3.ZERO
-#
-#	for face in part_mesh.get_children():
-#		direction_part += (part_mesh.global_translation - face.global_translation).normalized()
-#
-#	direction_part = direction_part.normalized()
-#
-#	var axis: Vector3 = direction_closest.cross(direction_part).normalized()
-#	if axis == Vector3.ZERO:
-#		return
-#
-#	var proj_closest: Vector3 = direction_closest - (direction_closest.dot(axis)) * axis
-#	var proj_part: Vector3 = direction_part - (direction_part.dot(axis)) * axis
-#
-#	var angle: float = proj_closest.normalized().angle_to(proj_part)
-#
-#	part_mesh.rotate(axis, angle)
 
-#	var to: Vector3 = (part_mesh.global_translation - _cube.global_translation).normalized()
-#	var from: Vector3 = Vector3.ZERO
-#
-#	for face in part_mesh.get_children():
-#		from += (part_mesh.translation - face.translation).normalized()
-#
-#	from = from.normalized()
-#
-#	var to_quat: Quat = Quat(to)
-#	var from_quat: Quat = Quat(from)
-#
-#	var transform_orig: Transform = part_mesh.transform
-#
-#	var axis: Vector3 = Vector3.BACK.cross(from).normalized()
-#	if axis == Vector3.ZERO:
-#		return
-#
-#	var proj_closest: Vector3 = Vector3.BACK - (Vector3.BACK.dot(axis)) * axis
-#	var proj_part: Vector3 = from - (from.dot(axis)) * axis
-#
-#	var angle: float = proj_closest.normalized().angle_to(proj_part)
-#
-#	var transform_rot: Transform = transform_orig.rotated(axis, angle)
-#	var quat_rot: Quat = Quat(part_mesh.transform.basis).slerp(transform_rot.basis, 1.0)
-#	part_mesh.transform = Transform(quat_rot, part_mesh.transform.origin)
+	var to: Vector3 = __closest.face_direction.normalized()
+	var from: Vector3 = Vector3.ZERO
 
+	for face in part_mesh.get_children():
+		from += face.translation
+		print(from)
+
+	from = from.normalized()
+	print(from)
+
+	_cube.get_child(3).global_translation = __closest.global_translation + to * 2.0
+	_cube.get_child(4).global_translation = __closest.global_translation + from * 2.0
+
+	part_mesh.rotation += to - from
 
 
 func __intersect(collision_mask: int) -> Dictionary:
@@ -195,32 +166,30 @@ func __place() -> void:
 
 		var angle: float = dir_part.angle_to(dir_over)
 
-		if angle > PI * 0.1:
+		if angle > PI * 0.15:
 			continue
 
 		if closest_angle > angle:
 			closest = part
 			closest_angle = angle
 
-	if !closest:
-		if __closest:
-			__closest.translation = __part_origins[__closest.name]
-			__closest = null
-
+	if !closest && __closest:
+		__closest.get_child(0).translation = Vector3.ZERO
+		__closest = null
 		return
 
 	if closest == __closest:
 		return
 
 	if __closest:
-		__closest.translation = __part_origins[__closest.name]
+		__closest.get_child(0).translation = Vector3.ZERO
 #
 	__closest = closest
 
 	var origin: Vector3 = __part_origins[__closest.name]
-	var destination: Vector3 = _cube.translation + (origin - _cube.translation) * 1.5
+	var destination: Vector3 = __closest.face_direction * 5.0
 
-	__closest.translation = destination
+	__closest.get_child(0).translation = destination
 
 
 func __rotate_part() -> void:
