@@ -17,5 +17,5 @@ func __start() -> void:
 		self,
 		"rect_position",
 		rect_position + Vector2.UP * 250.0,
-		0.2
+		Globals.TIME_START_TRANSITION
 	)

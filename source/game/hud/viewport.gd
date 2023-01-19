@@ -17,7 +17,7 @@ func __start() -> void:
 		"__set_strength",
 		1.0,
 		0.0,
-		0.2
+		Globals.TIME_START_TRANSITION
 	)
 
 func __set_strength(value: float) -> void:
