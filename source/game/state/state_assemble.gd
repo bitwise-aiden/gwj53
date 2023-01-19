@@ -52,7 +52,10 @@ func _handle_input(delta: float) -> void:
 		if __action == Action.Select && __over:
 			__action = Action.Place
 			__pan(__camera_zoom)
+			_cube.show_partial_guide(__over.get_child(1).get_child_count())
 	elif __action == Action.Place && !__rotating_part:
+		__over.get_child(1).show_hover(false)
+
 		if __closest:
 			__attach()
 			__closest.translation = __part_origins[__closest.name]
@@ -67,6 +70,7 @@ func _handle_input(delta: float) -> void:
 			__over_offset = Vector3.ZERO
 			__over_rotation = 0.0
 
+		_cube.show_guide(true)
 		__action = Action.Select
 		__pan(__camera_origin)
 
@@ -277,4 +281,10 @@ func __rotate_part_rotation(value: float) -> void:
 
 func __select() -> void:
 	var result: Dictionary = __intersect(1 << 2)
+	if __over:
+		__over.get_child(1).show_hover(false)
+
 	__over = result.get("collider", null)
+
+	if __over:
+		__over.get_child(1).show_hover(true)
