@@ -93,6 +93,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Event="*res://source/autoloads/event.gd"
+Setting="*res://source/autoloads/setting.gd"
+Audio="*res://source/autoloads/audio.gd"
 
 [display]
 
