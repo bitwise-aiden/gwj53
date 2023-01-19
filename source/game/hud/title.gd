@@ -10,7 +10,6 @@ func _ready() -> void:
 # Private methods
 
 func __start() -> void:
-	print("What")
 	var tween: SceneTreeTween = create_tween()
 
 	tween.tween_property(
