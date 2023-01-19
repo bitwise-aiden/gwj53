@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -15,6 +15,12 @@
 [ext_resource path="res://assets/effects/collide_0.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/effects/collide_3.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/effects/collide_1.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/art/title.png" type="Texture" id=16]
+[ext_resource path="res://source/game/hud/title.gd" type="Script" id=17]
+[ext_resource path="res://source/game/hud/viewport.gd" type="Script" id=18]
+[ext_resource path="res://assets/art/press_any_key.png" type="Texture" id=19]
+[ext_resource path="res://source/game/hud/any_key.gd" type="Script" id=20]
+[ext_resource path="res://assets/materials/crt.material" type="Material" id=21]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
@@ -62,7 +68,7 @@ material = SubResource( 13 )
 size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=15]
-albedo_color = Color( 0.36, 0.5, 0.2, 1 )
+albedo_color = Color( 0.360784, 0.501961, 0.2, 1 )
 metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=16]
@@ -86,7 +92,7 @@ material = SubResource( 20 )
 size = Vector3( 1.3, 1.25, 1.25 )
 
 [sub_resource type="SpatialMaterial" id=22]
-albedo_color = Color( 0.68, 0.410493, 0.1224, 1 )
+albedo_color = Color( 0.678431, 0.411765, 0.121569, 1 )
 metallic_specular = 0.0
 
 [sub_resource type="CubeMesh" id=23]
@@ -144,10 +150,21 @@ extents = Vector3( 10, 10, 15 )
 [node name="game" type="Spatial"]
 script = ExtResource( 5 )
 
-[node name="camera_rig" type="Spatial" parent="."]
+[node name="_" type="ViewportContainer" parent="."]
+material = ExtResource( 21 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+
+[node name="_" type="Viewport" parent="_"]
+size = Vector2( 1280, 720 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="camera_rig" type="Spatial" parent="_/_"]
 script = SubResource( 24 )
 
-[node name="light_shadow" type="SpotLight" parent="camera_rig"]
+[node name="light_shadow" type="SpotLight" parent="_/_/camera_rig"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00390816, 26.4856, 0.0351486 )
 light_color = Color( 0.968627, 0.94902, 0.94902, 1 )
 light_energy = 2.903
@@ -158,7 +175,7 @@ shadow_bias = 0.1
 spot_range = 53.482
 spot_angle = 23.2896
 
-[node name="light_fill" type="SpotLight" parent="camera_rig"]
+[node name="light_fill" type="SpotLight" parent="_/_/camera_rig"]
 transform = Transform( 0.707107, -0.298836, 0.640856, 0, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 10, 5, 10 )
 light_energy = 1.5
 shadow_enabled = true
@@ -166,7 +183,7 @@ shadow_color = Color( 0.403922, 0.380392, 0.733333, 1 )
 spot_range = 18.813
 spot_angle = 22.6009
 
-[node name="light_key" type="SpotLight" parent="camera_rig"]
+[node name="light_key" type="SpotLight" parent="_/_/camera_rig"]
 transform = Transform( 0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, -10, 5, 10 )
 light_energy = 2.53
 shadow_enabled = true
@@ -174,7 +191,7 @@ shadow_color = Color( 0.403922, 0.380392, 0.733333, 1 )
 spot_range = 17.8224
 spot_angle = 22.6009
 
-[node name="light_back" type="SpotLight" parent="camera_rig"]
+[node name="light_back" type="SpotLight" parent="_/_/camera_rig"]
 transform = Transform( -0.707107, 0.454519, -0.541675, 0, 0.766044, 0.642788, 0.707107, 0.454519, -0.541675, -10, 10, -10 )
 light_energy = 0.2
 shadow_enabled = true
@@ -182,1041 +199,1053 @@ shadow_color = Color( 0.403922, 0.380392, 0.733333, 1 )
 spot_range = 22.2992
 spot_angle = 22.6009
 
-[node name="camera" type="Camera" parent="camera_rig"]
+[node name="camera" type="Camera" parent="_/_/camera_rig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15 )
 script = ExtResource( 2 )
 
-[node name="OmniLight" type="OmniLight" parent="camera_rig"]
+[node name="OmniLight" type="OmniLight" parent="_/_/camera_rig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51368, 14.8907 )
 light_energy = 0.3
 light_indirect_energy = 0.871
 omni_range = 72.204
 omni_attenuation = 0.000911165
 
-[node name="cube" type="Spatial" parent="."]
+[node name="cube" type="Spatial" parent="_/_"]
+unique_name_in_owner = true
 script = ExtResource( 4 )
 effects_rotation = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
-[node name="parts_container" type="Spatial" parent="cube"]
+[node name="parts_container" type="Spatial" parent="_/_/cube"]
 
-[node name="part_0" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_0" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_0"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_0"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_0"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_0/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_0/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_0"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_0/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_0/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_0/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="part_1" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_1" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_1"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_1"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_1"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_1/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_1/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_1"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_1/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_1/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="part_2" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_2" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_2"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_2"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_2"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_2/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_2/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_2"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_2/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_2/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_2/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_3" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_3" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_3"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_3"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_3"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_3/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_3/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_3"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_3/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_3/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="part_4" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_4" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_4"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_4"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_4"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_4/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_4/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_4"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_4/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_4/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="part_5" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_5" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_5"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_5"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_5"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_5/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_5/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_5"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_5/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_5/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_6" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_6" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_6"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_6"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_6"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_6/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_6/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_6"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_6/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_6/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_6/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="part_7" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_7" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_7"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_7"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_7"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_7/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_7/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_7"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_7/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_7/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="part_8" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_8" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_8"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_8"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_8"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_8/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_8/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_8"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
 mesh = SubResource( 3 )
 
-[node name="face_0" type="MeshInstance" parent="cube/parts_container/part_8/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_8/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_8/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_9" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_9" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_9"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_9"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_9"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_9/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_9/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_9"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_9/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_9/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="part_10" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_10" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_10"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_10"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_10"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_10/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_10/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_10"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_10/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_10/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="part_11" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_11" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_11"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_11"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_11"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_11/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_11/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_11"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_11/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_11/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_12" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_12" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_12"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_12"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_12"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_12/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_12/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_12"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_12/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_12/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="part_13" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_13" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_13"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_13"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_13"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_13/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_13/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_13"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
 mesh = SubResource( 3 )
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_13/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_13/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_14" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_14" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_14"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_14"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_14"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_14/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_14/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_14"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_14/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_14/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="part_15" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_15" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_15"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_15"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_15"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_15/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_15/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_15"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_15/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_15/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="part_16" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_16" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_16"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_16"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_16"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_16/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_16/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_16"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_16/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_16/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="part_17" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_17" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_17"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_17"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_17"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_17/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_17/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_17"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_17/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_17/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_17/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_18" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_18" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_18"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_18"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_18"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_18/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_18/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_18"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_18/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_18/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_19" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_19" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_19"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_19"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_19"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_19/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_19/collider"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_19"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
 mesh = SubResource( 3 )
 
-[node name="face_2" type="MeshInstance" parent="cube/parts_container/part_19/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_19/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_19/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_20" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_20" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_20"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_20"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_20"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_20/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_20/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_20"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_20/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_20/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_21" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_21" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_21"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_21"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_21"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_21/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_21/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_21"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
 mesh = SubResource( 3 )
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_21/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_21/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_22" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_22" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_22"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_22"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_22"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_22/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_22/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_22"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
 mesh = SubResource( 3 )
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_22/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_22/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_23" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_23" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_23"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_23"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_23"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_23/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_23/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_23"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
 mesh = SubResource( 3 )
 
-[node name="face_1" type="MeshInstance" parent="cube/parts_container/part_23/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_23/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_23/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_24" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_24" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_24"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_24"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_24"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_24/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_24/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_24"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_24/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_24/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="part_25" type="KinematicBody" parent="cube/parts_container"]
+[node name="part_25" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="centre" type="MeshInstance" parent="cube/parts_container/part_25"]
+[node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
 mesh = SubResource( 38 )
 
-[node name="collider" type="CollisionShape" parent="cube/parts_container/part_25"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_25"]
 shape = SubResource( 2 )
 script = ExtResource( 7 )
 effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ]
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_25/collider"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_25/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="cube/parts_container/part_25"]
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
 mesh = SubResource( 3 )
 
-[node name="face_3" type="MeshInstance" parent="cube/parts_container/part_25/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
 skeleton = NodePath("../..")
 
-[node name="face_4" type="MeshInstance" parent="cube/parts_container/part_25/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
 skeleton = NodePath("../..")
 
-[node name="face_5" type="MeshInstance" parent="cube/parts_container/part_25/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
-[node name="faces_container" type="Spatial" parent="cube"]
+[node name="faces_container" type="Spatial" parent="_/_/cube"]
 
-[node name="face_front" type="Area" parent="cube/faces_container"]
+[node name="face_front" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_front"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_front"]
 shape = SubResource( 4 )
 
-[node name="face_standing" type="Area" parent="cube/faces_container"]
+[node name="face_standing" type="Area" parent="_/_/cube/faces_container"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_standing"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_standing"]
 shape = SubResource( 4 )
 
-[node name="face_back" type="Area" parent="cube/faces_container"]
+[node name="face_back" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_back"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_back"]
 shape = SubResource( 4 )
 
-[node name="face_top" type="Area" parent="cube/faces_container"]
+[node name="face_top" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_top"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_top"]
 shape = SubResource( 4 )
 
-[node name="face_equator" type="Area" parent="cube/faces_container"]
+[node name="face_equator" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_equator"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_equator"]
 shape = SubResource( 4 )
 
-[node name="face_bottom" type="Area" parent="cube/faces_container"]
+[node name="face_bottom" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.5, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_bottom"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_bottom"]
 shape = SubResource( 4 )
 
-[node name="face_left" type="Area" parent="cube/faces_container"]
+[node name="face_left" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 0, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_left"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_left"]
 shape = SubResource( 4 )
 
-[node name="face_middle" type="Area" parent="cube/faces_container"]
+[node name="face_middle" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_middle"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_middle"]
 shape = SubResource( 4 )
 
-[node name="face_right" type="Area" parent="cube/faces_container"]
+[node name="face_right" type="Area" parent="_/_/cube/faces_container"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="collider" type="CollisionShape" parent="cube/faces_container/face_right"]
+[node name="collider" type="CollisionShape" parent="_/_/cube/faces_container/face_right"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00706196, 0, 0.00878048 )
 shape = SubResource( 4 )
 
-[node name="effect" type="AudioStreamPlayer3D" parent="cube"]
+[node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube"]
 unit_db = 15.0
 max_db = 6.0
 bus = "Effects"
 
-[node name="world" type="Spatial" parent="."]
+[node name="world" type="Spatial" parent="_/_"]
 
-[node name="ceiling" type="StaticBody" parent="world"]
+[node name="ceiling" type="StaticBody" parent="_/_/world"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 physics_material_override = SubResource( 29 )
 
-[node name="collider" type="CollisionShape" parent="world/ceiling"]
+[node name="collider" type="CollisionShape" parent="_/_/world/ceiling"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 shape = SubResource( 25 )
 
-[node name="floor" type="StaticBody" parent="world"]
+[node name="floor" type="StaticBody" parent="_/_/world"]
 
-[node name="collider" type="CollisionShape" parent="world/floor"]
+[node name="collider" type="CollisionShape" parent="_/_/world/floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 shape = SubResource( 25 )
 
-[node name="mesh" type="MeshInstance" parent="world/floor"]
+[node name="mesh" type="MeshInstance" parent="_/_/world/floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../..")
 
-[node name="plinth" type="StaticBody" parent="world"]
+[node name="plinth" type="StaticBody" parent="_/_/world"]
 
-[node name="collider" type="CollisionShape" parent="world/plinth"]
+[node name="collider" type="CollisionShape" parent="_/_/world/plinth"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 shape = SubResource( 26 )
 
-[node name="mesh" type="MeshInstance" parent="world/plinth"]
+[node name="mesh" type="MeshInstance" parent="_/_/world/plinth"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
 mesh = SubResource( 7 )
 skeleton = NodePath("../..")
 
-[node name="wall" type="StaticBody" parent="world"]
+[node name="wall" type="StaticBody" parent="_/_/world"]
 physics_material_override = SubResource( 31 )
 
-[node name="segment_0" type="CollisionShape" parent="world/wall"]
+[node name="segment_0" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 0 )
 shape = SubResource( 27 )
 
-[node name="segment_1" type="CollisionShape" parent="world/wall"]
+[node name="segment_1" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, 0 )
 shape = SubResource( 27 )
 
-[node name="segment_3" type="CollisionShape" parent="world/wall"]
+[node name="segment_3" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -13 )
 shape = SubResource( 27 )
 
-[node name="segment_4" type="CollisionShape" parent="world/wall"]
+[node name="segment_4" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.909113, 0, -0.416551, 0, 1, 0, 0.416551, 0, 0.909113, -11.8185, 4, -5.41516 )
 shape = SubResource( 27 )
 
-[node name="segment_5" type="CollisionShape" parent="world/wall"]
+[node name="segment_5" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.909113, 0, -0.416551, 0, 1, 0, 0.416551, 0, 0.909113, 11.8185, 4, 5.41516 )
 shape = SubResource( 27 )
 
-[node name="segment_7" type="CollisionShape" parent="world/wall"]
+[node name="segment_7" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.416551, 0, 0.909113, 0, 1, 0, -0.909113, 0, 0.416551, 5.41516, 4, -11.8185 )
 shape = SubResource( 27 )
 
-[node name="segment_8" type="CollisionShape" parent="world/wall"]
+[node name="segment_8" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.677736, 0, -0.735305, 0, 1, 0, 0.735305, 0, 0.677736, -8.81057, 4, -9.55897 )
 shape = SubResource( 27 )
 
-[node name="segment_9" type="CollisionShape" parent="world/wall"]
+[node name="segment_9" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.677736, 0, -0.735305, 0, 1, 0, 0.735305, 0, 0.677736, 8.81057, 4, 9.55897 )
 shape = SubResource( 27 )
 
-[node name="segment_10" type="CollisionShape" parent="world/wall"]
+[node name="segment_10" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.735305, 0, 0.677736, 0, 1, 0, -0.677736, 0, 0.735305, -9.55897, 4, 8.81057 )
 shape = SubResource( 27 )
 
-[node name="segment_11" type="CollisionShape" parent="world/wall"]
+[node name="segment_11" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.735305, 0, 0.677736, 0, 1, 0, -0.677736, 0, 0.735305, 9.55897, 4, -8.81057 )
 shape = SubResource( 27 )
 
-[node name="segment_12" type="CollisionShape" parent="world/wall"]
+[node name="segment_12" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.375221, 0, -0.926935, 0, 1, 0, 0.926935, 0, 0.375221, -4.87788, 4, -12.0502 )
 shape = SubResource( 27 )
 
-[node name="segment_14" type="CollisionShape" parent="world/wall"]
+[node name="segment_14" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.926935, 0, 0.375221, 0, 1, 0, -0.375221, 0, 0.926935, -12.0502, 4, 4.87788 )
 shape = SubResource( 27 )
 
-[node name="segment_15" type="CollisionShape" parent="world/wall"]
+[node name="segment_15" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( 0.926935, 0, 0.375221, 0, 1, 0, -0.375221, 0, 0.926935, 12.0502, 4, -4.87788 )
 shape = SubResource( 27 )
 
-[node name="segment_16" type="CollisionShape" parent="world/wall"]
+[node name="segment_16" type="CollisionShape" parent="_/_/world/wall"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 11.7584 )
 shape = SubResource( 30 )
 
-[node name="placement_sphere" type="StaticBody" parent="world"]
+[node name="placement_sphere" type="StaticBody" parent="_/_/world"]
 collision_layer = 8
 collision_mask = 8
 
-[node name="collider_sphere" type="CollisionShape" parent="world/placement_sphere"]
+[node name="collider_sphere" type="CollisionShape" parent="_/_/world/placement_sphere"]
 shape = SubResource( 32 )
 
-[node name="collider_floor" type="CollisionShape" parent="world/placement_sphere"]
+[node name="collider_floor" type="CollisionShape" parent="_/_/world/placement_sphere"]
 transform = Transform( 1, 0, 0, 0, 0.13798, 0.990435, 0, -0.990435, 0.13798, 0, -0.5, -0.5 )
 shape = SubResource( 33 )
 
-[node name="collider_back" type="CollisionShape" parent="world/placement_sphere"]
+[node name="collider_back" type="CollisionShape" parent="_/_/world/placement_sphere"]
 transform = Transform( 1, 0, 0, 0, 0.962984, 0.269559, 0, -0.269559, 0.962984, 0, -0.5, 0.18855 )
 shape = SubResource( 33 )
 
-[node name="cube prevention" type="StaticBody" parent="world"]
+[node name="cube prevention" type="StaticBody" parent="_/_/world"]
 
-[node name="collider" type="CollisionShape" parent="world/cube prevention"]
+[node name="collider" type="CollisionShape" parent="_/_/world/cube prevention"]
 transform = Transform( 0.707107, -0.707107, 0, 0.412776, 0.412776, -0.811931, 0.574122, 0.574122, 0.583754, 0, -8, -15.7977 )
 shape = SubResource( 41 )
 
-[node name="hud" type="Control" parent="."]
+[node name="hud" type="Control" parent="_/_"]
 margin_right = 1280.0
 margin_bottom = 720.0
 
-[node name="_" type="VBoxContainer" parent="hud"]
+[node name="_" type="VBoxContainer" parent="_/_/hud"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="button_start" type="Button" parent="hud/_"]
-margin_right = 71.0
+[node name="button_ready" type="Button" parent="_/_/hud/_"]
+margin_right = 54.0
 margin_bottom = 20.0
-text = "scramble"
-script = ExtResource( 6 )
-event_name = "game_start"
-
-[node name="button_ready" type="Button" parent="hud/_"]
-margin_top = 24.0
-margin_right = 71.0
-margin_bottom = 44.0
 text = "ready"
 script = ExtResource( 6 )
 event_name = "game_ready"
 
-[node name="button_restart" type="Button" parent="hud/_"]
-margin_top = 48.0
-margin_right = 71.0
-margin_bottom = 68.0
+[node name="button_restart" type="Button" parent="_/_/hud/_"]
+margin_top = 24.0
+margin_right = 54.0
+margin_bottom = 44.0
 text = "restart"
 script = ExtResource( 6 )
 event_name = "game_restart"
+
+[node name="title" type="TextureRect" parent="_/_/hud"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -397.0
+margin_top = 50.0
+margin_right = -1.0
+margin_bottom = 133.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+script = ExtResource( 17 )
+
+[node name="any_key" type="TextureRect" parent="_/_/hud"]
+margin_left = 477.0
+margin_top = 575.0
+margin_right = 803.0
+margin_bottom = 669.0
+texture = ExtResource( 19 )
+script = ExtResource( 20 )

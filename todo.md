@@ -40,8 +40,8 @@
 - [ ] Audio
     - [ ] Music (ty Yag <3)
     - [ ] Sound effects
-        - [ ] Dice noise/part dropping
-        - [ ] Cube rotating noise
+        - [x] Dice noise/part dropping
+        - [x] Cube rotating noise
         - [ ] Part attaching noise
         - [ ] Part failed noise (?)
         - [ ] Menu select noise
