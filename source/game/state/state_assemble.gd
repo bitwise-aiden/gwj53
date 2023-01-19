@@ -70,8 +70,12 @@ func _handle_input(delta: float) -> void:
 		__action = Action.Select
 		__pan(__camera_origin)
 
-	if __action == Action.Place && Input.is_action_just_pressed("rotate_part"):
-		__rotate_part()
+	if __action == Action.Place:
+		if Input.is_action_just_pressed("part_left"):
+			__rotate_part() # TODO: add directional rotate
+		elif Input.is_action_just_pressed("part_right"):
+			__rotate_part()
+
 
 
 # Private methods

@@ -28,14 +28,14 @@ func process(delta: float) -> void:
 # Protected methods
 
 func _handle_input(delta: float) -> void:
-	if Input.is_action_pressed("rotate_left"):
+	if Input.is_action_pressed("cube_left"):
 		_cube.rotate_y(-delta * 2)
 
-	if Input.is_action_pressed("rotate_right"):
+	if Input.is_action_pressed("cube_right"):
 		_cube.rotate_y(+delta * 2)
 
-	if Input.is_action_pressed("rotate_forward"):
+	if Input.is_action_pressed("cube_up"):
 		_cube.rotate_x(-delta * 2)
 
-	if Input.is_action_pressed("rotate_backward"):
+	if Input.is_action_pressed("cube_down"):
 		_cube.rotate_x(+delta * 2)

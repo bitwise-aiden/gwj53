@@ -1,14 +1,15 @@
-- [ ] Add a settings manager
-    - [ ] Have settings as value on manager
-    - [ ] Serialize to `;` separated values
-    - [ ] Save settings on variable set
-    - [ ] Hook settings up to events
+- [x] Add a settings manager
+    - [x] Have settings as value on manager
+    - [x] Serialize to `;` separated values
+    - [x] Save settings on variable set
+    - [x] Hook settings up to events
 - [ ] Add audio manager
     - [ ] Hook into settings events for audio
     - [ ] Have music track
     - [ ] Have effect track
     - [ ] Control audio for both as one
     - [ ] Plays noises based off of events
+- [x] Add control manager
 - [ ] Create game logo
 - [ ] Create controls manager
     - [ ] Logo for cube rotation
