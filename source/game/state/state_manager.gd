@@ -26,6 +26,8 @@ func process(delta: float) -> void:
 	if __state.is_complete():
 		__transition()
 
+func is_state(state_class) -> bool:
+	return __state is state_class
 
 # Private methods
 
