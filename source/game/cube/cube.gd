@@ -8,6 +8,8 @@ enum Direction { CW = 90, CCW = -90, Max = 2}
 
 # Public variables
 
+export(Array, AudioStreamOGGVorbis) var effects_rotation: Array = []
+
 onready var parts: Array = $parts_container.get_children()
 
 # Private variables
@@ -25,6 +27,7 @@ onready var __faces: Dictionary = {
 }
 
 onready var __parts_container: Spatial = $parts_container
+onready var __effect: AudioStreamPlayer3D = $effect
 
 var __centres: Array = []
 var __initial_transforms: Array = []
@@ -49,6 +52,10 @@ func rotate_face(face_type: int, degree: int) -> void:
 		return
 
 	__rotating = true
+
+	if !effects_rotation.empty():
+		__effect.stream = effects_rotation[randi() % effects_rotation.size()]
+		__effect.play()
 
 	var face: Face = __faces[face_type]
 
