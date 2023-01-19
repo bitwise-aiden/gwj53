@@ -3,7 +3,7 @@ extends Node
 
 # Lifecycle methods
 
-func _ready():
+func _ready() -> void:
 	Event.connect("set_control_cube_left", self, "__update_control", ["cube_left"])
 	Event.connect("set_control_cube_right", self, "__update_control", ["cube_right"])
 	Event.connect("set_control_cube_up", self, "__update_control", ["cube_up"])

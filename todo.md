@@ -4,14 +4,15 @@
     - [x] Save settings on variable set
     - [x] Hook settings up to events
 - [ ] Add audio manager
-    - [ ] Hook into settings events for audio
-    - [ ] Have music track
+    - [x] Hook into settings events for audio
+    - [x] Have music track
     - [ ] Have effect track
-    - [ ] Control audio for both as one
+    - [x] Control audio for both as one
     - [ ] Plays noises based off of events
 - [x] Add control manager
 - [ ] Create game logo
-- [ ] Create controls manager
+- [ ] Update loading screen to be velop logo
+- [ ] Create controls UI
     - [ ] Logo for cube rotation
         - [ ] Have clicking a control set listen mode
         - [ ] Have pressing a key update the control
@@ -22,6 +23,7 @@
     - [ ] Text for starting (include dash)
     - [ ] Text for ready
     - [ ] Text for countdown (include colon)
+    - [ ] Text for highscore (include parens)
     - [ ] Logo for restart
     - [ ] Text for are you sure (include question mark)
     - [ ] CRT effect to zoom in
@@ -30,6 +32,11 @@
     - [ ] Add removing placed cubes
     - [ ] Fix all of the bugs
     - [ ] Update the guides to hide/show based on what is present
+    - [ ] Add timer
+    - [ ] Add highscores
+        - [ ] Finished
+        - [ ] Unfinished
+    - [ ] Add hover effect for parts
 - [ ] Audio
     - [ ] Music (ty Yag <3)
     - [ ] Sound effects

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://source/game/cube/cube.gd" type="Script" id=4]
 [ext_resource path="res://source/game/game.gd" type="Script" id=5]
 [ext_resource path="res://source/game/hud/button_event.gd" type="Script" id=6]
+[ext_resource path="res://source/game/cube/part_effect_controller.gd" type="Script" id=7]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Spatial
@@ -200,6 +201,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_0"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_0/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_0"]
 mesh = SubResource( 3 )
@@ -230,6 +235,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_1"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_1/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_1"]
 mesh = SubResource( 3 )
@@ -255,6 +264,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_2"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_2/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_2"]
 mesh = SubResource( 3 )
@@ -285,6 +298,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_3"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_3/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_3"]
 mesh = SubResource( 3 )
@@ -310,6 +327,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_4"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_4/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_4"]
 mesh = SubResource( 3 )
@@ -330,6 +351,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_5"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_5/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_5"]
 mesh = SubResource( 3 )
@@ -355,6 +380,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_6"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_6/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_6"]
 mesh = SubResource( 3 )
@@ -385,6 +414,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_7"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_7/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_7"]
 mesh = SubResource( 3 )
@@ -410,6 +443,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_8"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_8/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_8"]
 mesh = SubResource( 3 )
@@ -440,6 +477,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_9"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_9/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_9"]
 mesh = SubResource( 3 )
@@ -465,6 +506,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_10"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_10/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_10"]
 mesh = SubResource( 3 )
@@ -485,6 +530,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_11"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_11/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_11"]
 mesh = SubResource( 3 )
@@ -510,6 +559,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_12"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_12/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_12"]
 mesh = SubResource( 3 )
@@ -530,6 +583,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_13"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_13/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_13"]
 mesh = SubResource( 3 )
@@ -550,6 +607,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_14"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_14/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_14"]
 mesh = SubResource( 3 )
@@ -575,6 +636,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_15"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_15/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_15"]
 mesh = SubResource( 3 )
@@ -595,6 +660,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_16"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_16/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_16"]
 mesh = SubResource( 3 )
@@ -620,6 +689,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_17"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_17/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_17"]
 mesh = SubResource( 3 )
@@ -650,6 +723,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_18"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_18/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_18"]
 mesh = SubResource( 3 )
@@ -675,6 +752,11 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_19"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_19/collider"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_19"]
 mesh = SubResource( 3 )
@@ -705,6 +787,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_20"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_20/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_20"]
 mesh = SubResource( 3 )
@@ -730,6 +816,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_21"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_21/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_21"]
 mesh = SubResource( 3 )
@@ -750,6 +840,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_22"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_22/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_22"]
 mesh = SubResource( 3 )
@@ -775,6 +869,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_23"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_23/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_23"]
 mesh = SubResource( 3 )
@@ -805,6 +903,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_24"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_24/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_24"]
 mesh = SubResource( 3 )
@@ -830,6 +932,10 @@ mesh = SubResource( 38 )
 
 [node name="collider" type="CollisionShape" parent="cube/parts_container/part_25"]
 shape = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="effect" type="AudioStreamPlayer3D" parent="cube/parts_container/part_25/collider"]
+bus = "Effects"
 
 [node name="mesh" type="MeshInstance" parent="cube/parts_container/part_25"]
 mesh = SubResource( 3 )
