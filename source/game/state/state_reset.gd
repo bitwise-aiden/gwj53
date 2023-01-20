@@ -16,6 +16,7 @@ var __speed: float = 0.3
 # Lifecycle methods
 
 func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
+	Event.emit_signal("time_changed", 0.0)
 	__reset()
 
 

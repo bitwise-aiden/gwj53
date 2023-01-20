@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -18,10 +18,14 @@
 [ext_resource path="res://assets/art/title.png" type="Texture" id=16]
 [ext_resource path="res://source/game/hud/title.gd" type="Script" id=17]
 [ext_resource path="res://source/game/hud/viewport.gd" type="Script" id=18]
+[ext_resource path="res://assets/font/velock-large.tres" type="DynamicFont" id=19]
 [ext_resource path="res://source/game/hud/any_key.gd" type="Script" id=20]
 [ext_resource path="res://assets/materials/crt.material" type="Material" id=21]
 [ext_resource path="res://source/game/cube/part_mesh.gd" type="Script" id=22]
 [ext_resource path="res://assets/theme.theme" type="Theme" id=23]
+[ext_resource path="res://source/game/hud/timer.gd" type="Script" id=24]
+[ext_resource path="res://source/game/hud/highscore_finished.gd" type="Script" id=25]
+[ext_resource path="res://source/game/hud/timer_container.gd" type="Script" id=26]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -1266,6 +1270,41 @@ shape = SubResource( 41 )
 [node name="hud" type="Control" parent="_/_"]
 margin_right = 1280.0
 margin_bottom = 720.0
+
+[node name="timer" type="Control" parent="_/_/hud"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 26 )
+
+[node name="timer" type="Label" parent="_/_/hud/timer"]
+margin_left = 522.0
+margin_top = 30.0
+margin_right = 758.0
+margin_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 23 )
+custom_fonts/font = ExtResource( 19 )
+text = "00:00.00"
+align = 1
+script = ExtResource( 24 )
+
+[node name="highscore_finished" type="Label" parent="_/_/hud/timer"]
+margin_left = 453.0
+margin_top = 100.0
+margin_right = 827.0
+margin_bottom = 144.0
+grow_horizontal = 2
+theme = ExtResource( 23 )
+text = "best: 00:00.00"
+align = 1
+script = ExtResource( 25 )
+
+[node name="highscore_unfinished" type="Label" parent="_/_/hud/timer"]
+margin_right = 40.0
+margin_bottom = 14.0
+theme = ExtResource( 23 )
+align = 1
 
 [node name="_" type="VBoxContainer" parent="_/_/hud"]
 margin_right = 40.0

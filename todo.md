@@ -6,7 +6,7 @@
 - [ ] Add audio manager
     - [x] Hook into settings events for audio
     - [x] Have music track
-    - [ ] Have effect track
+    - [x] Have effect track
     - [x] Control audio for both as one
     - [ ] Plays noises based off of events
 - [x] Add control manager
@@ -34,7 +34,7 @@
     - [x] Update the guides to hide/show based on what is present
     - [x] Add timer
     - [ ] Add highscores
-        - [ ] Finished
+        - [x] Finished
         - [ ] Unfinished
     - [x] Add hover effect for parts
 - [ ] Audio
