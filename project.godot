@@ -97,6 +97,7 @@ Event="*res://source/autoloads/event.gd"
 Audio="*res://source/autoloads/audio.gd"
 Controls="*res://source/autoloads/controls.gd"
 Setting="*res://source/autoloads/setting.gd"
+Debug="*res://source/autoloads/debug.gd"
 
 [display]
 

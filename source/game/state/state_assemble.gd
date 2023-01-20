@@ -48,11 +48,10 @@ func process(delta: float) -> void:
 	if _completed:
 		Event.emit_signal("game_finished")
 
-	if __over is RigidBody:
-		__over.get_child(1).show_hover(false)
-	elif __over is KinematicBody:
-		__over.get_child(2).show_hover(false)
-
+		if __over is RigidBody:
+			__over.get_child(1).show_hover(false)
+		elif __over is KinematicBody:
+			__over.get_child(2).show_hover(false)
 
 	__timer += delta
 	Event.emit_signal("time_changed", __timer)

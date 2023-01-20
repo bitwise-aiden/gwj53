@@ -21,6 +21,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event) -> void:
+	print(event)
+
 	if (
 		event is InputEventKey ||
 		event is InputEventMouseButton
