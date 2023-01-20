@@ -10,11 +10,12 @@ var __camera: Camera
 var __camera_origin: Vector3
 var __camera_zoom: Vector3
 var __closest: Part
-var __over: RigidBody
+var __over: Spatial
 var __over_offset: Vector3
 var __over_rotation: float
 var __rotating_part: bool
 var __part_origins: Dictionary = {}
+var __timer: float = 0.0
 
 
 # Lifecycle methods
@@ -26,6 +27,8 @@ func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
 
 	for part in _cube.parts:
 		__part_origins[part.name] = part.translation
+
+	Event.emit_signal("time_changed", __timer)
 
 
 func process(delta: float) -> void:
@@ -42,6 +45,16 @@ func process(delta: float) -> void:
 	for part in _cube.parts:
 		_completed = _completed && part.get_child_count() > 1
 
+	if __over is RigidBody:
+		__over.get_child(1).show_hover(false)
+	elif __over is KinematicBody:
+		__over.get_child(2).show_hover(false)
+
+	Event.emit_signal("game_finished")
+
+	__timer += delta
+	Event.emit_signal("time_changed", __timer)
+
 
 # Protected methods
 
@@ -52,25 +65,34 @@ func _handle_input(delta: float) -> void:
 		if __action == Action.Select && __over:
 			__action = Action.Place
 			__pan(__camera_zoom)
+
+			if __over is KinematicBody:
+				__over = __over.to_rigid_body()
+
 			_cube.show_partial_guide(__over.get_child(1).get_child_count())
+
 	elif __action == Action.Place && !__rotating_part:
-		__over.get_child(1).show_hover(false)
+		if __over is RigidBody:
+			__over.get_child(1).show_hover(false)
 
-		if __closest:
-			__attach()
+			if __closest:
+				__attach()
 
-			__closest.get_child(0).translation = Vector3.ZERO
-			__closest = null
+				__closest.get_child(0).translation = Vector3.ZERO
+				__closest = null
 
-			__over.queue_free()
-			__over = null
+				__over.queue_free()
+				__over = null
+			else:
+				var direction: Vector3 = (__over.translation - _cube.translation).normalized()
+				__over.linear_velocity = Vector3.ZERO
+				__over.apply_impulse(__over.translation, direction * 1000.0)
+
+				__over_offset = Vector3.ZERO
+				__over_rotation = 0.0
 		else:
-			var direction: Vector3 = (__over.translation - _cube.translation).normalized()
-			__over.linear_velocity = Vector3.ZERO
-			__over.apply_impulse(__over.translation, direction * 1000.0)
+			__over.get_child(2).show_hover(false)
 
-			__over_offset = Vector3.ZERO
-			__over_rotation = 0.0
 
 		_cube.show_guide(true)
 		__action = Action.Select
@@ -86,6 +108,7 @@ func _handle_input(delta: float) -> void:
 # Private methods
 
 func __attach() -> void:
+	# Can only attach as a Rigid Body, no need to check for __over type
 	var part_collider: CollisionShape = __over.get_child(0)
 	var part_mesh: MeshInstance = __over.get_child(1)
 
@@ -97,22 +120,6 @@ func __attach() -> void:
 
 	part_collider.transform = Transform.IDENTITY
 	part_mesh.transform = Transform.IDENTITY
-
-
-	var to: Vector3 = __closest.face_direction.normalized()
-	var from: Vector3 = Vector3.ZERO
-
-	for face in part_mesh.get_children():
-		from += face.translation
-		print(from)
-
-	from = from.normalized()
-	print(from)
-
-	_cube.get_child(3).global_translation = __closest.global_translation + to * 2.0
-	_cube.get_child(4).global_translation = __closest.global_translation + from * 2.0
-
-	part_mesh.rotation += to - from
 
 
 func __intersect(collision_mask: int) -> Dictionary:
@@ -137,6 +144,7 @@ func __pan(position: Vector3) -> void:
 
 
 func __place() -> void:
+	# Can only place as Rigid Body, no need to check for __over type
 	var result: Dictionary = __intersect(1 << 3)
 
 	if result.empty():
@@ -251,9 +259,15 @@ func __rotate_part_rotation(value: float) -> void:
 func __select() -> void:
 	var result: Dictionary = __intersect(1 << 2)
 	if __over:
-		__over.get_child(1).show_hover(false)
+		if __over is RigidBody:
+			__over.get_child(1).show_hover(false)
+		else:
+			__over.get_child(2).show_hover(false)
 
 	__over = result.get("collider", null)
 
 	if __over:
-		__over.get_child(1).show_hover(true)
+		if __over is RigidBody:
+			__over.get_child(1).show_hover(true)
+		else:
+			__over.get_child(2).show_hover(true)

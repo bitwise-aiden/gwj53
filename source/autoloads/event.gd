@@ -5,7 +5,10 @@ extends Node
 
 signal game_ready()
 signal game_start()
+signal game_finished()
 signal game_restart()
+
+signal time_changed(value)
 
 signal cube_exploded()
 signal cube_scrambled()

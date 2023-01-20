@@ -24,30 +24,7 @@ func __explode() -> void:
 	var origin: Vector3 = _cube.global_translation
 
 	for part in _cube.parts:
-		var rigid_body: RigidBody = RigidBody.new()
-		rigid_body.global_transform = part.global_transform
-		rigid_body.mass = 10.0
-		rigid_body.weight *= 5.0
-
-		_tree.current_scene.add_child(rigid_body)
-		rigid_body.global_transform = part.global_transform
-		rigid_body.look_at(_cube.translation, Vector3.UP)
-
-		var part_collider: CollisionShape = part.get_child(1)
-		var collider_rotation = part_collider.global_rotation
-		var part_mesh: MeshInstance = part.get_child(2)
-		var mesh_rotation = part_mesh.global_rotation
-
-		part.remove_child(part_collider)
-		rigid_body.add_child(part_collider)
-		part_collider.global_rotation = collider_rotation
-
-		part.remove_child(part_mesh)
-		rigid_body.add_child(part_mesh)
-		part_mesh.global_rotation = mesh_rotation
-
-		rigid_body.collision_mask |= 1 << 2
-		rigid_body.collision_layer |= 1 << 2
+		var rigid_body: RigidBody = part.to_rigid_body()
 
 		var direction: Vector3 = rigid_body.global_translation - origin
 		rigid_body.apply_impulse(rigid_body.global_translation, direction * (randf() * 200.0 + 800.0))

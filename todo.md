@@ -29,10 +29,10 @@
     - [ ] CRT effect to zoom in
 - [ ] Gameplay
     - [ ] Fix cube rotation when on the cube
-    - [ ] Add removing placed cubes
+    - [x] Add removing placed cubes
     - [ ] Fix all of the bugs
     - [x] Update the guides to hide/show based on what is present
-    - [ ] Add timer
+    - [x] Add timer
     - [ ] Add highscores
         - [ ] Finished
         - [ ] Unfinished

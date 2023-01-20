@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -132,22 +132,6 @@ size = Vector3( 1.3, 1.25, 1.25 )
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 2, 2, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=48]
-albedo_color = Color( 0.831373, 0.172549, 0.172549, 1 )
-
-[sub_resource type="SphereMesh" id=47]
-material = SubResource( 48 )
-radius = 0.5
-height = 1.0
-
-[sub_resource type="SpatialMaterial" id=49]
-albedo_color = Color( 0.0588235, 0.137255, 0.627451, 1 )
-
-[sub_resource type="SphereMesh" id=50]
-material = SubResource( 49 )
-radius = 0.5
-height = 1.0
-
 [sub_resource type="PhysicsMaterial" id=29]
 bounce = 0.5
 
@@ -264,7 +248,7 @@ effects_rotation = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtR
 
 [node name="part_0" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -300,7 +284,7 @@ skeleton = NodePath("../..")
 
 [node name="part_1" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -331,7 +315,7 @@ skeleton = NodePath("../..")
 
 [node name="part_2" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -367,7 +351,7 @@ skeleton = NodePath("../..")
 
 [node name="part_3" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -398,7 +382,7 @@ skeleton = NodePath("../..")
 
 [node name="part_4" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -424,7 +408,7 @@ skeleton = NodePath("../..")
 
 [node name="part_5" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -455,7 +439,7 @@ skeleton = NodePath("../..")
 
 [node name="part_6" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -491,7 +475,7 @@ skeleton = NodePath("../..")
 
 [node name="part_7" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -522,7 +506,7 @@ skeleton = NodePath("../..")
 
 [node name="part_8" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -558,7 +542,7 @@ skeleton = NodePath("../..")
 
 [node name="part_9" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -589,7 +573,7 @@ skeleton = NodePath("../..")
 
 [node name="part_10" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -615,7 +599,7 @@ skeleton = NodePath("../..")
 
 [node name="part_11" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -646,7 +630,7 @@ skeleton = NodePath("../..")
 
 [node name="part_12" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -672,7 +656,7 @@ skeleton = NodePath("../..")
 
 [node name="part_13" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -698,7 +682,7 @@ skeleton = NodePath("../..")
 
 [node name="part_14" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -729,7 +713,7 @@ skeleton = NodePath("../..")
 
 [node name="part_15" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -755,7 +739,7 @@ skeleton = NodePath("../..")
 
 [node name="part_16" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -786,7 +770,7 @@ skeleton = NodePath("../..")
 
 [node name="part_17" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -822,7 +806,7 @@ skeleton = NodePath("../..")
 
 [node name="part_18" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -853,7 +837,7 @@ skeleton = NodePath("../..")
 
 [node name="part_19" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -890,7 +874,7 @@ skeleton = NodePath("../..")
 
 [node name="part_20" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -921,7 +905,7 @@ skeleton = NodePath("../..")
 
 [node name="part_21" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -947,7 +931,7 @@ skeleton = NodePath("../..")
 
 [node name="part_22" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -978,7 +962,7 @@ skeleton = NodePath("../..")
 
 [node name="part_23" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -1014,7 +998,7 @@ skeleton = NodePath("../..")
 
 [node name="part_24" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -1045,7 +1029,7 @@ skeleton = NodePath("../..")
 
 [node name="part_25" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 1.5 )
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource( 3 )
 
@@ -1166,14 +1150,6 @@ shape = SubResource( 4 )
 unit_db = 15.0
 max_db = 6.0
 bus = "Effects"
-
-[node name="to" type="MeshInstance" parent="_/_/cube"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.09829, 0, 0 )
-mesh = SubResource( 47 )
-
-[node name="from" type="MeshInstance" parent="_/_/cube"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.09829, -1.74794, 0 )
-mesh = SubResource( 50 )
 
 [node name="world" type="Spatial" parent="_/_"]
 
