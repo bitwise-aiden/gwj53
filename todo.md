@@ -47,6 +47,9 @@
         - [ ] Menu select noise
         - [ ] ... Others that I can't think of right now
 - [x] Itch.io page
+- [ ] Do write up for the itch page
+- [ ] Update meta data for itch page
+- [ ] Possibly second pass the cover
 - [ ] Bugs
     - [x] Trackpad press not working for ready
     - [ ] Audio not playing
