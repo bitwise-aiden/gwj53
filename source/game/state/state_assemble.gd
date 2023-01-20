@@ -45,12 +45,14 @@ func process(delta: float) -> void:
 	for part in _cube.parts:
 		_completed = _completed && part.get_child_count() > 1
 
+	if _completed:
+		Event.emit_signal("game_finished")
+
 	if __over is RigidBody:
 		__over.get_child(1).show_hover(false)
 	elif __over is KinematicBody:
 		__over.get_child(2).show_hover(false)
 
-	Event.emit_signal("game_finished")
 
 	__timer += delta
 	Event.emit_signal("time_changed", __timer)

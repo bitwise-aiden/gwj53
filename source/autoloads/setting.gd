@@ -23,6 +23,8 @@ var score_unfinished: float =  0.0 setget __set_score_unfinished
 func _ready() -> void:
 	__load()
 
+	Event.connect("game_finished", self, "__update_score")
+
 
 # Private variables
 
@@ -130,3 +132,10 @@ func __set_score_unfinished(value: float) -> void:
 	Event.emit_signal("set_score_unfinished", value)
 
 	__save()
+
+
+func __update_score() -> void:
+	var value: float = yield(Event, "time_changed")
+
+	if value < score_finished || score_finished == 0.0:
+		self.score_finished = value
