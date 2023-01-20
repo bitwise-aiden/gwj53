@@ -20,10 +20,10 @@
         - [ ] Have emit audio change event
         - [ ] Have 4 modes: off, 1, 2, 3
 - [ ] Other UI
-    - [ ] Text for starting (include dash)
-    - [ ] Text for ready
-    - [ ] Text for countdown (include colon)
-    - [ ] Text for highscore (include parens)
+    - [x] Text for starting (include dash)
+    - [x] Text for ready
+    - [x] Text for countdown (include colon)
+    - [x] Text for highscore (include parens)
     - [ ] Logo for restart
     - [ ] Text for are you sure (include question mark)
     - [ ] CRT effect to zoom in
@@ -50,3 +50,4 @@
 - [ ] Bugs
     - [ ] Trackpad press not working for ready
     - [ ] Audio not playing
+    - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
