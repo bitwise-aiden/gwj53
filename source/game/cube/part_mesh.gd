@@ -16,4 +16,5 @@ func _ready() -> void:
 # Public methods
 
 func show_hover(show: bool = true) -> void:
+	print("hello world %s", show)
 	__target_material.set_shader_param("outline_width", 2.0 if show else 0.0)

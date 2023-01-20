@@ -7,6 +7,11 @@ func _ready() -> void:
 	Event.connect("game_start", self, "__start")
 
 
+func _input(event) -> void:
+	if event is InputEventMouseButton:
+		get_parent()._input(event)
+
+
 # Private methods
 
 func __start() -> void:

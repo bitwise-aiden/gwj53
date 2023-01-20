@@ -188,6 +188,7 @@ script = ExtResource( 5 )
 material = ExtResource( 21 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 18 )
 
 [node name="_" type="Viewport" parent="_"]
@@ -1270,6 +1271,7 @@ shape = SubResource( 41 )
 [node name="hud" type="Control" parent="_/_"]
 margin_right = 1280.0
 margin_bottom = 720.0
+mouse_filter = 1
 
 [node name="timer" type="Control" parent="_/_/hud"]
 margin_right = 40.0

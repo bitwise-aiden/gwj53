@@ -46,9 +46,9 @@
         - [ ] Part failed noise (?)
         - [ ] Menu select noise
         - [ ] ... Others that I can't think of right now
-- [ ] Itch.io page
+- [x] Itch.io page
 - [ ] Bugs
-    - [ ] Trackpad press not working for ready
+    - [x] Trackpad press not working for ready
     - [ ] Audio not playing
     - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
-    - [ ] Hover effect not working
+    - [x] Hover effect not working
