@@ -1,4 +1,4 @@
-extends TextureRect
+extends Label
 
 
 # Lifecycle methods
