@@ -52,9 +52,9 @@ func _handle_input(delta: float) -> void:
 		if __action == Action.Select && __over:
 			__action = Action.Place
 			__pan(__camera_zoom)
-			_cube.show_partial_guide(__over.get_child(1).get_child_count())
+			_cube.show_partial_guide(__over.get_child(1).get_child(0).get_child_count())
 	elif __action == Action.Place && !__rotating_part:
-		__over.get_child(1).show_hover(false)
+		__over.get_child(1).get_child(0).show_hover(false)
 
 		if __closest:
 			__attach()
@@ -87,32 +87,47 @@ func _handle_input(delta: float) -> void:
 
 func __attach() -> void:
 	var part_collider: CollisionShape = __over.get_child(0)
-	var part_mesh: MeshInstance = __over.get_child(1)
+	var part_faces: Spatial = __over.get_child(1)
 
 	__over.remove_child(part_collider)
 	__closest.add_child(part_collider)
 
-	__over.remove_child(part_mesh)
-	__closest.add_child(part_mesh)
+	__over.remove_child(part_faces)
+	__closest.add_child(part_faces)
+
+#	part_collider.transform = Transform.IDENTITY
+#	part_faces.transform = Transform.IDENTITY
 
 	part_collider.transform = Transform.IDENTITY
-	part_mesh.transform = Transform.IDENTITY
+	part_faces.look_at(Vector3.ZERO, Vector3.UP)
+
+	var axis: Vector3 = (part_faces.global_translation - _cube.global_translation).normalized()
+#	part_faces.rotate(axis, 90.0)
 
 
-	var to: Vector3 = __closest.face_direction.normalized()
-	var from: Vector3 = Vector3.ZERO
-
-	for face in part_mesh.get_children():
-		from += face.translation
-		print(from)
-
-	from = from.normalized()
-	print(from)
-
-	_cube.get_child(3).global_translation = __closest.global_translation + to * 2.0
-	_cube.get_child(4).global_translation = __closest.global_translation + from * 2.0
-
-	part_mesh.rotation += to - from
+#	var to: Vector3 = __closest.face_direction.normalized()
+#	var from: Vector3 = Vector3.ZERO
+#
+#	for face in part_faces.get_child(0).get_children():
+#		from += face.translation
+#
+#	from = from.normalized()
+#
+##	_cube.get_child(3).global_translation = __closest.global_translation + to * 2.0
+##	_cube.get_child(4).global_translation = __closest.global_translation + from * 2.0
+##
+##	part_mesh.rotation += to - from
+#
+#	var axis: Vector3 = to.cross(from).normalized()
+#	if axis == Vector3.ZERO:
+#		return
+#
+#	var proj_to: Vector3 = to - (to.dot(axis)) * axis
+#	var proj_from: Vector3 = from - (from.dot(axis)) * axis
+#
+#	var angle: float = proj_from.normalized().angle_to(proj_to)
+#
+#	part_faces.rotate(axis, angle)
 
 
 func __intersect(collision_mask: int) -> Dictionary:
@@ -153,7 +168,7 @@ func __place() -> void:
 	var closest_angle: float = INF
 
 	var dir_over: Vector3 = __over.global_translation - _cube.global_translation
-	var face_count: int = __over.get_child(1).get_child_count()
+	var face_count: int = __over.get_child(1).get_child(0).get_child_count()
 
 	for part in _cube.parts:
 		if part.get_child_count() > 1:
@@ -251,9 +266,9 @@ func __rotate_part_rotation(value: float) -> void:
 func __select() -> void:
 	var result: Dictionary = __intersect(1 << 2)
 	if __over:
-		__over.get_child(1).show_hover(false)
+		__over.get_child(1).get_child(0).show_hover(false)
 
 	__over = result.get("collider", null)
 
 	if __over:
-		__over.get_child(1).show_hover(true)
+		__over.get_child(1).get_child(0).show_hover(true)

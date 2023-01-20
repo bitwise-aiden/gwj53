@@ -127,6 +127,7 @@ func show_guide(show: bool, duration: float = 0.5, delay: float = 0.0) -> void:
 
 
 func show_partial_guide(face_count: int, duration: float = 0.2) -> void:
+	print("really? %s" % face_count)
 	for part in parts:
 		var scale_dest: Vector3 = Vector3.ONE if part.face_count == face_count else Vector3.ZERO
 

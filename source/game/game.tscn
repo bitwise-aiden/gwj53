@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://source/game/hud/any_key.gd" type="Script" id=20]
 [ext_resource path="res://assets/materials/crt.material" type="Material" id=21]
 [ext_resource path="res://source/game/cube/part_mesh.gd" type="Script" id=22]
+[ext_resource path="res://source/game/cube/faces.gd" type="Script" id=23]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -279,24 +280,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_0/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_0"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_0/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_0/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_0/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_0/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_0/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_1" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 0 )
@@ -315,19 +320,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_1/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_1"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_1/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_1/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_1/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_1/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_2" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 1.5 )
@@ -346,24 +355,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_2/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_2"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_2/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_2/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_2/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_2/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_2/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_3" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
@@ -382,19 +395,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_3/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_3"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_3/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_3/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_3/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_3/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_4" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
@@ -413,14 +430,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_4/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_4"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_4/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_4/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_4/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_5" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5 )
@@ -439,19 +460,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_5/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_5"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_5/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_5/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_5/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_5/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_6" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -1.5 )
@@ -470,24 +495,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_6/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_6"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_6/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_6/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_6/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_6/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_6/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_7" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0 )
@@ -506,19 +535,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_7/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_7"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_7/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_7/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_7/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_7/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_8" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 1.5 )
@@ -537,24 +570,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_8/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_8"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_8/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
+[node name="face_0" type="MeshInstance" parent="_/_/cube/parts_container/part_8/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
 mesh = SubResource( 12 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_8/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_8/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_8/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_9" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1.5 )
@@ -573,19 +610,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_9/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_9"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_9/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_9/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_9/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_9/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_10" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
@@ -604,14 +645,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_10/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_10"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_10/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_10/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_10/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_11" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 1.5 )
@@ -630,19 +675,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_11/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_11"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_11/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_11/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_11/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_11/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_12" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
@@ -661,14 +710,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_12/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_12"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_12/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_12/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_12/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_13" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
@@ -687,14 +740,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_13/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_13"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_13/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_13/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_13/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_14" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5 )
@@ -713,19 +770,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_14/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_14"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_14/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_14/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_14/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_14/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_15" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
@@ -744,14 +805,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_15/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_15"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_15/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_15/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_15/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_16" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5 )
@@ -770,19 +835,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_16/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_16"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_16/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_16/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_16/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_16/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_17" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, -1.5 )
@@ -801,24 +870,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_17/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_17"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_17/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_17/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_17/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_17/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_17/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_18" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 0 )
@@ -837,19 +910,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_18/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_18"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_18/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_18/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_18/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_18/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_19" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1.5, 1.5 )
@@ -869,24 +946,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_19"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_19/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
+[node name="face_2" type="MeshInstance" parent="_/_/cube/parts_container/part_19/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0 )
 mesh = SubResource( 16 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_19/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_19/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_19/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_20" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5 )
@@ -905,19 +986,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_20/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_20"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_20/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_20/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_20/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_20/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_21" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
@@ -936,14 +1021,18 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_21/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_21"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_21/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_21/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_21/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_22" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
@@ -962,19 +1051,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_22/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_22"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_22/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_22/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_22/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_22/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_23" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -1.5 )
@@ -993,24 +1086,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_23/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_23"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_23/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
+[node name="face_1" type="MeshInstance" parent="_/_/cube/parts_container/part_23/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15 )
 mesh = SubResource( 14 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_23/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_23/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_23/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_24" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0 )
@@ -1029,19 +1126,23 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_24/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_24"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_24/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_24/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_24/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_24/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="part_25" type="KinematicBody" parent="_/_/cube/parts_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 1.5 )
@@ -1060,24 +1161,28 @@ effects_collide = [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), Ext
 [node name="effect" type="AudioStreamPlayer3D" parent="_/_/cube/parts_container/part_25/collider"]
 bus = "Effects"
 
-[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
+[node name="faces" type="Spatial" parent="_/_/cube/parts_container/part_25"]
+script = ExtResource( 23 )
+
+[node name="mesh" type="MeshInstance" parent="_/_/cube/parts_container/part_25/faces"]
 mesh = SubResource( 44 )
+skeleton = NodePath("../..")
 script = ExtResource( 22 )
 
-[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
+[node name="face_3" type="MeshInstance" parent="_/_/cube/parts_container/part_25/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 mesh = SubResource( 21 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
+[node name="face_4" type="MeshInstance" parent="_/_/cube/parts_container/part_25/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15 )
 mesh = SubResource( 19 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_25/mesh"]
+[node name="face_5" type="MeshInstance" parent="_/_/cube/parts_container/part_25/faces/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
 mesh = SubResource( 23 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="faces_container" type="Spatial" parent="_/_/cube"]
 
