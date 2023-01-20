@@ -98,21 +98,32 @@ func __attach() -> void:
 	part_collider.transform = Transform.IDENTITY
 	part_mesh.transform = Transform.IDENTITY
 
+	var original: Part = part_mesh.original_part
 
-	var to: Vector3 = __closest.face_direction.normalized()
-	var from: Vector3 = Vector3.ZERO
+	if original == __closest:
+		# This case it has returned to it's original location
+		return
 
-	for face in part_mesh.get_children():
-		from += face.translation
-		print(from)
 
-	from = from.normalized()
-	print(from)
+	if (-original.translation - __closest.translation).length() < 0.001:
+		# This case is where it is the negative direction
+		# TODO
+		return
 
-	_cube.get_child(3).global_translation = __closest.global_translation + to * 2.0
-	_cube.get_child(4).global_translation = __closest.global_translation + from * 2.0
 
-	part_mesh.rotation += to - from
+	var to: Vector3 = (__closest.global_translation - _cube.global_translation).normalized()
+	var from: Vector3 = (original.global_translation - _cube.global_translation).normalized()
+
+	var axis: Vector3 = to.cross(from).normalized()
+	if axis == Vector3.ZERO:
+		return
+
+	var proj_to: Vector3 = to - (to.dot(axis)) * axis
+	var proj_from: Vector3 = from - (from.dot(axis)) * axis
+
+	var angle: float = proj_to.normalized().angle_to(proj_from)
+
+	part_mesh.rotate(axis, -angle)
 
 
 func __intersect(collision_mask: int) -> Dictionary:

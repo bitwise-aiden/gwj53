@@ -50,3 +50,4 @@
 - [ ] Bugs
     - [ ] Trackpad press not working for ready
     - [ ] Audio not playing
+    - [ ] Title colours are wrong

@@ -1,6 +1,11 @@
 extends MeshInstance
 
 
+# Public variables
+
+onready var original_part: Part = get_parent()
+
+
 # Private variables
 
 var __target_material: Material
