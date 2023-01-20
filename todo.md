@@ -11,7 +11,7 @@
     - [ ] Plays noises based off of events
 - [x] Add control manager
 - [x] Create game logo
-- [ ] Update loading screen to be velop logo
+- [x] Update loading screen to be velop logo
 - [ ] Create controls UI
     - [ ] Logo for cube rotation
         - [ ] Have clicking a control set listen mode
@@ -26,7 +26,7 @@
     - [x] Text for highscore (include parens)
     - [ ] Logo for restart
     - [ ] Text for are you sure (include question mark)
-    - [ ] CRT effect to zoom in
+    - [x] CRT effect to zoom in
 - [ ] Gameplay
     - [ ] Fix cube rotation when on the cube
     - [x] Add removing placed cubes
@@ -51,3 +51,4 @@
     - [ ] Trackpad press not working for ready
     - [ ] Audio not playing
     - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
+    - [ ] Hover effect not working
