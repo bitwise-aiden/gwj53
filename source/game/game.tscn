@@ -1,11 +1,11 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
 [ext_resource path="res://source/game/cube/part.gd" type="Script" id=3]
 [ext_resource path="res://source/game/cube/cube.gd" type="Script" id=4]
 [ext_resource path="res://source/game/game.gd" type="Script" id=5]
-[ext_resource path="res://source/game/hud/button_event.gd" type="Script" id=6]
+[ext_resource path="res://assets/art/restart.png" type="Texture" id=6]
 [ext_resource path="res://source/game/cube/part_effect_controller.gd" type="Script" id=7]
 [ext_resource path="res://assets/effects/rotate_0.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/effects/rotate_1.ogg" type="AudioStream" id=9]
@@ -36,6 +36,8 @@
 [ext_resource path="res://assets/art/cube_rotate.png" type="Texture" id=34]
 [ext_resource path="res://assets/art/pause_menu.png" type="Texture" id=35]
 [ext_resource path="res://source/game/hud/control.gd" type="Script" id=36]
+[ext_resource path="res://assets/art/close.png" type="Texture" id=37]
+[ext_resource path="res://source/game/hud/restart.gd" type="Script" id=38]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -1284,7 +1286,6 @@ margin_bottom = 720.0
 mouse_filter = 1
 
 [node name="timer" type="Control" parent="_/_/hud"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 26 )
@@ -1319,28 +1320,7 @@ margin_bottom = 14.0
 theme = ExtResource( 23 )
 align = 1
 
-[node name="_" type="VBoxContainer" parent="_/_/hud"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="button_ready" type="Button" parent="_/_/hud/_"]
-margin_right = 54.0
-margin_bottom = 20.0
-text = "ready"
-script = ExtResource( 6 )
-event_name = "game_ready"
-
-[node name="button_restart" type="Button" parent="_/_/hud/_"]
-margin_top = 24.0
-margin_right = 54.0
-margin_bottom = 44.0
-text = "restart"
-script = ExtResource( 6 )
-event_name = "game_restart"
-
 [node name="title" type="TextureRect" parent="_/_/hud"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -336.0
@@ -1352,7 +1332,6 @@ texture = ExtResource( 16 )
 script = ExtResource( 17 )
 
 [node name="any_key" type="Label" parent="_/_/hud"]
-visible = false
 margin_left = 417.0
 margin_top = 600.0
 margin_right = 864.0
@@ -1377,6 +1356,16 @@ margin_right = 1255.0
 margin_bottom = 100.0
 texture = ExtResource( 32 )
 script = ExtResource( 33 )
+pause = ExtResource( 32 )
+close = ExtResource( 37 )
+
+[node name="restart" type="TextureRect" parent="_/_/hud"]
+margin_left = 1080.0
+margin_top = 25.0
+margin_right = 1155.0
+margin_bottom = 100.0
+texture = ExtResource( 6 )
+script = ExtResource( 38 )
 
 [node name="pause_menu" type="TextureRect" parent="_/_/hud"]
 margin_left = 357.0

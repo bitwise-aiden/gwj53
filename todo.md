@@ -12,10 +12,10 @@
 - [x] Add control manager
 - [x] Create game logo
 - [x] Update loading screen to be velop logo
-- [ ] Create controls UI
-    - [ ] Logo for cube rotation
-        - [ ] Have clicking a control set listen mode
-        - [ ] Have pressing a key update the control
+- [x] Create controls UI
+    - [x] Logo for cube rotation
+        - [x] Have clicking a control set listen mode
+        - [x] Have pressing a key update the control
     - [x] Logo for volume
         - [x] Have emit audio change event
         - [x] Have 4 modes: off, 1, 2, 3
@@ -24,8 +24,8 @@
     - [x] Text for ready
     - [x] Text for countdown (include colon)
     - [x] Text for highscore (include parens)
-    - [ ] Logo for restart
-    - [ ] Text for are you sure (include question mark)
+    - [x] Logo for restart
+    - [x] Text for are you sure (include question mark)
     - [x] CRT effect to zoom in
 - [ ] Gameplay
     - [ ] Fix cube rotation when on the cube
