@@ -19,7 +19,7 @@
     - [x] Logo for volume
         - [x] Have emit audio change event
         - [x] Have 4 modes: off, 1, 2, 3
-- [ ] Other UI
+- [x] Other UI
     - [x] Text for starting (include dash)
     - [x] Text for ready
     - [x] Text for countdown (include colon)
@@ -29,14 +29,17 @@
     - [x] CRT effect to zoom in
 - [ ] Gameplay
     - [ ] Fix cube rotation when on the cube
+        - [ ] Add ability to rotate for placement
+        - [ ] Add ability to set controls for rotation
+        - [ ] Add tween for when part attaches to cube
+        - [ ] Add tween for closest guide being shown
     - [x] Add removing placed cubes
-    - [ ] Fix all of the bugs
     - [x] Update the guides to hide/show based on what is present
     - [x] Add timer
-    - [ ] Add highscores
+    - [x] Add highscores
         - [x] Finished
-        - [ ] Unfinished
     - [x] Add hover effect for parts
+    - [ ] restart doesn't need to do full reset if it's complete
 - [ ] Audio
     - [ ] Music (ty Yag <3)
     - [ ] Sound effects
@@ -46,19 +49,23 @@
         - [ ] Part failed noise (?)
         - [ ] Menu select noise
         - [ ] ... Others that I can't think of right now
-- [x] Itch.io page
-- [ ] Do write up for the itch page
-- [ ] Update meta data for itch page
-- [ ] Possibly second pass the cover
+- [ ] Itch.io page
+    - [x] Style itch page
+    - [ ] Do write up for the itch page
+    - [ ] Update meta data for itch page
+    - [ ] Possibly second pass the cover
 - [ ] Bugs
     - [x] Trackpad press not working for ready
     - [ ] Audio not playing
     - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
     - [x] Hover effect not working
-    - [x] update mouse input to check it is pressed
-    - [ ] restart doesn't need to do full reset if it's complete
-    - [ ] rotation overlap can still occur
-    - [ ] timer can disappear
-    - [x] speed up reset
-    - [x] speed up scramble
-    - [ ] speed up explode
+    - [x] Update mouse input to check it is pressed
+    - [ ] Rotation overlap can still occur
+    - [ ] Timer can disappear
+    - [ ] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
+    - [ ] Fix bottom of page for itch
+- [x] Other
+    - [x] Speed up reset
+    - [x] Speed up scramble
+    - [x] Speed up explode
+- [ ] SUBMIT THE GAME FOR THE JAM!!!
