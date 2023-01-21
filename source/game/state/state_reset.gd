@@ -56,6 +56,8 @@ func __reset() -> void:
 		body.add_child(part_mesh)
 		part_mesh.global_translation = part_translation
 
+		Audio.play_effect(Audio.effect_explode)
+
 		if parent is RigidBody:
 			var part_collider: CollisionShape = parent.get_child(0)
 			parent.remove_child(part_collider)
@@ -111,6 +113,12 @@ func __reset() -> void:
 			0.2
 		)
 
+		tween.tween_callback(
+			self,
+			"__connect",
+			[part]
+		)
+
 	yield(tween, "finished")
 	yield(_tree.create_timer(1.0), "timeout")
 
@@ -121,6 +129,10 @@ func __reset() -> void:
 	_cube.get_child(1).transform = Transform.IDENTITY
 
 	_completed = true
+
+
+func __connect(part: Part) -> void:
+	Audio.play_effect(Audio.effect_attach)
 
 
 func __disconnect(part: Part) -> void:

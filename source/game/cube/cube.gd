@@ -104,7 +104,7 @@ func rotate_face(face_type: int, degree: int) -> void:
 			"__rotate_part",
 			0.0,
 			deg2rad(degree),
-			0.2,
+			0.25,
 			[part, part.transform, offset, origin, axis]
 		)
 
