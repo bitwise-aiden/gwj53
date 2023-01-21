@@ -61,8 +61,9 @@
     - [x] Hover effect not working
     - [x] Update mouse input to check it is pressed
     - [ ] Rotation overlap can still occur
-    - [ ] Timer can disappear
+    - [x] Timer can disappear <--- I think I fixed this
     - [ ] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
+    - [ ] Issue where some pieces stay attached to the cube :zany_face:
     - [ ] Fix bottom of page for itch
 - [x] Other
     - [x] Speed up reset

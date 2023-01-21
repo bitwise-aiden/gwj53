@@ -10,6 +10,7 @@ var __tween: Tween
 func _ready() -> void:
 	Event.connect("time_changed", self, "__update_time")
 	Event.connect("game_finished", self, "__blink")
+	Event.connect("game_restart", self, "__blink", [false])
 
 	__tween = Tween.new()
 	__tween.repeat = true
@@ -34,6 +35,7 @@ func __update_time(value: float) -> void:
 func __blink(blink: bool = true) -> void:
 	if !blink:
 		__tween.stop_all()
+		visible = true
 	elif !__tween.is_active():
 		__tween.interpolate_method(
 			self,
