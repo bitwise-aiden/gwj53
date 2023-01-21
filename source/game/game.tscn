@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -31,6 +31,11 @@
 [ext_resource path="res://assets/art/speaker_3.png" type="Texture" id=29]
 [ext_resource path="res://assets/art/speaker_2.png" type="Texture" id=30]
 [ext_resource path="res://assets/art/speaker_1.png" type="Texture" id=31]
+[ext_resource path="res://assets/art/pause.png" type="Texture" id=32]
+[ext_resource path="res://source/game/hud/pause.gd" type="Script" id=33]
+[ext_resource path="res://assets/art/cube_rotate.png" type="Texture" id=34]
+[ext_resource path="res://assets/art/pause_menu.png" type="Texture" id=35]
+[ext_resource path="res://source/game/hud/control.gd" type="Script" id=36]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -1279,6 +1284,7 @@ margin_bottom = 720.0
 mouse_filter = 1
 
 [node name="timer" type="Control" parent="_/_/hud"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 26 )
@@ -1314,6 +1320,7 @@ theme = ExtResource( 23 )
 align = 1
 
 [node name="_" type="VBoxContainer" parent="_/_/hud"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -1333,6 +1340,7 @@ script = ExtResource( 6 )
 event_name = "game_restart"
 
 [node name="title" type="TextureRect" parent="_/_/hud"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -336.0
@@ -1344,6 +1352,7 @@ texture = ExtResource( 16 )
 script = ExtResource( 17 )
 
 [node name="any_key" type="Label" parent="_/_/hud"]
+visible = false
 margin_left = 417.0
 margin_top = 600.0
 margin_right = 864.0
@@ -1360,3 +1369,81 @@ margin_bottom = 695.0
 texture = ExtResource( 27 )
 script = ExtResource( 28 )
 textures = [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 29 ) ]
+
+[node name="pause" type="TextureRect" parent="_/_/hud"]
+margin_left = 1180.0
+margin_top = 25.0
+margin_right = 1255.0
+margin_bottom = 100.0
+texture = ExtResource( 32 )
+script = ExtResource( 33 )
+
+[node name="pause_menu" type="TextureRect" parent="_/_/hud"]
+margin_left = 357.0
+margin_top = 103.0
+margin_right = 924.0
+margin_bottom = 618.0
+texture = ExtResource( 35 )
+
+[node name="controls" type="Label" parent="_/_/hud/pause_menu"]
+margin_left = 158.0
+margin_top = 60.0
+margin_right = 408.0
+margin_bottom = 102.0
+theme = ExtResource( 23 )
+text = "Controls"
+
+[node name="control" type="TextureRect" parent="_/_/hud/pause_menu"]
+margin_left = 201.0
+margin_top = 215.0
+margin_right = 365.0
+margin_bottom = 379.0
+mouse_filter = 2
+texture = ExtResource( 34 )
+
+[node name="control_left" type="Label" parent="_/_/hud/pause_menu/control"]
+margin_left = -45.0
+margin_top = 70.0
+margin_right = -12.0
+margin_bottom = 112.0
+grow_horizontal = 0
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "A"
+script = ExtResource( 36 )
+input = "control_cube_left"
+
+[node name="control_right" type="Label" parent="_/_/hud/pause_menu/control"]
+margin_left = 180.0
+margin_top = 70.0
+margin_right = 213.0
+margin_bottom = 112.0
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "D"
+script = ExtResource( 36 )
+input = "control_cube_right"
+
+[node name="control_up" type="Label" parent="_/_/hud/pause_menu/control"]
+margin_left = 66.0
+margin_top = -50.0
+margin_right = 99.0
+margin_bottom = -8.0
+grow_horizontal = 2
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "A"
+script = ExtResource( 36 )
+input = "control_cube_up"
+
+[node name="control_down" type="Label" parent="_/_/hud/pause_menu/control"]
+margin_left = 66.0
+margin_top = 180.0
+margin_right = 99.0
+margin_bottom = 222.0
+grow_horizontal = 2
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "A"
+script = ExtResource( 36 )
+input = "control_cube_down"
