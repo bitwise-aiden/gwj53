@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -26,6 +26,11 @@
 [ext_resource path="res://source/game/hud/timer.gd" type="Script" id=24]
 [ext_resource path="res://source/game/hud/highscore_finished.gd" type="Script" id=25]
 [ext_resource path="res://source/game/hud/timer_container.gd" type="Script" id=26]
+[ext_resource path="res://assets/art/speaker_0.png" type="Texture" id=27]
+[ext_resource path="res://source/game/hud/audio.gd" type="Script" id=28]
+[ext_resource path="res://assets/art/speaker_3.png" type="Texture" id=29]
+[ext_resource path="res://assets/art/speaker_2.png" type="Texture" id=30]
+[ext_resource path="res://assets/art/speaker_1.png" type="Texture" id=31]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -1346,3 +1351,12 @@ margin_bottom = 644.0
 theme = ExtResource( 23 )
 text = "- Press any key -"
 script = ExtResource( 20 )
+
+[node name="audio" type="TextureRect" parent="_/_/hud"]
+margin_left = 1180.0
+margin_top = 620.0
+margin_right = 1255.0
+margin_bottom = 695.0
+texture = ExtResource( 27 )
+script = ExtResource( 28 )
+textures = [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 29 ) ]

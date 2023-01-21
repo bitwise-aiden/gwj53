@@ -16,9 +16,9 @@
     - [ ] Logo for cube rotation
         - [ ] Have clicking a control set listen mode
         - [ ] Have pressing a key update the control
-    - [ ] Logo for volume
-        - [ ] Have emit audio change event
-        - [ ] Have 4 modes: off, 1, 2, 3
+    - [x] Logo for volume
+        - [x] Have emit audio change event
+        - [x] Have 4 modes: off, 1, 2, 3
 - [ ] Other UI
     - [x] Text for starting (include dash)
     - [x] Text for ready

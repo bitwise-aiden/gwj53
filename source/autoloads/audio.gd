@@ -27,5 +27,5 @@ func play_music(stream: AudioStream) -> void:
 # Private methods
 
 func __update_volume(value: int) -> void:
-	var volume: float = linear2db(min(4, value) * 0.25)
+	var volume: float = linear2db(min(3, value) * 0.33)
 	AudioServer.set_bus_volume_db(0, volume)
