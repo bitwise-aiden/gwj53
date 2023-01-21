@@ -40,15 +40,15 @@
         - [x] Finished
     - [x] Add hover effect for parts
     - [ ] restart doesn't need to do full reset if it's complete
-- [ ] Audio
+- [x] Audio
     - [x] Music (ty Yag <3)
-    - [ ] Sound effects
+    - [x] Sound effects
         - [x] Dice noise/part dropping
         - [x] Cube rotating noise
-        - [ ] Part attaching noise
-        - [ ] Part failed noise (?)
+        - [x] Part attaching noise
+        - [x] Part failed noise (?)
         - [x] Menu select noise
-        - [ ] ... Others that I can't think of right now
+        - [x] ... Others that I can't think of right now
 - [ ] Itch.io page
     - [x] Style itch page
     - [ ] Do write up for the itch page
@@ -56,18 +56,20 @@
     - [ ] Possibly second pass the cover
 - [ ] Bugs
     - [x] Trackpad press not working for ready
-    - [ ] Audio not playing
-    - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion <--- Spotted again!
+    - [x] Audio not playing
+    - [x] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
     - [x] Hover effect not working
     - [x] Update mouse input to check it is pressed
-    - [ ] Rotation overlap can still occur
+    - [x] Rotation overlap can still occur
     - [x] Timer can disappear <--- I think I fixed this
-    - [ ] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
-    - [ ] Issue where some pieces stay attached to the cube :zany_face:
+    - [x] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
+    - [x] Issue where some pieces stay attached to the cube :zany_face:
     - [ ] Fix bottom of page for itch
 - [x] Other
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
     - [ ] Change ready to be a button
+    - [ ] Switch pause button for `i` in a circle
+    - [ ] Have the rotation on the cube at the start
 - [ ] SUBMIT THE GAME FOR THE JAM!!!

@@ -110,18 +110,7 @@ func _handle_input(delta: float) -> void:
 # Private methods
 
 func __attach() -> void:
-	# Can only attach as a Rigid Body, no need to check for __over type
-	var part_collider: CollisionShape = __over.get_child(0)
-	var part_mesh: MeshInstance = __over.get_child(1)
-
-	__over.remove_child(part_collider)
-	__closest.add_child(part_collider)
-
-	__over.remove_child(part_mesh)
-	__closest.add_child(part_mesh)
-
-	part_collider.transform = Transform.IDENTITY
-	part_mesh.transform = Transform.IDENTITY
+	__closest.attach(__over)
 
 	Audio.play_effect(Audio.effect_attach)
 

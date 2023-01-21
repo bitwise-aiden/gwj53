@@ -11,22 +11,16 @@ var __time_remaining: float = 4.0
 func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
 	Event.emit_signal("time_changed", 0.0)
 
+	for i in 10:
+		yield(
+			_cube.rotate_face(
+				__rand_face(),
+				__rand_direction()
+			),
+			"completed"
+		)
 
-# Public methods
-
-func process(delta: float) -> void:
-	.process(delta)
-
-	_cube.rotate_face(
-		__rand_face(),
-		__rand_direction()
-	)
-
-	__time_remaining = max(0.0, __time_remaining - delta)
-
-	if __time_remaining == 0.0:
-		Event.emit_signal("cube_scrambled")
-		_completed = true
+	_completed = true
 
 
 # Private methods
