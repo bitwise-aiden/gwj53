@@ -28,6 +28,8 @@ func __click(event: InputEvent) -> void:
 		Setting.audio_volume = (Setting.audio_volume + 1) % textures.size()
 		texture = textures[Setting.audio_volume]
 
+		Audio.play_effect_ui(Audio.effect_select)
+
 
 func __set_over(value: bool) -> void:
 	__over = value

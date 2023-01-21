@@ -41,13 +41,13 @@
     - [x] Add hover effect for parts
     - [ ] restart doesn't need to do full reset if it's complete
 - [ ] Audio
-    - [ ] Music (ty Yag <3)
+    - [x] Music (ty Yag <3)
     - [ ] Sound effects
         - [x] Dice noise/part dropping
         - [x] Cube rotating noise
         - [ ] Part attaching noise
         - [ ] Part failed noise (?)
-        - [ ] Menu select noise
+        - [x] Menu select noise
         - [ ] ... Others that I can't think of right now
 - [ ] Itch.io page
     - [x] Style itch page
@@ -69,4 +69,5 @@
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
+    - [ ] Change ready to be a button
 - [ ] SUBMIT THE GAME FOR THE JAM!!!

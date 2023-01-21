@@ -13,15 +13,18 @@ func __explode() -> void:
 	yield(__pulse(0.1, 0.1), "completed")
 	yield(_tree.create_timer(1.0), "timeout")
 
-	yield(__pulse(0.5, 0.1), "completed")
-	yield(_tree.create_timer(0.75), "timeout")
-
-	yield(__pulse(1.0, 0.1), "completed")
+	yield(__pulse(0.2, 0.1), "completed")
 	yield(_tree.create_timer(0.5), "timeout")
 
-#	yield(__move(0.3, 0.1), "completed")
+	yield(__pulse(0.3, 0.1), "completed")
+	yield(_tree.create_timer(0.25), "timeout")
+
+	yield(__pulse(0.5, 0.1), "completed")
+	yield(_tree.create_timer(0.1), "timeout")
 
 	var origin: Vector3 = _cube.global_translation
+
+	Audio.play_effect(Audio.effect_explode)
 
 	for part in _cube.parts:
 		var rigid_body: RigidBody = part.to_rigid_body()
@@ -37,7 +40,10 @@ func __explode() -> void:
 
 
 func __pulse(scalar: float, duration: float) -> void:
+	Audio.play_effect(Audio.effect_pulse)
 	yield(__move(+scalar, duration), "completed")
+
+	Audio.play_effect(Audio.effect_pulse)
 	yield(__move(-scalar, duration), "completed")
 
 

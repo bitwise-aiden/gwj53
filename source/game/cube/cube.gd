@@ -57,7 +57,6 @@ func is_complete() -> bool:
 	for part in parts:
 		for face in part.mesh.get_children():
 			var direction: Vector3 = face.global_translation - face.get_parent().global_translation
-			print(direction)
 			if directions.get(face.name, direction) != direction:
 				return false
 
@@ -73,8 +72,9 @@ func rotate_face(face_type: int, degree: int) -> void:
 	__rotating = true
 
 	if !effects_rotation.empty():
-		__effect.stream = effects_rotation[randi() % effects_rotation.size()]
-		__effect.play()
+		Audio.play_effect(
+			effects_rotation[randi() % effects_rotation.size()]
+		)
 
 	var face: Face = __faces[face_type]
 

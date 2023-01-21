@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -38,6 +38,10 @@
 [ext_resource path="res://source/game/hud/control.gd" type="Script" id=36]
 [ext_resource path="res://assets/art/close.png" type="Texture" id=37]
 [ext_resource path="res://source/game/hud/restart.gd" type="Script" id=38]
+[ext_resource path="res://source/game/world/music.gd" type="Script" id=39]
+[ext_resource path="res://assets/music/banger.ogg" type="AudioStream" id=40]
+[ext_resource path="res://assets/music/banger_lobby.ogg" type="AudioStream" id=41]
+[ext_resource path="res://source/game/world/listener.gd" type="Script" id=42]
 
 [sub_resource type="Shader" id=39]
 code = "shader_type spatial;
@@ -208,6 +212,11 @@ script = ExtResource( 18 )
 size = Vector2( 1280, 720 )
 handle_input_locally = false
 render_target_update_mode = 3
+
+[node name="listener" type="Listener" parent="_/_"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0642, 11.1398 )
+current = true
+script = ExtResource( 42 )
 
 [node name="camera_rig" type="Spatial" parent="_/_"]
 pause_mode = 1
@@ -1170,6 +1179,7 @@ shape = SubResource( 4 )
 unit_db = 15.0
 max_db = 6.0
 bus = "Effects"
+emission_angle_degrees = 90.0
 
 [node name="world" type="Spatial" parent="_/_"]
 pause_mode = 1
@@ -1283,6 +1293,12 @@ shape = SubResource( 33 )
 [node name="collider" type="CollisionShape" parent="_/_/world/cube prevention"]
 transform = Transform( 0.707107, -0.707107, 0, 0.412776, 0.412776, -0.811931, 0.574122, 0.574122, 0.583754, 0, -8, -15.7977 )
 shape = SubResource( 41 )
+
+[node name="music" type="AudioStreamPlayer" parent="_/_"]
+bus = "Music"
+script = ExtResource( 39 )
+track_lobby = ExtResource( 41 )
+track_game = ExtResource( 40 )
 
 [node name="hud" type="Control" parent="_/_"]
 margin_right = 1280.0

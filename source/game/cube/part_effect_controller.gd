@@ -23,12 +23,17 @@ func _ready() -> void:
 # Private methods
 
 func __play_collision(_body: PhysicsBody) -> void:
-	if __player_effect.playing:
-		return
+#	if __player_effect.playing:
+#		return
+#
+#	if !effects_collide.empty():
+#		__player_effect.stream = effects_collide[randi() % effects_collide.size()]
+#		__player_effect.play()
 
 	if !effects_collide.empty():
-		__player_effect.stream = effects_collide[randi() % effects_collide.size()]
-		__player_effect.play()
+		Audio.play_effect(
+			effects_collide[randi() % effects_collide.size()]
+		)
 
 
 func __update_listener() -> void:

@@ -29,4 +29,8 @@ func _input(event) -> void:
 			Event.emit_signal("game_start")
 		elif __state_manager.is_state(StateInspect):
 			Event.emit_signal("game_ready")
+		else:
+			return
+
+		Audio.play_effect(Audio.effect_start)
 
