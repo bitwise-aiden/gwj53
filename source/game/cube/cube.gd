@@ -1,5 +1,6 @@
 class_name Cube extends Spatial
 
+
 # Public enums
 
 enum FaceType { Front = 0, Standing, Back, Top, Equator, Bottom, Left, Middle, Right, Max }

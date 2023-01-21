@@ -21,6 +21,21 @@ func _ready() -> void:
 
 # Public methods
 
+func attach(from: PhysicsBody) -> void:
+	if from is RigidBody:
+		var part_collider: CollisionShape = from.get_child(0)
+		var part_mesh: MeshInstance = from.get_child(1)
+
+		from.remove_child(part_collider)
+		add_child(part_collider)
+
+		from.remove_child(part_mesh)
+		add_child(part_mesh)
+
+		part_collider.transform = Transform.IDENTITY
+		part_mesh.transform = Transform.IDENTITY
+
+
 func to_rigid_body() -> RigidBody:
 	var rigid_body: RigidBody = RigidBody.new()
 	rigid_body.mass = 10.0
@@ -48,3 +63,4 @@ func to_rigid_body() -> RigidBody:
 	rigid_body.collision_layer |= 1 << 2
 
 	return rigid_body
+

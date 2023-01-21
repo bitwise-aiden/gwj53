@@ -43,6 +43,8 @@ func __reset() -> void:
 	var parts: Array	= _cube.parts.duplicate()
 	parts.shuffle()
 
+	Audio.play_effect(Audio.effect_explode)
+
 	for i in parts.size():
 		var part_mesh: MeshInstance = parts[i].mesh
 		var body: KinematicBody = KinematicBody.new()
@@ -52,19 +54,16 @@ func __reset() -> void:
 
 		var part_translation: Vector3 = part_mesh.global_translation
 		var parent = part_mesh.get_parent()
+
+		# This is when it is coming from the cube
+		var part_collider: CollisionShape = parent.get_child(0 if parent is RigidBody else 1)
+		parent.remove_child(part_collider)
+		parts[i].add_child(part_collider)
+		part_collider.transform = Transform.IDENTITY
+
 		parent.remove_child(part_mesh)
 		body.add_child(part_mesh)
 		part_mesh.global_translation = part_translation
-
-		Audio.play_effect(Audio.effect_explode)
-
-		if parent is RigidBody:
-			var part_collider: CollisionShape = parent.get_child(0)
-			parent.remove_child(part_collider)
-			parts[i].add_child(part_collider)
-			part_collider.transform = Transform.IDENTITY
-
-			parent.queue_free()
 
 		var dest_translation = Vector3(
 			randf() * 0.6 - 0.3,
