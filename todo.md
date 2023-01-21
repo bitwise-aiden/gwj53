@@ -59,4 +59,6 @@
     - [ ] restart doesn't need to do full reset if it's complete
     - [ ] rotation overlap can still occur
     - [ ] timer can disappear
-    - [ ] speed up reset
+    - [x] speed up reset
+    - [x] speed up scramble
+    - [ ] speed up explode
