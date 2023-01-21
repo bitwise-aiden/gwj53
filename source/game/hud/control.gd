@@ -47,12 +47,23 @@ func _input(event: InputEvent) -> void:
 				Color.white,
 				0.3
 			)
+
+			Audio.play_effect_ui(Audio.effect_issue)
 		else:
 			Setting.set(input, event.scancode)
 			text = OS.get_scancode_string(event.scancode)
 
 			__tween.stop_all()
 			__tween.reset_all()
+
+			modulate.a = 0.7
+
+			Audio.play_effect_ui(Audio.effect_select)
+	if event is InputEventMouseButton && event.pressed && __tween.is_active():
+		__tween.stop_all()
+		__tween.reset_all()
+
+		modulate.a = 0.7
 
 
 # Private methods
@@ -66,6 +77,8 @@ func __click(event: InputEvent) -> void:
 		__tween.start()
 
 		Event.emit_signal("control_updating", self)
+
+		Audio.play_effect_ui(Audio.effect_start)
 
 
 func __stop_change(other: Control) -> void:

@@ -37,6 +37,8 @@ func __click(event: InputEvent) -> void:
 
 		Event.emit_signal("game_restart")
 
+		Audio.play_effect_ui(Audio.effect_start)
+
 
 func __show(value: bool) -> void:
 	__tween.remove(self, "rect_position:y")

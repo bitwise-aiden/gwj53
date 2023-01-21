@@ -69,6 +69,7 @@ func pause() -> void:
 		texture = pause
 		get_tree().paused = false
 
+	Audio.play_effect_ui(Audio.effect_start)
 
 # Private methods
 
