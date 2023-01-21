@@ -95,7 +95,6 @@ func _handle_input(delta: float) -> void:
 		else:
 			__over.get_child(2).show_hover(false)
 
-
 		_cube.show_guide(true)
 		__action = Action.Select
 		__pan(__camera_origin)
@@ -105,6 +104,10 @@ func _handle_input(delta: float) -> void:
 			__rotate_part() # TODO: add directional rotate
 		elif Input.is_action_just_pressed("part_right"):
 			__rotate_part()
+
+
+func _handle_rotation(delta: float, orig: Vector3) -> void:
+	pass
 
 
 # Private methods
