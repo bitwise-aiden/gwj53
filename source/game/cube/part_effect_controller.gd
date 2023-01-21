@@ -11,7 +11,6 @@ export(Array, AudioStreamOGGVorbis) var effects_collide = []
 # Private variables
 
 onready var __parent: PhysicsBody = get_parent()
-onready var __player_effect: AudioStreamPlayer3D = $effect
 
 
 # Lifecycle methods
@@ -23,13 +22,6 @@ func _ready() -> void:
 # Private methods
 
 func __play_collision(_body: PhysicsBody) -> void:
-#	if __player_effect.playing:
-#		return
-#
-#	if !effects_collide.empty():
-#		__player_effect.stream = effects_collide[randi() % effects_collide.size()]
-#		__player_effect.play()
-
 	if !effects_collide.empty():
 		Audio.play_effect(
 			effects_collide[randi() % effects_collide.size()]
