@@ -11,6 +11,7 @@ var __camera_origin: Vector3
 var __camera_zoom: Vector3
 var __closest: Part
 var __over: Spatial
+var __over_destination: Transform
 var __over_offset: Vector3
 var __over_rotation: float
 var __rotating_part: bool
@@ -107,13 +108,14 @@ func _handle_input(delta: float) -> void:
 
 
 func _handle_rotation(delta: float, orig: Vector3) -> void:
+	# Overrides the base functionality to not rotate as auto
 	pass
 
 
 # Private methods
 
 func __attach() -> void:
-	__closest.attach(__over)
+	__closest.attach(__over, __over_rotation)
 
 	Audio.play_effect(Audio.effect_attach)
 
@@ -142,17 +144,76 @@ func __pan(position: Vector3) -> void:
 func __place() -> void:
 	# Can only place as Rigid Body, no need to check for __over type
 	var result: Dictionary = __intersect(1 << 3)
-
 	if result.empty():
 		return
+#
+#	__over.translation = lerp(__over.translation, result["position"] + __over_offset, 1.0)
 
-	__over.translation = lerp(__over.translation, result["position"] + __over_offset, 0.5)
-	__over.look_at(_cube.translation, Vector3.UP)
+#	if !__closest:
+#		__over.look_at(_cube.translation, Vector3.UP)
+
+	var place_translation: Vector3 = result["position"] + __over_offset
+
+	# TODO: Investigate this
+#	if !__closest:
+#		var axis: Vector3 = (__over.translation - _cube.translation).normalized()
+#		__over.rotate(axis, __over_rotation)
+
+	var closest: Part = __find_closest()
+
+	if closest != __closest:
+		if __closest:
+			__closest.get_child(0).translation = Vector3.ZERO
+
+		if closest:
+			# Update guide position
+			var origin: Vector3 = __part_origins[closest.name]
+			var destination: Vector3 = closest.face_direction * 2.0
+
+			closest.get_child(0).translation = destination
+
+	__closest = closest
 
 	if !__closest:
-		var axis: Vector3 = (__over.translation - _cube.translation).normalized()
-		__over.rotate(axis, __over_rotation)
+		__over.translation = place_translation
+#		__over.look_at(_cube.translation, Vector3.UP)
+		return
+	else:
+		var mesh: MeshInstance = __over.get_child(1)
 
+		__over.global_transform = __closest.global_transform
+
+		var destination_basis: Basis = __closest.calculate_basis(mesh)
+		destination_basis = destination_basis.rotated(__closest.face_direction, __over_rotation)
+
+		mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 0.15)
+
+
+#		mesh.transform.basis =
+#		mesh.rotate(__closest.face_direction, __over_rotation)
+
+		__over.translation = place_translation - _cube.translation
+
+	# closest = nilable part on cube
+	# over = nilable part interacting with
+
+	# We have the closest part of the cube
+	# Calculate current rotation to that part
+	# Apply rotation to our over mesh
+#	var origin_transform: Transform = __over.global_transform
+#
+#	var mesh: MeshInstance = __over.get_child(1)
+#
+#	__over.global_transform = __closest.global_transform
+#	mesh.transform.basis = __closest.calculate_basis(mesh)
+#	mesh.rotate(__closest.face_direction, __over_rotation)
+#
+#	__over_destination = __over.global_transform
+
+
+
+
+func __find_closest() -> Part:
 	var closest: Part
 	var closest_angle: float = INF
 
@@ -177,23 +238,7 @@ func __place() -> void:
 			closest = part
 			closest_angle = angle
 
-	if !closest && __closest:
-		__closest.get_child(0).translation = Vector3.ZERO
-		__closest = null
-		return
-
-	if closest == __closest:
-		return
-
-	if __closest:
-		__closest.get_child(0).translation = Vector3.ZERO
-#
-	__closest = closest
-
-	var origin: Vector3 = __part_origins[__closest.name]
-	var destination: Vector3 = __closest.face_direction * 5.0
-
-	__closest.get_child(0).translation = destination
+	return closest
 
 
 func __rotate_part() -> void:
