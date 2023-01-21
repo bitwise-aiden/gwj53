@@ -57,7 +57,7 @@
 - [ ] Bugs
     - [x] Trackpad press not working for ready
     - [ ] Audio not playing
-    - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
+    - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion <--- Spotted again!
     - [x] Hover effect not working
     - [x] Update mouse input to check it is pressed
     - [ ] Rotation overlap can still occur

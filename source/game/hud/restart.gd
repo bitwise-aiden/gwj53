@@ -30,8 +30,12 @@ func _ready() -> void:
 
 func __click(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.pressed:
-		Event.emit_signal("game_restart")
 		__show(false)
+
+		if get_tree().paused:
+			$"../pause".pause()
+
+		Event.emit_signal("game_restart")
 
 
 func __show(value: bool) -> void:
