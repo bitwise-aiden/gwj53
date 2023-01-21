@@ -98,15 +98,6 @@ func __reset() -> void:
 	parts.shuffle()
 
 	for part in parts:
-		tween.tween_method(
-			self,
-			"__face_mesh",
-			0.0,
-			1.0,
-			0.2,
-			[part]
-		)
-
 		tween.tween_callback(
 			self,
 			"__disconnect",
@@ -130,11 +121,6 @@ func __reset() -> void:
 	_cube.get_child(1).transform = Transform.IDENTITY
 
 	_completed = true
-
-
-func __face_mesh(step: float, part: Part) -> void:
-#	part.get_parent().look_at(-part.mesh.global_translation, Vector3.UP)
-	pass
 
 
 func __disconnect(part: Part) -> void:

@@ -104,11 +104,9 @@ func rotate_face(face_type: int, degree: int) -> void:
 			"__rotate_part",
 			0.0,
 			deg2rad(degree),
-			0.15,
+			0.2,
 			[part, part.transform, offset, origin, axis]
 		)
-
-	var _result = tween.chain().tween_interval(0.02)
 
 	yield(tween, "finished")
 	yield(get_tree(), "idle_frame")
