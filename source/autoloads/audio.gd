@@ -10,6 +10,7 @@ var effect_go: AudioStreamOGGVorbis = preload("res://assets/effects/go.ogg")
 var effect_countdown: AudioStreamOGGVorbis = preload("res://assets/effects/countdown.ogg")
 var effect_pulse: AudioStreamOGGVorbis = preload("res://assets/effects/pulse.ogg")
 var effect_explode: AudioStreamOGGVorbis = preload("res://assets/effects/explode.ogg")
+var effect_attach: AudioStreamOGGVorbis = preload("res://assets/effects/rotate_1.ogg")
 
 
 # Private variables
@@ -26,6 +27,7 @@ func _ready() -> void:
 	for i in 10:
 		var player: AudioStreamPlayer = AudioStreamPlayer.new()
 		player.bus = "Effects"
+		player.pitch_scale = 0.9 + randf() * 0.2
 
 		add_child(player)
 

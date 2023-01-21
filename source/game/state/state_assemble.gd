@@ -70,6 +70,7 @@ func _handle_input(delta: float) -> void:
 			if __over is KinematicBody:
 				__over = __over.to_rigid_body()
 
+			Audio.play_effect(Audio.effect_attach)
 			_cube.show_partial_guide(__over.get_child(1).get_child_count())
 
 	elif __action == Action.Place && !__rotating_part:
@@ -121,6 +122,8 @@ func __attach() -> void:
 
 	part_collider.transform = Transform.IDENTITY
 	part_mesh.transform = Transform.IDENTITY
+
+	Audio.play_effect(Audio.effect_attach)
 
 
 func __intersect(collision_mask: int) -> Dictionary:
