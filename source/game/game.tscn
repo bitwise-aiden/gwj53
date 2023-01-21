@@ -197,6 +197,7 @@ extents = Vector3( 10, 10, 15 )
 script = ExtResource( 5 )
 
 [node name="_" type="ViewportContainer" parent="."]
+pause_mode = 2
 material = ExtResource( 21 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -209,6 +210,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="camera_rig" type="Spatial" parent="_/_"]
+pause_mode = 1
 
 [node name="light_shadow" type="SpotLight" parent="_/_/camera_rig"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00390816, 26.4856, 0.0351486 )
@@ -257,6 +259,7 @@ omni_range = 72.204
 omni_attenuation = 0.000911165
 
 [node name="cube" type="Spatial" parent="_/_"]
+pause_mode = 1
 unique_name_in_owner = true
 script = ExtResource( 4 )
 effects_rotation = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
@@ -1169,6 +1172,7 @@ max_db = 6.0
 bus = "Effects"
 
 [node name="world" type="Spatial" parent="_/_"]
+pause_mode = 1
 
 [node name="ceiling" type="StaticBody" parent="_/_/world"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
@@ -1291,6 +1295,7 @@ margin_bottom = 40.0
 script = ExtResource( 26 )
 
 [node name="timer" type="Label" parent="_/_/hud/timer"]
+pause_mode = 1
 margin_left = 522.0
 margin_top = 30.0
 margin_right = 758.0
@@ -1321,6 +1326,7 @@ theme = ExtResource( 23 )
 align = 1
 
 [node name="title" type="TextureRect" parent="_/_/hud"]
+pause_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -336.0
@@ -1332,6 +1338,7 @@ texture = ExtResource( 16 )
 script = ExtResource( 17 )
 
 [node name="any_key" type="Label" parent="_/_/hud"]
+pause_mode = 1
 margin_left = 417.0
 margin_top = 600.0
 margin_right = 864.0
@@ -1341,6 +1348,7 @@ text = "- Press any key -"
 script = ExtResource( 20 )
 
 [node name="audio" type="TextureRect" parent="_/_/hud"]
+pause_mode = 2
 margin_left = 1180.0
 margin_top = 620.0
 margin_right = 1255.0
@@ -1350,6 +1358,7 @@ script = ExtResource( 28 )
 textures = [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 29 ) ]
 
 [node name="pause" type="TextureRect" parent="_/_/hud"]
+pause_mode = 2
 margin_left = 1180.0
 margin_top = 25.0
 margin_right = 1255.0
@@ -1360,6 +1369,7 @@ pause = ExtResource( 32 )
 close = ExtResource( 37 )
 
 [node name="restart" type="TextureRect" parent="_/_/hud"]
+pause_mode = 2
 margin_left = 1080.0
 margin_top = 25.0
 margin_right = 1155.0
@@ -1368,6 +1378,7 @@ texture = ExtResource( 6 )
 script = ExtResource( 38 )
 
 [node name="pause_menu" type="TextureRect" parent="_/_/hud"]
+pause_mode = 2
 margin_left = 357.0
 margin_top = 103.0
 margin_right = 924.0

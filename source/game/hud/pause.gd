@@ -32,40 +32,50 @@ func _ready() -> void:
 	add_child(__tween)
 
 
+# Public method
+
+func pause() -> void:
+	if texture == pause:
+		__tween.remove(__menu, "rect_position")
+		__tween.interpolate_property(
+			__menu,
+			"rect_position",
+			__menu.rect_position,
+			__menu_origin,
+			0.5
+		)
+
+		__tween.start()
+
+		Event.emit_signal("game_pause", true)
+
+		texture = close
+		get_tree().paused = true
+
+	else:
+		__tween.remove(__menu, "rect_position")
+		__tween.interpolate_property(
+			__menu,
+			"rect_position",
+			__menu.rect_position,
+			__menu_origin - Vector2(0.0, 1000.0),
+			0.5
+		)
+
+		__tween.start()
+
+		Event.emit_signal("game_pause", false)
+
+		texture = pause
+		get_tree().paused = false
+
+
 # Private methods
 
 func __click(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.pressed:
-		if texture == pause:
-			__tween.remove(__menu, "rect_position")
-			__tween.interpolate_property(
-				__menu,
-				"rect_position",
-				__menu.rect_position,
-				__menu_origin,
-				0.5
-			)
+		pause()
 
-			__tween.start()
-
-			Event.emit_signal("game_pause", true)
-
-			texture = close
-		else:
-			__tween.remove(__menu, "rect_position")
-			__tween.interpolate_property(
-				__menu,
-				"rect_position",
-				__menu.rect_position,
-				__menu_origin - Vector2(0.0, 1000.0),
-				0.5
-			)
-
-			__tween.start()
-
-			Event.emit_signal("game_pause", false)
-
-			texture = pause
 
 
 func __start() -> void:
