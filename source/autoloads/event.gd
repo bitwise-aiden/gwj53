@@ -7,6 +7,7 @@ signal game_ready()
 signal game_start()
 signal game_finished()
 signal game_restart()
+signal game_pause(value)
 
 signal time_changed(value)
 
@@ -22,3 +23,5 @@ signal set_control_part_left(value)
 signal set_control_part_right(value)
 signal set_score_finished(value)
 signal set_score_unfinished(value)
+
+signal control_updating(value)

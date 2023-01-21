@@ -1,10 +1,26 @@
 extends Label
 
 
+# Private variables
+
+var __tween: Tween
+
+var __origin: Vector2
+var __destination: Vector2
+
+
 # Lifecycle methods
 
 func _ready() -> void:
-	Event.connect("game_start", self, "__start")
+	Event.connect("game_start", self, "__show", [false])
+	Event.connect("game_ready", self, "__show", [false])
+	Event.connect("cube_scrambled", self, "__show", [true])
+
+	__tween = Tween.new()
+	add_child(__tween)
+
+	__origin = rect_position
+	__destination = rect_position + Vector2.DOWN * 250.0
 
 	while true:
 		yield(get_tree().create_timer(0.5), "timeout")
@@ -16,15 +32,15 @@ func _ready() -> void:
 
 # Private methods
 
-func __start() -> void:
+func __show(value: bool) -> void:
 	visible = true
 
-	var tween: SceneTreeTween = create_tween()
-
-	tween.tween_property(
+	__tween.remove(self, "rect_position")
+	__tween.interpolate_property(
 		self,
 		"rect_position",
-		rect_position + Vector2.DOWN * 250.0,
-		Globals.TIME_START_TRANSITION
+		rect_position,
+		__origin if value else __destination,
+		0.2
 	)
-
+	__tween.start()

@@ -3,36 +3,54 @@ extends Camera
 
 # Private variables
 
-onready var __origin: Vector3 = translation
+var __origin: Vector3
+var __origin_rotation: Vector3
+var __zoomed_out: Vector3
+var __zoomed_out_rotation: Vector3
+
+var __tween: Tween
+
 
 # Lifecycle methods
 
 func _ready():
+	__origin = translation
 	translation.z += 5.0
+
+	look_at(Vector3(0.0, -3.0, 0.0), Vector3.UP)
+	__origin_rotation = rotation
+
 	look_at(Vector3(0.0, -0.5, 0.0), Vector3.UP)
 
-	Event.connect("game_start", self, "__start")
+	__zoomed_out = translation
+	__zoomed_out_rotation = rotation
+
+	__tween = Tween.new()
+	add_child(__tween)
+
+	Event.connect("game_start", self, "__start", [false])
+	Event.connect("game_pause", self, "__start")
 
 
 # Private methods
 
-func __start():
-	look_at(Vector3(0.0, -3.0, 0.0), Vector3.UP)
-	var dest_rotation: Vector3 = rotation
-	look_at(Vector3(0.0, -0.5, 0.0), Vector3.UP)
-
-	var tween: SceneTreeTween = create_tween().set_parallel()
-
-	tween.tween_property(
+func __start(value: bool):
+	__tween.remove(self, "translation")
+	__tween.interpolate_property(
 		self,
 		"translation",
-		__origin,
+		translation,
+		__zoomed_out if value else __origin,
 		Globals.TIME_START_TRANSITION
 	)
 
-	tween.tween_property(
+	__tween.remove(self, "rotation")
+	__tween.interpolate_property(
 		self,
 		"rotation",
-		dest_rotation,
+		rotation,
+		__zoomed_out_rotation if value else __origin_rotation,
 		Globals.TIME_START_TRANSITION
 	)
+
+	__tween.start()

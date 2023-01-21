@@ -24,7 +24,9 @@ func _input(event) -> void:
 	if (
 		event is InputEventKey ||
 		event is InputEventMouseButton
-	) && __state_manager.is_state(StateIdle):
-		if event.pressed:
+	) && event.pressed:
+		if __state_manager.is_state(StateIdle):
 			Event.emit_signal("game_start")
+		elif __state_manager.is_state(StateInspect):
+			Event.emit_signal("game_ready")
 
