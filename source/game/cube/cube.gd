@@ -51,6 +51,21 @@ func _ready() -> void:
 
 # Public methods
 
+func is_complete() -> bool:
+	var directions: Dictionary = {}
+
+	for part in parts:
+		for face in part.mesh.get_children():
+			var direction: Vector3 = face.global_translation - face.get_parent().global_translation
+			print(direction)
+			if directions.get(face.name, direction) != direction:
+				return false
+
+			directions[face.name] = direction
+
+	return true
+
+
 func rotate_face(face_type: int, degree: int) -> void:
 	if __rotating:
 		return

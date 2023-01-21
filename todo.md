@@ -55,3 +55,8 @@
     - [ ] Audio not playing
     - [ ] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
     - [x] Hover effect not working
+    - [x] update mouse input to check it is pressed
+    - [ ] restart doesn't need to do full reset if it's complete
+    - [ ] rotation overlap can still occur
+    - [ ] timer can disappear
+    - [ ] speed up reset
