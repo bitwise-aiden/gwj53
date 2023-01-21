@@ -52,7 +52,7 @@ func __transition(restart: bool = false) -> void:
 			__state = StateComplete.new(__tree, __cube)
 
 	elif __state is StateComplete:
-		if true: # TODO: Completed
+		if !__cube.is_complete():
 			__state = StateReset.new(__tree, __cube)
 		else:
 			__state = StateScramble.new(__tree, __cube)

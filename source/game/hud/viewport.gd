@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _input(event) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && event.pressed:
 		get_parent()._input(event)
 
 
