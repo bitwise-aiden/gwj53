@@ -28,7 +28,6 @@ onready var __faces: Dictionary = {
 }
 
 onready var __parts_container: Spatial = $parts_container
-onready var __effect: AudioStreamPlayer3D = $effect
 
 var __centres: Array = []
 var __initial_transforms: Array = []
