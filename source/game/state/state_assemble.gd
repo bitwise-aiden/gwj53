@@ -96,6 +96,8 @@ func _handle_input(delta: float) -> void:
 		else:
 			__over.get_child(2).show_hover(false)
 
+		__over_offset = Vector3.ZERO
+		__over_rotation = 0.0
 		_cube.show_guide(true)
 		__action = Action.Select
 		__pan(__camera_origin)
