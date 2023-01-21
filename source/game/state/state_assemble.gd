@@ -74,6 +74,14 @@ func _handle_input(delta: float) -> void:
 			Audio.play_effect(Audio.effect_attach)
 			_cube.show_partial_guide(__over.get_child(1).get_child_count())
 
+
+			var mesh: MeshInstance = __over.get_child(1)
+			mesh.global_transform = Transform.IDENTITY
+			mesh.transform.basis = __find_camera_facing_basis(mesh)
+#			destination_basis = destination_basis.rotated((_cube.get_viewport().get_camera().global_translation - _cube.global_translation).normalized(), __over_rotation)
+
+			mesh.translation = Vector3.ZERO
+#			mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 1)
 	elif __action == Action.Place && !__rotating_part:
 		if __over is RigidBody:
 			__over.get_child(1).show_hover(false)
@@ -176,7 +184,23 @@ func __place() -> void:
 
 	__closest = closest
 
+#	var mesh: MeshInstance = __over.get_child(1)
+#	var destination_basis: Basis
+
+#	if __closest:
+#		destination_basis = __closest.calculate_basis(mesh)
+#		destination_basis = destination_basis.rotated(__closest.face_direction, __over_rotation)
+#	else:
+#
+#
+#	mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 0.15)
+#
+#	__over.translation = place_translation
+
+
 	if !__closest:
+
+
 		__over.translation = place_translation
 #		__over.look_at(_cube.translation, Vector3.UP)
 		return
@@ -190,30 +214,44 @@ func __place() -> void:
 
 		mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 0.15)
 
-
-#		mesh.transform.basis =
-#		mesh.rotate(__closest.face_direction, __over_rotation)
-
 		__over.translation = place_translation - _cube.translation
 
-	# closest = nilable part on cube
-	# over = nilable part interacting with
 
-	# We have the closest part of the cube
-	# Calculate current rotation to that part
-	# Apply rotation to our over mesh
-#	var origin_transform: Transform = __over.global_transform
-#
-#	var mesh: MeshInstance = __over.get_child(1)
-#
-#	__over.global_transform = __closest.global_transform
-#	mesh.transform.basis = __closest.calculate_basis(mesh)
-#	mesh.rotate(__closest.face_direction, __over_rotation)
-#
-#	__over_destination = __over.global_transform
+func __find_camera_facing_basis(mesh: MeshInstance) -> Basis:
+	var original_transform: Transform = mesh.transform
+
+	# Please don't look at this code :joy:
+	var to: Vector3 = (_cube.get_viewport().get_camera().global_translation - _cube.global_translation).normalized()
+	print(to)
+	to = - to
+	var from: Vector3 = __calculate_facing(mesh)
+
+	for y in 4:
+		for x in 4:
+			for z in 4:
+				mesh.transform = Transform.IDENTITY
+
+				mesh.rotate(Vector3.UP, PI * 0.5 * y)
+				mesh.rotate(Vector3.RIGHT, PI * 0.5 * x)
+				mesh.rotate(Vector3.FORWARD, PI * 0.5 * z)
+
+				if (to - Quat(mesh.rotation) * from).length() < 0.001:
+					var basis: Basis = mesh.transform.basis
+
+					mesh.transform = original_transform
+					return basis
+
+	mesh.transform = original_transform
+	return mesh.transform.basis
 
 
+func __calculate_facing(mesh: MeshInstance) -> Vector3:
+	var from: Vector3 = Vector3.ZERO
 
+	for face in mesh.get_children():
+		from += face.translation
+
+	return from.normalized()
 
 func __find_closest() -> Part:
 	var closest: Part

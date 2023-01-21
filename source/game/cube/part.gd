@@ -44,19 +44,11 @@ func calculate_basis(mesh: MeshInstance) -> Basis:
 
 	# Please don't look at this code :joy:
 	var to: Vector3 = face_direction.normalized()
-	var from: Vector3 = __calc_from(mesh)
+	var from: Vector3 = __calculate_facing(mesh)
 
 	for y in 4:
 		for x in 4:
 			for z in 4:
-#				var basis: Basis = Basis.IDENTITY
-#
-#				basis = basis.rotated(Vector3.UP, PI * 0.5 * y)
-#				basis = basis.rotated(Vector3.RIGHT, PI * 0.5 * x)
-#				basis = basis.rotated(Vector3.FORWARD, PI * 0.5 * z)
-#
-#				if (to - basis.get_rotation_quat() * from).length() < 0.001:
-#					return basis
 
 				mesh.transform = Transform.IDENTITY
 
@@ -74,7 +66,7 @@ func calculate_basis(mesh: MeshInstance) -> Basis:
 	return mesh.transform.basis
 
 
-func __calc_from(mesh: MeshInstance) -> Vector3:
+func __calculate_facing(mesh: MeshInstance) -> Vector3:
 	var from: Vector3 = Vector3.ZERO
 
 	for face in mesh.get_children():

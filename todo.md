@@ -3,12 +3,12 @@
     - [x] Serialize to `;` separated values
     - [x] Save settings on variable set
     - [x] Hook settings up to events
-- [ ] Add audio manager
+- [x] Add audio manager
     - [x] Hook into settings events for audio
     - [x] Have music track
     - [x] Have effect track
     - [x] Control audio for both as one
-    - [ ] Plays noises based off of events
+    - [x] Plays noises based off of events
 - [x] Add control manager
 - [x] Create game logo
 - [x] Update loading screen to be velop logo
@@ -28,18 +28,15 @@
     - [x] Text for are you sure (include question mark)
     - [x] CRT effect to zoom in
 - [ ] Gameplay
-    - [ ] Fix cube rotation when on the cube
-        - [ ] Add ability to rotate for placement
-        - [ ] Add ability to set controls for rotation
-        - [ ] Add tween for when part attaches to cube
-        - [ ] Add tween for closest guide being shown
+    - [x] Fix cube rotation when on the cube
+    - [x] Add ability to rotate for placement
+    - [ ] Add ability to set controls for rotation
     - [x] Add removing placed cubes
     - [x] Update the guides to hide/show based on what is present
     - [x] Add timer
     - [x] Add highscores
         - [x] Finished
     - [x] Add hover effect for parts
-    - [ ] restart doesn't need to do full reset if it's complete
 - [x] Audio
     - [x] Music (ty Yag <3)
     - [x] Sound effects
@@ -57,7 +54,7 @@
 - [ ] Bugs
     - [x] Trackpad press not working for ready
     - [x] Audio not playing
-    - [x] Reset can lead to part.get_child(2) failing when reseting transforms in __reset funcion
+    - [x] Reset can lead to part.get_child(2) failing when reseting transforms in __reset function
     - [x] Hover effect not working
     - [x] Update mouse input to check it is pressed
     - [x] Rotation overlap can still occur
@@ -65,6 +62,7 @@
     - [x] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
     - [x] Issue where some pieces stay attached to the cube :zany_face:
     - [ ] Fix bottom of page for itch
+    - [ ] Fix rotation when first picking up cube
 - [x] Other
     - [x] Speed up reset
     - [x] Speed up scramble
@@ -72,4 +70,5 @@
     - [ ] Change ready to be a button
     - [ ] Switch pause button for `i` in a circle
     - [ ] Have the rotation on the cube at the start
-- [ ] SUBMIT THE GAME FOR THE JAM!!!
+    - [ ] restart doesn't need to do full reset if it's complete
+- [x] SUBMIT THE GAME FOR THE JAM!!!
