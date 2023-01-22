@@ -7,7 +7,7 @@ var __PATH: String = "settings"
 
 # Public variables
 
-var audio_volume: int = 4 setget __set_audio_volume
+var audio_volume: int = 3 setget __set_audio_volume
 var control_cube_left: int = KEY_A setget __set_control_cube_left
 var control_cube_right: int = KEY_D setget __set_control_cube_right
 var control_cube_up: int = KEY_W setget __set_control_cube_up
@@ -40,7 +40,7 @@ func __load() -> void:
 
 	var input: PoolStringArray = content.split(";")
 
-	self.audio_volume = int(input[0])
+	self.audio_volume = max(3, int(input[0])) # Needed to patch existing settings files
 	self.control_cube_left = int(input[1])
 	self.control_cube_right = int(input[2])
 	self.control_cube_up = int(input[3])

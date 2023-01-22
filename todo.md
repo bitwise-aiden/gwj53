@@ -63,11 +63,12 @@
     - [x] Issue where some pieces stay attached to the cube :zany_face:
     - [x] Fix bottom of page for itch
     - [ ] Fix rotation when first picking up cube
+    - [x] Fix audio default
 - [x] Other
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
-    - [ ] Change ready to be a button
+    - [x] Change ready to be a button
     - [ ] Restart doesn't need to do full reset if it's complete
     - [x] Detect cube falling out of space and put back in
     - [x] Change colour of guide when active
