@@ -89,12 +89,6 @@ func _handle_input(delta: float) -> void:
 
 			Audio.play_effect(Audio.effect_attach)
 			_cube.show_partial_guide(__over.get_child(1).get_child_count())
-
-			var mesh: MeshInstance = __over.get_child(1)
-			mesh.global_transform = Transform.IDENTITY
-			mesh.transform.basis = __find_camera_facing_basis(mesh)
-
-			mesh.translation = Vector3.ZERO
 	elif __action == Action.Place && !__rotating_part:
 		if __over is RigidBody:
 			__over.get_child(1).show_hover(false)
@@ -212,42 +206,6 @@ func __place() -> void:
 		mesh.transform.basis = mesh.transform.basis.orthonormalized().slerp(destination_basis, 0.15)
 
 		__over.translation = place_translation - _cube.translation
-
-
-func __find_camera_facing_basis(mesh: MeshInstance) -> Basis:
-	var original_transform: Transform = mesh.transform
-
-	# Please don't look at this code :joy:
-	var to: Vector3 = (_cube.get_viewport().get_camera().global_translation - _cube.global_translation).normalized()
-	to = - to
-	var from: Vector3 = __calculate_facing(mesh)
-
-	for y in 4:
-		for x in 4:
-			for z in 4:
-				mesh.transform = Transform.IDENTITY
-
-				mesh.rotate(Vector3.UP, PI * 0.5 * y)
-				mesh.rotate(Vector3.RIGHT, PI * 0.5 * x)
-				mesh.rotate(Vector3.FORWARD, PI * 0.5 * z)
-
-				if (to - Quat(mesh.rotation) * from).length() < 0.001:
-					var basis: Basis = mesh.transform.basis
-
-					mesh.transform = original_transform
-					return basis
-
-	mesh.transform = original_transform
-	return mesh.transform.basis
-
-
-func __calculate_facing(mesh: MeshInstance) -> Vector3:
-	var from: Vector3 = Vector3.ZERO
-
-	for face in mesh.get_children():
-		from += face.translation
-
-	return from.normalized()
 
 
 func __find_closest() -> Part:

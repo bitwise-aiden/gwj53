@@ -64,7 +64,7 @@
     - [x] Fix bottom of page for itch
     - [x] Fix audio default
     - [x] Fix complete transitioning to scramble
-- [ ] Other
+- [x] Other
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
@@ -72,5 +72,4 @@
     - [x] Restart doesn't need to do full reset if it's complete
     - [x] Detect cube falling out of space and put back in
     - [x] Change colour of guide when active
-    - [ ] Make part face camera when first picking up cube
 - [x] SUBMIT THE GAME FOR THE JAM!!!
