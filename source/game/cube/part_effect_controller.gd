@@ -19,6 +19,15 @@ func _ready() -> void:
 	connect("tree_entered", self, "__update_listener")
 
 
+func _physics_process(delta: float) -> void:
+	var parent: PhysicsBody = get_parent()
+	if parent is RigidBody && parent.translation.y < -10.0:
+		parent.translation = Vector3(0.0, 5.0, -8.0)
+		parent.apply_impulse(parent.translation, Vector3.BACK * 500.0)
+		parent.linear_velocity = Vector3.ZERO
+		parent.angular_velocity = Vector3.ZERO
+
+
 # Private methods
 
 func __play_collision(_body: PhysicsBody) -> void:

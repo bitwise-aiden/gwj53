@@ -46,11 +46,11 @@
         - [x] Part failed noise (?)
         - [x] Menu select noise
         - [x] ... Others that I can't think of right now
-- [ ] Itch.io page
+- [x] Itch.io page
     - [x] Style itch page
-    - [ ] Do write up for the itch page
-    - [ ] Update meta data for itch page
-    - [ ] Possibly second pass the cover
+    - [x] Do write up for the itch page
+    - [x] Update meta data for itch page
+    - [x] Possibly second pass the cover
 - [ ] Bugs
     - [x] Trackpad press not working for ready
     - [x] Audio not playing
@@ -61,17 +61,14 @@
     - [x] Timer can disappear <--- I think I fixed this
     - [x] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
     - [x] Issue where some pieces stay attached to the cube :zany_face:
-    - [ ] Fix bottom of page for itch
+    - [x] Fix bottom of page for itch
     - [ ] Fix rotation when first picking up cube
 - [x] Other
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
     - [ ] Change ready to be a button
-    - [ ] Switch pause button for `i` in a circle
-    - [ ] Have the rotation on the cube at the start
     - [ ] Restart doesn't need to do full reset if it's complete
-    - [ ] Detect cube falling out of space and put back in
-    - [ ] Have high score require full completion
+    - [x] Detect cube falling out of space and put back in
     - [x] Change colour of guide when active
 - [x] SUBMIT THE GAME FOR THE JAM!!!
