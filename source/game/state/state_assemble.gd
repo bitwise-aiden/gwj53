@@ -124,9 +124,9 @@ func _handle_input(delta: float) -> void:
 
 	if __action == Action.Place:
 		if Input.is_action_just_pressed("part_left"):
-			__rotate_part() # TODO: add directional rotate
+			__rotate_part(true)
 		elif Input.is_action_just_pressed("part_right"):
-			__rotate_part()
+			__rotate_part(false)
 
 
 func _handle_rotation(delta: float, orig: Vector3) -> void:
@@ -277,7 +277,7 @@ func __find_closest() -> Part:
 	return closest
 
 
-func __rotate_part() -> void:
+func __rotate_part(cw: bool) -> void:
 	if __rotating_part:
 		return
 
@@ -299,6 +299,8 @@ func __rotate_part() -> void:
 
 	if face_count > 1:
 		var angle: float = TAU / face_count
+		if !cw:
+			angle *= -1
 
 		tween.set_parallel()
 		tween.set_ease(Tween.EASE_IN_OUT).tween_method(

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://assets/music/banger.ogg" type="AudioStream" id=40]
 [ext_resource path="res://assets/music/banger_lobby.ogg" type="AudioStream" id=41]
 [ext_resource path="res://source/game/world/listener.gd" type="Script" id=42]
+[ext_resource path="res://assets/art/part_rotate .png" type="Texture" id=43]
 
 [sub_resource type="CubeMesh" id=38]
 size = Vector3( 0.75, 0.75, 0.75 )
@@ -1328,29 +1329,38 @@ script = ExtResource( 38 )
 
 [node name="pause_menu" type="TextureRect" parent="_/_/hud"]
 pause_mode = 2
-margin_left = 357.0
+margin_left = 148.0
 margin_top = 103.0
-margin_right = 924.0
+margin_right = 1132.0
 margin_bottom = 618.0
 texture = ExtResource( 35 )
 
 [node name="controls" type="Label" parent="_/_/hud/pause_menu"]
-margin_left = 158.0
+margin_left = 367.0
 margin_top = 60.0
-margin_right = 408.0
+margin_right = 617.0
 margin_bottom = 102.0
 theme = ExtResource( 23 )
 text = "Controls"
 
-[node name="control" type="TextureRect" parent="_/_/hud/pause_menu"]
-margin_left = 201.0
-margin_top = 215.0
-margin_right = 365.0
-margin_bottom = 379.0
+[node name="rotate_cube" type="Label" parent="_/_/hud/pause_menu"]
+margin_left = 135.0
+margin_top = 410.0
+margin_right = 445.0
+margin_bottom = 497.0
+theme = ExtResource( 23 )
+text = "Rotate Cube"
+align = 1
+
+[node name="control_cube" type="TextureRect" parent="_/_/hud/pause_menu"]
+margin_left = 200.0
+margin_top = 175.0
+margin_right = 364.0
+margin_bottom = 339.0
 mouse_filter = 2
 texture = ExtResource( 34 )
 
-[node name="control_left" type="Label" parent="_/_/hud/pause_menu/control"]
+[node name="control_left" type="Label" parent="_/_/hud/pause_menu/control_cube"]
 margin_left = -45.0
 margin_top = 70.0
 margin_right = -12.0
@@ -1362,7 +1372,7 @@ text = "A"
 script = ExtResource( 36 )
 input = "control_cube_left"
 
-[node name="control_right" type="Label" parent="_/_/hud/pause_menu/control"]
+[node name="control_right" type="Label" parent="_/_/hud/pause_menu/control_cube"]
 margin_left = 180.0
 margin_top = 70.0
 margin_right = 213.0
@@ -1373,7 +1383,7 @@ text = "D"
 script = ExtResource( 36 )
 input = "control_cube_right"
 
-[node name="control_up" type="Label" parent="_/_/hud/pause_menu/control"]
+[node name="control_up" type="Label" parent="_/_/hud/pause_menu/control_cube"]
 margin_left = 66.0
 margin_top = -50.0
 margin_right = 99.0
@@ -1385,7 +1395,7 @@ text = "A"
 script = ExtResource( 36 )
 input = "control_cube_up"
 
-[node name="control_down" type="Label" parent="_/_/hud/pause_menu/control"]
+[node name="control_down" type="Label" parent="_/_/hud/pause_menu/control_cube"]
 margin_left = 66.0
 margin_top = 180.0
 margin_right = 99.0
@@ -1396,3 +1406,44 @@ theme = ExtResource( 23 )
 text = "A"
 script = ExtResource( 36 )
 input = "control_cube_down"
+
+[node name="rotate_part" type="Label" parent="_/_/hud/pause_menu"]
+margin_left = 600.0
+margin_top = 365.0
+margin_right = 850.0
+margin_bottom = 452.0
+theme = ExtResource( 23 )
+text = "Rotate 
+Part"
+align = 1
+
+[node name="control_part" type="TextureRect" parent="_/_/hud/pause_menu"]
+margin_left = 675.0
+margin_top = 200.0
+margin_right = 839.0
+margin_bottom = 364.0
+mouse_filter = 2
+texture = ExtResource( 43 )
+
+[node name="control_left" type="Label" parent="_/_/hud/pause_menu/control_part"]
+margin_left = -76.0
+margin_top = 45.0
+margin_right = -43.0
+margin_bottom = 87.0
+grow_horizontal = 0
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "A"
+script = ExtResource( 36 )
+input = "control_part_left"
+
+[node name="control_right" type="Label" parent="_/_/hud/pause_menu/control_part"]
+margin_left = 149.0
+margin_top = 45.0
+margin_right = 182.0
+margin_bottom = 87.0
+mouse_filter = 0
+theme = ExtResource( 23 )
+text = "D"
+script = ExtResource( 36 )
+input = "control_part_right"

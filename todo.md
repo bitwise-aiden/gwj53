@@ -27,10 +27,10 @@
     - [x] Logo for restart
     - [x] Text for are you sure (include question mark)
     - [x] CRT effect to zoom in
-- [ ] Gameplay
+- [x] Gameplay
     - [x] Fix cube rotation when on the cube
     - [x] Add ability to rotate for placement
-    - [ ] Add ability to set controls for rotation
+    - [x] Add ability to set controls for rotation
     - [x] Add removing placed cubes
     - [x] Update the guides to hide/show based on what is present
     - [x] Add timer

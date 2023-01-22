@@ -84,7 +84,6 @@ func to_rigid_body() -> RigidBody:
 
 	get_tree().current_scene.add_child(rigid_body)
 	rigid_body.global_transform = global_transform
-	rigid_body.look_at($"%cube".translation, Vector3.UP)
 
 	var part_collider: CollisionShape = get_child(1)
 	var collider_rotation = part_collider.global_rotation
