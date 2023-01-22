@@ -57,7 +57,7 @@ func is_complete() -> bool:
 	for part in parts:
 		for face in part.mesh.get_children():
 			var direction: Vector3 = face.global_translation - face.get_parent().global_translation
-			if directions.get(face.name, direction) != direction:
+			if (directions.get(face.name, direction) - direction).length() > 0.001:
 				return false
 
 			directions[face.name] = direction

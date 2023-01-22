@@ -1,6 +1,11 @@
 class_name StateComplete extends State
 
 
+# Public variables
+
+var original_translations: Dictionary = {}
+
+
 # Private variables
 
 var __celebrating: bool = false
@@ -9,8 +14,8 @@ var __celebrating: bool = false
 # Lifecycle methods
 
 func _init(tree: SceneTree, cube: Cube).(tree, cube):
-	pass
-
+	for part in _cube.parts:
+		original_translations[part.name] = part.translation
 
 # Public methods
 

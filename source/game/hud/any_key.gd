@@ -59,8 +59,6 @@ func __mouse_enter(hover: bool) -> void:
 
 
 func __show(value: bool) -> void:
-	print("Hellow")
-
 	__tween.remove(self, "rect_position")
 	__tween.interpolate_property(
 		self,
