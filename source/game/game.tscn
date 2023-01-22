@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://source/game/cube/face.gd" type="Script" id=1]
 [ext_resource path="res://source/game/world/camera.gd" type="Script" id=2]
@@ -43,20 +43,12 @@
 [ext_resource path="res://assets/music/banger_lobby.ogg" type="AudioStream" id=41]
 [ext_resource path="res://source/game/world/listener.gd" type="Script" id=42]
 
-[sub_resource type="Shader" id=39]
-code = "shader_type spatial;
-
-void fragment() {
-	ALPHA = 0.5;
-	ALBEDO = vec3(1.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=40]
-shader = SubResource( 39 )
-
 [sub_resource type="CubeMesh" id=38]
-material = SubResource( 40 )
 size = Vector3( 0.75, 0.75, 0.75 )
+
+[sub_resource type="SpatialMaterial" id=47]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.580392 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.7, 0.7, 0.7 )
@@ -283,6 +275,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_0"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_0"]
 shape = SubResource( 2 )
@@ -316,6 +309,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_1"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_1"]
 shape = SubResource( 2 )
@@ -344,6 +338,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_2"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_2"]
 shape = SubResource( 2 )
@@ -377,6 +372,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_3"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_3"]
 shape = SubResource( 2 )
@@ -405,6 +401,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_4"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_4"]
 shape = SubResource( 2 )
@@ -428,6 +425,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_5"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_5"]
 shape = SubResource( 2 )
@@ -456,6 +454,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_6"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_6"]
 shape = SubResource( 2 )
@@ -489,6 +488,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_7"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_7"]
 shape = SubResource( 2 )
@@ -517,6 +517,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_8"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_8"]
 shape = SubResource( 2 )
@@ -550,6 +551,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_9"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_9"]
 shape = SubResource( 2 )
@@ -578,6 +580,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_10"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_10"]
 shape = SubResource( 2 )
@@ -601,6 +604,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_11"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_11"]
 shape = SubResource( 2 )
@@ -629,6 +633,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_12"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_12"]
 shape = SubResource( 2 )
@@ -652,6 +657,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_13"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_13"]
 shape = SubResource( 2 )
@@ -675,6 +681,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_14"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_14"]
 shape = SubResource( 2 )
@@ -703,6 +710,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_15"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_15"]
 shape = SubResource( 2 )
@@ -726,6 +734,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_16"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_16"]
 shape = SubResource( 2 )
@@ -754,6 +763,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_17"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_17"]
 shape = SubResource( 2 )
@@ -787,6 +797,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_18"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_18"]
 shape = SubResource( 2 )
@@ -815,6 +826,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_19"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_19"]
 shape = SubResource( 2 )
@@ -848,6 +860,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_20"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_20"]
 shape = SubResource( 2 )
@@ -876,6 +889,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_21"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_21"]
 shape = SubResource( 2 )
@@ -899,6 +913,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_22"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_22"]
 shape = SubResource( 2 )
@@ -927,6 +942,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_23"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_23"]
 shape = SubResource( 2 )
@@ -960,6 +976,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_24"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_24"]
 shape = SubResource( 2 )
@@ -988,6 +1005,7 @@ script = ExtResource( 3 )
 
 [node name="centre" type="MeshInstance" parent="_/_/cube/parts_container/part_25"]
 mesh = SubResource( 38 )
+material/0 = SubResource( 47 )
 
 [node name="collider" type="CollisionShape" parent="_/_/cube/parts_container/part_25"]
 shape = SubResource( 2 )

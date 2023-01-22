@@ -18,6 +18,9 @@ var __rotating_part: bool
 var __part_origins: Dictionary = {}
 var __timer: float = 0.0
 
+var __to_green: Array = []
+var __to_white: Array = []
+
 
 # Lifecycle methods
 
@@ -57,6 +60,18 @@ func process(delta: float) -> void:
 	__timer += delta
 	Event.emit_signal("time_changed", __timer)
 
+	var green: Color = Color("#b8ff66")
+	for guide in __to_green:
+		var material: SpatialMaterial = guide.get_active_material(0)
+		material.albedo_color = lerp(material.albedo_color, green, 0.15)
+		material.albedo_color.a = 0.75
+
+	var white: Color = Color.white
+	for guide in __to_white:
+		var material: SpatialMaterial = guide.get_active_material(0)
+		material.albedo_color = lerp(material.albedo_color, white, 0.15)
+		material.albedo_color.a = 0.75
+
 
 # Protected methods
 
@@ -74,14 +89,11 @@ func _handle_input(delta: float) -> void:
 			Audio.play_effect(Audio.effect_attach)
 			_cube.show_partial_guide(__over.get_child(1).get_child_count())
 
-
 			var mesh: MeshInstance = __over.get_child(1)
 			mesh.global_transform = Transform.IDENTITY
 			mesh.transform.basis = __find_camera_facing_basis(mesh)
-#			destination_basis = destination_basis.rotated((_cube.get_viewport().get_camera().global_translation - _cube.global_translation).normalized(), __over_rotation)
 
 			mesh.translation = Vector3.ZERO
-#			mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 1)
 	elif __action == Action.Place && !__rotating_part:
 		if __over is RigidBody:
 			__over.get_child(1).show_hover(false)
@@ -156,18 +168,8 @@ func __place() -> void:
 	var result: Dictionary = __intersect(1 << 3)
 	if result.empty():
 		return
-#
-#	__over.translation = lerp(__over.translation, result["position"] + __over_offset, 1.0)
-
-#	if !__closest:
-#		__over.look_at(_cube.translation, Vector3.UP)
 
 	var place_translation: Vector3 = result["position"] + __over_offset
-
-	# TODO: Investigate this
-#	if !__closest:
-#		var axis: Vector3 = (__over.translation - _cube.translation).normalized()
-#		__over.rotate(axis, __over_rotation)
 
 	var closest: Part = __find_closest()
 
@@ -175,34 +177,27 @@ func __place() -> void:
 		if __closest:
 			__closest.get_child(0).translation = Vector3.ZERO
 
+			var index = __to_green.find(__closest.get_child(0))
+			if index > -1:
+				__to_green.remove(index)
+			__to_white.append(__closest.get_child(0))
+
 		if closest:
 			# Update guide position
 			var origin: Vector3 = __part_origins[closest.name]
-			var destination: Vector3 = closest.face_direction * 2.0
+			var destination: Vector3 = closest.face_direction
 
 			closest.get_child(0).translation = destination
 
+			var index = __to_white.find(closest.get_child(0))
+			if index > -1:
+				__to_white.remove(index)
+			__to_green.append(closest.get_child(0))
+
 	__closest = closest
 
-#	var mesh: MeshInstance = __over.get_child(1)
-#	var destination_basis: Basis
-
-#	if __closest:
-#		destination_basis = __closest.calculate_basis(mesh)
-#		destination_basis = destination_basis.rotated(__closest.face_direction, __over_rotation)
-#	else:
-#
-#
-#	mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 0.15)
-#
-#	__over.translation = place_translation
-
-
 	if !__closest:
-
-
 		__over.translation = place_translation
-#		__over.look_at(_cube.translation, Vector3.UP)
 		return
 	else:
 		var mesh: MeshInstance = __over.get_child(1)
@@ -252,6 +247,7 @@ func __calculate_facing(mesh: MeshInstance) -> Vector3:
 		from += face.translation
 
 	return from.normalized()
+
 
 func __find_closest() -> Part:
 	var closest: Part
