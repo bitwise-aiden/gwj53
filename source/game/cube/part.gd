@@ -18,6 +18,8 @@ func _ready() -> void:
 
 	face_direction = face_direction.normalized()
 
+	centre.material_override = centre.get_active_material(0).duplicate()
+
 
 # Public methods
 

@@ -70,5 +70,8 @@
     - [ ] Change ready to be a button
     - [ ] Switch pause button for `i` in a circle
     - [ ] Have the rotation on the cube at the start
-    - [ ] restart doesn't need to do full reset if it's complete
+    - [ ] Restart doesn't need to do full reset if it's complete
+    - [ ] Detect cube falling out of space and put back in
+    - [ ] Have high score require full completion
+    - [x] Change colour of guide when active
 - [x] SUBMIT THE GAME FOR THE JAM!!!
