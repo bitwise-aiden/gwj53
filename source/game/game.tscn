@@ -1293,8 +1293,10 @@ margin_left = 417.0
 margin_top = 600.0
 margin_right = 864.0
 margin_bottom = 644.0
+mouse_filter = 0
 theme = ExtResource( 23 )
-text = "- Press any key -"
+text = "Scramble"
+align = 1
 script = ExtResource( 20 )
 
 [node name="audio" type="TextureRect" parent="_/_/hud"]

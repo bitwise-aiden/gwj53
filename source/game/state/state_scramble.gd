@@ -20,6 +20,7 @@ func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
 			"completed"
 		)
 
+	Event.emit_signal("cube_scrambled")
 	_completed = true
 
 

@@ -15,11 +15,6 @@ func _ready() -> void:
 	add_child(__tween)
 
 
-func _input(event) -> void:
-	if event is InputEventMouseButton && event.pressed:
-		get_parent()._input(event)
-
-
 # Private methods
 
 func __start() -> void:
