@@ -1,0 +1,59 @@
+#html {
+  background-color: #1c1a3a !important;
+}
+
+.header{
+  width: 2536px;a
+}
+
+.game_frame {
+  background-color: #494599;
+  border: #fff solid;
+}
+
+@media (min-width: 1280px) {
+  .game_frame{
+    width: 1270px !important;
+    height: 710px !important;
+  }
+}
+
+@media (min-width: 1520px) {
+  .game_page_primary_column {
+    overflow: auto !important;
+  }
+
+  .inner_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: show;
+  }
+
+  .wrapper::before {
+    content: url("https://img.itch.zone/aW1nLzExMTAyMTg2LnBuZw==/original/asLMQo.png");
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .right_col {
+    width: 353px !important;
+  }
+
+  .screenshot_list {
+   margin-right: 0 !important;
+  }
+
+  .screenshot {
+   margin-bottom: 20px !important;
+  }
+}
+
+.screenshot {
+  border: #fff solid;
+}
