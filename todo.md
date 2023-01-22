@@ -51,7 +51,7 @@
     - [x] Do write up for the itch page
     - [x] Update meta data for itch page
     - [x] Possibly second pass the cover
-- [ ] Bugs
+- [x] Bugs
     - [x] Trackpad press not working for ready
     - [x] Audio not playing
     - [x] Reset can lead to part.get_child(2) failing when reseting transforms in __reset function
@@ -62,14 +62,15 @@
     - [x] Cube will mess up last rotation if user is rotation cube for duration of scramble. (UP + LEFT seemed to do it)
     - [x] Issue where some pieces stay attached to the cube :zany_face:
     - [x] Fix bottom of page for itch
-    - [ ] Fix rotation when first picking up cube
     - [x] Fix audio default
-- [x] Other
+    - [x] Fix complete transitioning to scramble
+- [ ] Other
     - [x] Speed up reset
     - [x] Speed up scramble
     - [x] Speed up explode
     - [x] Change ready to be a button
-    - [ ] Restart doesn't need to do full reset if it's complete
+    - [x] Restart doesn't need to do full reset if it's complete
     - [x] Detect cube falling out of space and put back in
     - [x] Change colour of guide when active
+    - [ ] Make part face camera when first picking up cube
 - [x] SUBMIT THE GAME FOR THE JAM!!!

@@ -68,15 +68,6 @@ func calculate_basis(mesh: MeshInstance) -> Basis:
 	return mesh.transform.basis
 
 
-func __calculate_facing(mesh: MeshInstance) -> Vector3:
-	var from: Vector3 = Vector3.ZERO
-
-	for face in mesh.get_children():
-		from += face.translation
-
-	return from.normalized()
-
-
 func to_rigid_body() -> RigidBody:
 	var rigid_body: RigidBody = RigidBody.new()
 	rigid_body.mass = 10.0
@@ -103,3 +94,14 @@ func to_rigid_body() -> RigidBody:
 	rigid_body.collision_layer |= 1 << 2
 
 	return rigid_body
+
+
+# Private methods
+
+func __calculate_facing(mesh: MeshInstance) -> Vector3:
+	var from: Vector3 = Vector3.ZERO
+
+	for face in mesh.get_children():
+		from += face.translation
+
+	return from.normalized()

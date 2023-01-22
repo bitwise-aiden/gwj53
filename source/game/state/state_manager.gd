@@ -26,8 +26,10 @@ func process(delta: float) -> void:
 	if __state.is_complete():
 		__transition()
 
+
 func is_state(state_class) -> bool:
 	return __state is state_class
+
 
 # Private methods
 
@@ -55,7 +57,10 @@ func __transition(restart: bool = false) -> void:
 		if !__cube.is_complete():
 			__state = StateReset.new(__tree, __cube)
 		else:
+			__state = null
+			__cube.reset_parts()
 			__state = StateScramble.new(__tree, __cube)
+
 
 	elif __state is StateReset:
 		__state = StateScramble.new(__tree, __cube)

@@ -31,6 +31,7 @@ func _init(tree: SceneTree, cube: Cube).(tree, cube) -> void:
 
 	for part in _cube.parts:
 		__part_origins[part.name] = part.translation
+		__to_white.append(part.get_child(0))
 
 	Event.emit_signal("time_changed", __timer)
 
@@ -206,8 +207,9 @@ func __place() -> void:
 
 		var destination_basis: Basis = __closest.calculate_basis(mesh)
 		destination_basis = destination_basis.rotated(__closest.face_direction, __over_rotation)
+		destination_basis = destination_basis.orthonormalized()
 
-		mesh.transform.basis = mesh.transform.basis.slerp(destination_basis, 0.15)
+		mesh.transform.basis = mesh.transform.basis.orthonormalized().slerp(destination_basis, 0.15)
 
 		__over.translation = place_translation - _cube.translation
 
@@ -217,7 +219,6 @@ func __find_camera_facing_basis(mesh: MeshInstance) -> Basis:
 
 	# Please don't look at this code :joy:
 	var to: Vector3 = (_cube.get_viewport().get_camera().global_translation - _cube.global_translation).normalized()
-	print(to)
 	to = - to
 	var from: Vector3 = __calculate_facing(mesh)
 
